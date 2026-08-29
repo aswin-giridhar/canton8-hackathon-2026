@@ -2,6 +2,8 @@
 
 Team working repo. **Track: D1 - a spend-limited wallet for an AI agent.**
 
+**Live demo and pitch: https://frontend-pi-nine-95.vercel.app**
+
 ## The idea, in one sentence
 
 > AP2 defines agent spending mandates, but its defence against a prompt-injected
@@ -20,8 +22,7 @@ Team working repo. **Track: D1 - a spend-limited wallet for an AI agent.**
 | [`devnet-findings.md`](devnet-findings.md) | The DevNet bug report, standalone. Shareable with the organisers. |
 | [`STATUS.md`](STATUS.md) | **Current state.** What is proven, what is mocked, what is pending. |
 | [`token-standard/`](token-standard/) | Real Canton Coin moving through the mandate. |
-| [`frontend/`](frontend/) | The demo page. Presenter-driven; press Space to step through. |
-| [`deck/`](deck/) | The pitch deck. Nine slides, arrow keys to advance. |
+| [`frontend/`](frontend/) | The deployed site: live mandate page + the pitch deck. Press Space to step through the attacks. |
 
 ## Setup
 

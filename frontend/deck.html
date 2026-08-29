@@ -36,12 +36,12 @@ body{
   background-image:repeating-linear-gradient(to bottom,transparent 0 31px,var(--grain) 31px 32px);
 }
 .slide{
-  min-height:100dvh;scroll-snap-align:start;display:flex;flex-direction:column;
+  min-height:100dvh;padding-top:4.5rem;scroll-snap-align:start;display:flex;flex-direction:column;
   justify-content:center;padding:clamp(2rem,6vw,5rem) clamp(1.25rem,6vw,5rem);
   border-bottom:1px solid var(--rule);position:relative;gap:1.5rem;
 }
 .folio{
-  position:absolute;top:clamp(1.25rem,4vw,2.5rem);right:clamp(1.25rem,6vw,5rem);
+  position:absolute;top:clamp(3.6rem,6vw,4.6rem);right:clamp(1.25rem,6vw,5rem);
   font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;color:var(--ink-soft);
 }
 .eyebrow{font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
@@ -85,8 +85,25 @@ li strong{color:var(--ink);font-weight:500}
 .dot[aria-current="true"]{background:var(--stamp);border-color:var(--stamp)}
 .dot:focus-visible{outline:2px solid var(--stamp);outline-offset:3px}
 a{color:var(--ink)}
+.sitenav{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;gap:0;
+  background:var(--stock);border-bottom:1px solid var(--rule)}
+.sitenav a{flex:0 0 auto;font-family:var(--mono);font-size:.63rem;letter-spacing:.16em;
+  text-transform:uppercase;text-decoration:none;color:var(--ink-soft);
+  padding:.7rem 1.15rem;border-right:1px solid var(--rule);transition:color .15s ease,background .15s ease}
+.sitenav a:hover{background:var(--surface);color:var(--ink)}
+.sitenav a[aria-current="page"]{color:var(--ink);font-weight:700}
+.sitenav a[aria-current="page"]::before{content:"";display:inline-block;width:5px;height:5px;
+  background:var(--stamp);margin-right:.5rem;vertical-align:middle}
+.sitenav a:focus-visible{outline:2px solid var(--stamp);outline-offset:-2px}
+.sitenav .spacer{flex:1;border-right:0}
+
 </style>
 
+<nav class="sitenav" aria-label="Site">
+  <a href="./">Live mandate</a>
+  <a href="./deck.html" aria-current="page">The pitch</a>
+  <span class="spacer"></span>
+</nav>
 <main>
 <section class="slide" id="s1">
   <span class="folio">folio 01 / 09</span>

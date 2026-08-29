@@ -16,8 +16,7 @@ incomplete build.
 | `agent-wallet/` | 8 Python | MCP server, ledger client, disclosure service, harnesses. |
 | `context/` | 4 md | Research, strategy, team plan, measured DevNet state. |
 | `token-standard/` | 3 py + md | Real Amulet moving through the mandate. |
-| `frontend/` | html + json | The demo page, driven from real ledger data. |
-| `deck/` | 1 html | Nine-slide pitch deck. |
+| `frontend/` | 2 html + json | The deployed site: live mandate page and the nine-slide pitch. |
 | root | 5 md | README, this file, DevNet findings, the Davide ask, example env. |
 
 **593 lines of Daml · 658 of Python · 1,573 of documentation**, across 12

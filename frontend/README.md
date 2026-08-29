@@ -1,7 +1,15 @@
-# Mandate — the demo page
+# Mandate — the demo site
 
-A presenter-driven page showing an AI agent's wallet whose limits are enforced
-by the Canton ledger. Every figure is read back from a running ledger.
+Live: **https://frontend-pi-nine-95.vercel.app**
+
+Two pages, one deployable static site:
+
+| Page | What |
+|---|---|
+| `/` | **Live mandate** — the running state, and the attack sequence you drive |
+| `/deck.html` | **The pitch** — nine slides, arrow keys to advance |
+
+Every figure on the dashboard is read back from a running Canton ledger.
 
 ## Demo it
 
@@ -49,8 +57,12 @@ the rule.
 
 ## Deploy
 
-Static — `index.html`, `ledger-snapshot.json`, `vercel.json`. Any static host.
+Static — no build step. `index.html`, `deck.html`, `ledger-snapshot.json`,
+`vercel.json`. Any static host.
 
 ```bash
-cd frontend && vercel deploy --prod
+cd frontend && vercel deploy --prod --yes
 ```
+
+The deck lives here rather than as a hosted artifact elsewhere, so the pitch
+and the live demo ship together and share one URL.

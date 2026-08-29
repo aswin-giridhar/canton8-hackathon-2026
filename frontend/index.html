@@ -29,7 +29,7 @@ body{
 .eyebrow b{font-weight:500;color:var(--ink)}
 .live{width:6px;height:6px;border-radius:50%;background:var(--settled);display:inline-block;margin-right:.4rem}
 
-header{padding:clamp(2.5rem,7vw,5rem) 0 clamp(2rem,5vw,3.5rem);border-bottom:1px solid var(--rule)}
+header{padding:clamp(4.5rem,9vw,7rem) 0 clamp(2rem,5vw,3.5rem);border-bottom:1px solid var(--rule)}
 h1{
   font-family:var(--serif);font-weight:400;
   font-size:clamp(2.9rem,10vw,6.6rem);line-height:.94;letter-spacing:-.02em;
@@ -108,6 +108,18 @@ footer code{font-family:var(--mono);font-size:.76rem}
 .caveat{border-left:2px solid var(--amber);padding-left:1rem;margin:1.2rem 0;font-size:.85rem}
 section{padding:clamp(1.5rem,4vw,2.5rem) 0}
 a{color:var(--ink)}
+.sitenav{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;gap:0;
+  background:var(--stock);border-bottom:1px solid var(--rule)}
+.sitenav a{flex:0 0 auto;font-family:var(--mono);font-size:.63rem;letter-spacing:.16em;
+  text-transform:uppercase;text-decoration:none;color:var(--ink-soft);
+  padding:.7rem 1.15rem;border-right:1px solid var(--rule);transition:color .15s ease,background .15s ease}
+.sitenav a:hover{background:var(--surface,var(--stock-2));color:var(--ink)}
+.sitenav a[aria-current="page"]{color:var(--ink);font-weight:700}
+.sitenav a[aria-current="page"]::before{content:"";display:inline-block;width:5px;height:5px;
+  background:var(--stamp);margin-right:.5rem;vertical-align:middle}
+.sitenav a:focus-visible{outline:2px solid var(--stamp);outline-offset:-2px}
+.sitenav .spacer{flex:1;border-right:0}
+
 .demo-bar{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;margin:0 0 1.4rem}
 .btn{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
   background:var(--ink);color:var(--stock);border:1px solid var(--ink);padding:.65rem 1.1rem;
@@ -129,6 +141,11 @@ kbd{font-family:var(--mono);font-size:.7rem;border:1px solid var(--rule);padding
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 
+<nav class="sitenav" aria-label="Site">
+  <a href="./" aria-current="page">Live mandate</a>
+  <a href="./deck.html">The pitch</a>
+  <span class="spacer"></span>
+</nav>
 <div class="wrap">
 <header>
   <div class="eyebrow">
