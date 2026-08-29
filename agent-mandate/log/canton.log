@@ -9460,3 +9460,1490 @@ ValidatedTopologyTransaction(
 2026-08-29 15:50:20,847 [canton-env-ec-58] INFO  c.d.c.n.g.ApiRequestLogger:participant=sandbox tid:8b27a59bd216e936279445383a7e497a - Request c.d.l.a.v.CommandService/SubmitAndWaitForTransaction by inprocess-grpc-6865: failed with FAILED_PRECONDITION/DAML_FAILURE(9,f0438760): Interpretation error: Error: User failure: UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed (error category 9): amount must be positive
 2026-08-29 15:50:21,008 [canton-env-ec-64] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:cdb42b331c64e9a32ad507a2a131d5ff - Received request for active contracts: GetActiveContractsRequest(49,Some(EventFormat(Map(agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Mandate,Mandate)),false)))))),None,false))), filters -> {agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Mandate:Mandate'], interfaces: []}}.
 2026-08-29 15:50:21,040 [canton-env-ec-65] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:ee29d4acf756eb3a35458c914fe2992a - Received request for active contracts: GetActiveContractsRequest(49,Some(EventFormat(Map(alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Mandate,ChargeRecord)),false)))))),None,false))), filters -> {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Mandate:ChargeRecord'], interfaces: []}}.
+2026-08-29 15:51:16,179 [canton-env-ec-65] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:e07081b7be3365c6a56bc40467735762 - Processing block 45, data chunk 0. Last chunk timestamp=2026-08-29T14:50:19.978331Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Ack by MED::mediator1::1220be8c4f90... for 2026-08-29T14:50:19.978331Z
+2026-08-29 15:51:18,699 [canton-env-ec-49] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:eaaf6b34a9521414f5e542a9a3e37540 - Processing block 46, data chunk 0. Last chunk timestamp=2026-08-29T14:50:19.978331Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Ack by PAR::sandbox::12205ae2ef33... for 2026-08-29T14:50:19.978331Z
+2026-08-29 15:51:39,519 [canton-env-ec-67] INFO  c.d.c.p.a.s.a.ApiPartyManagementService:participant=sandbox tid:6beb1cbfb3c640a13ec6caa91fb4e721 - Listing known parties.
+2026-08-29 15:51:39,533 [canton-env-ec-51] INFO  c.d.c.p.a.s.a.ApiPartyManagementService:participant=sandbox tid:4c43a1de6c7d1d3108b22450ea1c5e6d - Listing known parties.
+2026-08-29 15:51:39,545 [canton-env-ec-58] INFO  c.d.c.p.a.s.a.ApiPartyManagementService:participant=sandbox tid:c07db0036de55e246d746da2df3a03bf - Listing known parties.
+2026-08-29 15:51:39,557 [canton-env-ec-61] INFO  c.d.c.p.a.s.a.ApiPartyManagementService:participant=sandbox tid:8b4d56d16c196838815d124eaad5aa3c - Listing known parties.
+2026-08-29 15:51:39,579 [canton-env-ec-58] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:6f6b1092160e5543b9dd06e7e9112e67 - Received request for active contracts: GetActiveContractsRequest(49,Some(EventFormat(Map(alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Value,Purse)),false)))))),None,false))), filters -> {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Value:Purse'], interfaces: []}}.
+2026-08-29 15:51:39,599 [canton-env-ec-57] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:cb30a4a2de7da890c2f5db74064777ed - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:50:19.978332Z
+2026-08-29 15:51:39,610 [canton-env-ec-61] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:cb30a4a2de7da890c2f5db74064777ed - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-53c84b33-39f3-42d9-b05c-7e4614fb747e,
+  submissionId = 7d58a167-4e17-4ee4-8c81-6984ff78a6f0,
+  userId = participant_admin,
+  actAs = alice::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:51:39.610054Z,
+  ledgerEffectiveTime = 2026-08-29T14:51:39.610053Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:51:39,611 [canton-env-ec-57] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:cb30a4a2de7da890c2f5db74064777ed - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:50:19.978332Z
+2026-08-29 15:51:39,656 [canton-env-ec-66] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:cb30a4a2de7da890c2f5db74064777ed - Phase 1 completed: Submitting 3 envelopes for Transaction request, submitters alice::12205ae2ef33..., command-id wallet-53c84b33-39f3-42d9-b05c-7e4614fb747e
+2026-08-29 15:51:39,669 [canton-env-ec-62] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:cb30a4a2de7da890c2f5db74064777ed - 'PAR::sandbox::12205ae2ef33...' sends request with id '8b14d246-c072-48f2-92df-f077efcf3b74' of size 2533 bytes with 3 envelopes.
+2026-08-29 15:51:39,795 [canton-env-ec-57] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:cb30a4a2de7da890c2f5db74064777ed - Processing block 47, data chunk 0. Last chunk timestamp=2026-08-29T14:50:19.978331Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '8b14d246-c072-48f2-92df-f077efcf3b74' at 2026-08-29T14:51:39.677502Z (tc=cb30a4a2de7da890c2f5db74064777ed)
+2026-08-29 15:51:39,825 [canton-env-ec-58] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:cb30a4a2de7da890c2f5db74064777ed - Processing event at sc=37, ts=2026-08-29T14:51:39.677502Z, messageId=8b14d246-c072-48f2-92df-f077efcf3b74, with contents=Seq(
+  RootHashMessage(root hash = SHA-256:8557c87c8907..., payload size = 0),
+  EncryptedViewMessage(
+    view hash = ViewHash(SHA-256:8e0ba8586812...),
+    view type = TransactionViewType,
+    size = 1067,
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    number of session keys = 1,
+    view encryption scheme = AES128-GCM
+  )
+)
+2026-08-29 15:51:39,830 [canton-env-ec-58] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:cb30a4a2de7da890c2f5db74064777ed - Phase 3: Validating Transaction request=2026-08-29T14:51:39.677502Z with 1 envelope(s)
+2026-08-29 15:51:39,838 [canton-env-ec-62] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:cb30a4a2de7da890c2f5db74064777ed - Phase 2: Registered request=2026-08-29T14:51:39.677502Z with 1 view(s). Initial state: ViewPosition("") -> ViewState(
+  quorumsState = Quorum(confirmers = Map(alice::12205ae2ef33... -> 1, sandbox::12205ae2ef33... -> 1), threshold = 2),
+  consortiumVoting = Map(alice::12205ae2ef33... -> ConsortiumVotingState(), sandbox::12205ae2ef33... -> ConsortiumVotingState()),
+  rejections = Seq()
+)
+2026-08-29 15:51:39,863 [canton-env-ec-60] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:cb30a4a2de7da890c2f5db74064777ed - Phase 4: Sending for request=2026-08-29T14:51:39.677502Z with msgId=92fd99c2-384d-4659-8f72-2318bcaba185 approved=1, rejected=0, abstained=0
+2026-08-29 15:51:39,872 [canton-env-ec-66] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:cb30a4a2de7da890c2f5db74064777ed - 'PAR::sandbox::12205ae2ef33...' sends request with id '92fd99c2-384d-4659-8f72-2318bcaba185' of size 742 bytes with 1 envelopes.
+2026-08-29 15:51:39,915 [canton-env-ec-61] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:cb30a4a2de7da890c2f5db74064777ed - Processing block 48, data chunk 0. Last chunk timestamp=2026-08-29T14:51:39.677502Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '92fd99c2-384d-4659-8f72-2318bcaba185' at 2026-08-29T14:51:39.876688Z (tc=cb30a4a2de7da890c2f5db74064777ed)
+2026-08-29 15:51:39,941 [canton-env-ec-62] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:cb30a4a2de7da890c2f5db74064777ed - Processing event at sc=38, ts=2026-08-29T14:51:39.876688Z, messageId=92fd99c2-384d-4659-8f72-2318bcaba185, with contents=Seq()
+2026-08-29 15:51:39,944 [canton-env-ec-65] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:cb30a4a2de7da890c2f5db74064777ed - Phase 5: Received responses for request=2026-08-29T14:51:39.677502Z: ConfirmationResponses(
+  requestId = RequestId(2026-08-29T14:51:39.677502Z),
+  rootHash = SHA-256:8557c87c8907...,
+  sender = PAR::sandbox::12205ae2ef33...,
+  psid = mysynchronizer::12204bbd6079...::34-0,
+  responses = ConfirmationResponse(viewPosition = ViewPosition(""), localVerdict = LocalApprove(), confirmingParties = Set(alice::12205ae2ef33..., sandbox::12205ae2ef33...))
+)
+2026-08-29 15:51:39,948 [canton-env-ec-67] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:cb30a4a2de7da890c2f5db74064777ed - Phase 6: Finalized request=RequestId(2026-08-29T14:51:39.677502Z) with verdict Approve
+2026-08-29 15:51:39,962 [canton-env-ec-52] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:cb30a4a2de7da890c2f5db74064777ed - 'MED::mediator1::1220be8c4f90...' sends request with id '35339b76-ae73-4ef8-bc74-6cfa6a4c73a6' of size 715 bytes with 1 envelopes.
+2026-08-29 15:51:40,036 [canton-env-ec-49] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:cb30a4a2de7da890c2f5db74064777ed - Processing block 49, data chunk 0. Last chunk timestamp=2026-08-29T14:51:39.876688Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '35339b76-ae73-4ef8-bc74-6cfa6a4c73a6' at 2026-08-29T14:51:39.967502Z (tc=cb30a4a2de7da890c2f5db74064777ed)
+2026-08-29 15:51:40,062 [canton-env-ec-50] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:cb30a4a2de7da890c2f5db74064777ed - Processing event at sc=39, ts=2026-08-29T14:51:39.967502Z, with contents=SignedProtocolMessage(
+  ConfirmationResultMessage(
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    viewType = TransactionViewType,
+    requestId = 2026-08-29T14:51:39.677502Z,
+    rootHash = SHA-256:8557c87c8907...,
+    verdict = Approve
+  ),
+  signatures = Signature(signature = c8880dd22293, format = Concat, signedBy = 12202625fc65..., signingAlgorithmSpec = Some(Ed25519))
+)
+2026-08-29 15:51:40,071 [canton-env-ec-51] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:cb30a4a2de7da890c2f5db74064777ed - Finalizing Transaction request=2026-08-29T14:51:39.677502Z.
+2026-08-29 15:51:40,074 [canton-env-ec-66] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:cb30a4a2de7da890c2f5db74064777ed - About to wrap up request RequestId(2026-08-29T14:51:39.677502Z) with event Some(
+  SequencedTransactionAccepted(
+    recordTime = 2026-08-29T14:51:39.677502Z,
+    updateId = 12208557c87c89076e6fdc07d71ca156bbf100f63884228eaaec1d37af8ff6f731f6,
+    transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:51:39.610053Z, preparationTime = 2026-08-29T14:51:39.610053Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+    completion = CompletionInfo(
+      actAs = alice::12205ae2ef33...,
+      commandId = wallet-53c84b33-39f3-42d9-b05c-7e4614fb747e,
+      userId = participant_admin,
+      deduplication period = (offset=None),
+      submissionId = Some(7d58a167-4e17-4ee4-8c81-6984ff78a6f0),
+      ...
+    ),
+    nodes = 1,
+    roots = 1,
+    ...
+  )
+)
+2026-08-29 15:51:40,079 [input-mapping-pool-4] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:cb30a4a2de7da890c2f5db74064777ed - Storing at offset=51 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:51:39.876688Z)
+2026-08-29 15:51:40,079 [canton-env-ec-56] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:cb30a4a2de7da890c2f5db74064777ed - Finished async result processing of request RequestId(2026-08-29T14:51:39.677502Z)
+2026-08-29 15:51:40,079 [input-mapping-pool-15] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:cb30a4a2de7da890c2f5db74064777ed - Phase 7: Storing at offset=50 SequencedTransactionAccepted(
+  recordTime = 2026-08-29T14:51:39.677502Z,
+  updateId = 12208557c87c89076e6fdc07d71ca156bbf100f63884228eaaec1d37af8ff6f731f6,
+  transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:51:39.610053Z, preparationTime = 2026-08-29T14:51:39.610053Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+  completion = CompletionInfo(
+    actAs = alice::12205ae2ef33...,
+    commandId = wallet-53c84b33-39f3-42d9-b05c-7e4614fb747e,
+    userId = participant_admin,
+    deduplication period = (offset=None),
+    submissionId = Some(7d58a167-4e17-4ee4-8c81-6984ff78a6f0),
+    ...
+  ),
+  nodes = 1,
+  roots = 1,
+  ...
+)
+2026-08-29 15:51:40,082 [input-mapping-pool-1] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:cb30a4a2de7da890c2f5db74064777ed - Storing at offset=52 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:51:39.967502Z)
+2026-08-29 15:51:40,095 [canton-env-ec-64] INFO  c.d.c.p.p.AcsCommitmentProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:749b39bac804d34ded6e5f90f1da3a98 - Persisted ACS commitments at RecordTime(timestamp = 2026-08-29T14:50:19.673733Z, tieBreaker = -9223372036854775808) with CommitmentSnapshot(
+  record time = RecordTime(timestamp = 2026-08-29T14:50:19.673733Z, tieBreaker = -9223372036854775808),
+  active = Map(5 -> e0557c57a00a, Set(5, 6) -> 90fee1927ac4),
+  delta (parties) = Set(Set(5, 6), 5),
+  deleted = Set()
+) in mode Checkpoint
+2026-08-29 15:51:40,097 [canton-env-ec-49] INFO  c.d.c.p.p.AcsCommitmentProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:749b39bac804d34ded6e5f90f1da3a98 - Persisted ACS commitments at RecordTime(timestamp = 2026-08-29T14:50:19.673733Z, tieBreaker = -9223372036854775808) with CommitmentSnapshot(
+  record time = RecordTime(timestamp = 2026-08-29T14:50:19.673733Z, tieBreaker = -9223372036854775808),
+  active = Map(5 -> e0557c57a00a, Set(5, 6) -> 90fee1927ac4),
+  delta (parties) = Set(Set(5, 6), 5),
+  deleted = Set()
+) in mode Checkpoint
+2026-08-29 15:51:40,100 [canton-env-ec-64] INFO  c.d.c.p.a.s.ApiUpdateService:participant=sandbox - Received request for update by ID, updateFormat -> {transaction format: [{filters: {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: [], interfaces: [], all-templates, created_event_blob: false}}, transactionShape: 'AcsDelta'}], reassignment filters: [], topology format: []}.
+2026-08-29 15:51:40,100 [canton-env-ec-49] INFO  c.d.c.p.p.AcsCommitmentProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:749b39bac804d34ded6e5f90f1da3a98 - Processing completed period CommitmentPeriod(fromExclusive = 2026-08-29T14:50:00Z, toInclusive = 2026-08-29T14:51:00Z). Modes: in catch-up mode = false, and if yes, caught up to catch-up boundary false
+2026-08-29 15:51:40,102 [canton-env-ec-58] INFO  c.d.c.p.p.AcsCommitmentProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:749b39bac804d34ded6e5f90f1da3a98 - Computing commitments for CommitmentPeriod(fromExclusive = 2026-08-29T14:50:00Z, toInclusive = 2026-08-29T14:51:00Z), number of stakeholder sets: 2
+2026-08-29 15:51:40,107 [canton-env-ec-49] INFO  c.d.c.p.p.AcsCommitmentProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:749b39bac804d34ded6e5f90f1da3a98 - Computed and stored 0 commitment messages for period CommitmentPeriod(fromExclusive = 2026-08-29T14:50:00Z, toInclusive = 2026-08-29T14:51:00Z)
+2026-08-29 15:51:40,111 [canton-env-ec-49] INFO  c.d.c.p.p.AcsCommitmentProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:749b39bac804d34ded6e5f90f1da3a98 - Persisted ACS commitments at RecordTime(timestamp = 2026-08-29T14:50:19.673733Z, tieBreaker = -9223372036854775808) with CommitmentSnapshot(
+  record time = RecordTime(timestamp = 2026-08-29T14:50:19.673733Z, tieBreaker = -9223372036854775808),
+  active = Map(5 -> e0557c57a00a, Set(5, 6) -> 90fee1927ac4),
+  delta (parties) = Set(Set(5, 6), 5),
+  deleted = Set()
+) in mode Efficiency
+2026-08-29 15:51:40,113 [canton-env-ec-56] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:e19921c17c057a3947d826f0a70abb26 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:39.967503Z
+2026-08-29 15:51:40,114 [canton-env-ec-50] INFO  c.d.c.p.p.AcsCommitmentProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:749b39bac804d34ded6e5f90f1da3a98 - Processing 0 remote commitments
+2026-08-29 15:51:40,115 [canton-env-ec-59] INFO  c.d.c.p.p.AcsCommitmentProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:749b39bac804d34ded6e5f90f1da3a98 - Checked buffered remote commitments up to 2026-08-29T14:51:00Z inclusive and ready to check further ones without buffering
+2026-08-29 15:51:40,116 [canton-env-ec-51] INFO  c.d.c.p.p.AcsCommitmentProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:749b39bac804d34ded6e5f90f1da3a98 - Deleted buffered commitments and set last computed and sent timestamp set to 2026-08-29T14:51:00Z
+2026-08-29 15:51:40,127 [canton-env-ec-63] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:e19921c17c057a3947d826f0a70abb26 - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-00398359-0506-4915-9367-e6a420b32bdb,
+  submissionId = ac1c6246-b3af-41c1-8f2e-6c5cfa7d5d47,
+  userId = participant_admin,
+  actAs = alice::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:51:40.125548Z,
+  ledgerEffectiveTime = 2026-08-29T14:51:40.125546Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:51:40,132 [canton-env-ec-52] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:e19921c17c057a3947d826f0a70abb26 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:39.967503Z
+2026-08-29 15:51:40,188 [canton-env-ec-61] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:e19921c17c057a3947d826f0a70abb26 - Phase 1 completed: Submitting 3 envelopes for Transaction request, submitters alice::12205ae2ef33..., command-id wallet-00398359-0506-4915-9367-e6a420b32bdb
+2026-08-29 15:51:40,199 [canton-env-ec-61] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:e19921c17c057a3947d826f0a70abb26 - 'PAR::sandbox::12205ae2ef33...' sends request with id '53ce90fe-ff6e-4b8e-b312-7e10bad9b411' of size 2496 bytes with 3 envelopes.
+2026-08-29 15:51:40,275 [canton-env-ec-52] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:e19921c17c057a3947d826f0a70abb26 - Processing block 50, data chunk 0. Last chunk timestamp=2026-08-29T14:51:39.967502Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '53ce90fe-ff6e-4b8e-b312-7e10bad9b411' at 2026-08-29T14:51:40.204110Z (tc=e19921c17c057a3947d826f0a70abb26)
+2026-08-29 15:51:40,300 [canton-env-ec-66] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:e19921c17c057a3947d826f0a70abb26 - Processing event at sc=40, ts=2026-08-29T14:51:40.204110Z, messageId=53ce90fe-ff6e-4b8e-b312-7e10bad9b411, with contents=Seq(
+  RootHashMessage(root hash = SHA-256:c6653862e042..., payload size = 0),
+  EncryptedViewMessage(
+    view hash = ViewHash(SHA-256:68484e70b006...),
+    view type = TransactionViewType,
+    size = 1042,
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    number of session keys = 1,
+    view encryption scheme = AES128-GCM
+  )
+)
+2026-08-29 15:51:40,303 [canton-env-ec-67] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:e19921c17c057a3947d826f0a70abb26 - Phase 3: Validating Transaction request=2026-08-29T14:51:40.204110Z with 1 envelope(s)
+2026-08-29 15:51:40,307 [canton-env-ec-49] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:e19921c17c057a3947d826f0a70abb26 - Phase 2: Registered request=2026-08-29T14:51:40.204110Z with 1 view(s). Initial state: ViewPosition("") -> ViewState(
+  quorumsState = Quorum(confirmers = Map(alice::12205ae2ef33... -> 1, sandbox::12205ae2ef33... -> 1), threshold = 2),
+  consortiumVoting = Map(alice::12205ae2ef33... -> ConsortiumVotingState(), sandbox::12205ae2ef33... -> ConsortiumVotingState()),
+  rejections = Seq()
+)
+2026-08-29 15:51:40,329 [canton-env-ec-64] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:e19921c17c057a3947d826f0a70abb26 - Phase 4: Sending for request=2026-08-29T14:51:40.204110Z with msgId=2b5f73c8-6c6c-46ab-8f84-1af283f56316 approved=1, rejected=0, abstained=0
+2026-08-29 15:51:40,339 [canton-env-ec-62] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:e19921c17c057a3947d826f0a70abb26 - 'PAR::sandbox::12205ae2ef33...' sends request with id '2b5f73c8-6c6c-46ab-8f84-1af283f56316' of size 743 bytes with 1 envelopes.
+2026-08-29 15:51:40,398 [canton-env-ec-52] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:e19921c17c057a3947d826f0a70abb26 - Processing block 51, data chunk 0. Last chunk timestamp=2026-08-29T14:51:40.204110Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '2b5f73c8-6c6c-46ab-8f84-1af283f56316' at 2026-08-29T14:51:40.343839Z (tc=e19921c17c057a3947d826f0a70abb26)
+2026-08-29 15:51:40,427 [canton-env-ec-56] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:e19921c17c057a3947d826f0a70abb26 - Processing event at sc=41, ts=2026-08-29T14:51:40.343839Z, messageId=2b5f73c8-6c6c-46ab-8f84-1af283f56316, with contents=Seq()
+2026-08-29 15:51:40,429 [canton-env-ec-60] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:e19921c17c057a3947d826f0a70abb26 - Phase 5: Received responses for request=2026-08-29T14:51:40.204110Z: ConfirmationResponses(
+  requestId = RequestId(2026-08-29T14:51:40.204110Z),
+  rootHash = SHA-256:c6653862e042...,
+  sender = PAR::sandbox::12205ae2ef33...,
+  psid = mysynchronizer::12204bbd6079...::34-0,
+  responses = ConfirmationResponse(viewPosition = ViewPosition(""), localVerdict = LocalApprove(), confirmingParties = Set(alice::12205ae2ef33..., sandbox::12205ae2ef33...))
+)
+2026-08-29 15:51:40,435 [canton-env-ec-64] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:e19921c17c057a3947d826f0a70abb26 - Phase 6: Finalized request=RequestId(2026-08-29T14:51:40.204110Z) with verdict Approve
+2026-08-29 15:51:40,450 [canton-env-ec-62] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:e19921c17c057a3947d826f0a70abb26 - 'MED::mediator1::1220be8c4f90...' sends request with id 'd530f52a-2196-4849-929f-fb5246c76c63' of size 716 bytes with 1 envelopes.
+2026-08-29 15:51:40,515 [canton-env-ec-51] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:e19921c17c057a3947d826f0a70abb26 - Processing block 52, data chunk 0. Last chunk timestamp=2026-08-29T14:51:40.343839Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of 'd530f52a-2196-4849-929f-fb5246c76c63' at 2026-08-29T14:51:40.454150Z (tc=e19921c17c057a3947d826f0a70abb26)
+2026-08-29 15:51:40,539 [canton-env-ec-60] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:e19921c17c057a3947d826f0a70abb26 - Processing event at sc=42, ts=2026-08-29T14:51:40.454150Z, with contents=SignedProtocolMessage(
+  ConfirmationResultMessage(
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    viewType = TransactionViewType,
+    requestId = 2026-08-29T14:51:40.204110Z,
+    rootHash = SHA-256:c6653862e042...,
+    verdict = Approve
+  ),
+  signatures = Signature(signature = 5052da0e285c, format = Concat, signedBy = 12202625fc65..., signingAlgorithmSpec = Some(Ed25519))
+)
+2026-08-29 15:51:40,546 [canton-env-ec-51] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:e19921c17c057a3947d826f0a70abb26 - Finalizing Transaction request=2026-08-29T14:51:40.204110Z.
+2026-08-29 15:51:40,548 [canton-env-ec-56] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:e19921c17c057a3947d826f0a70abb26 - About to wrap up request RequestId(2026-08-29T14:51:40.204110Z) with event Some(
+  SequencedTransactionAccepted(
+    recordTime = 2026-08-29T14:51:40.204110Z,
+    updateId = 1220c6653862e042eca151156d528e9a023be530dd6b9d51cc23225894864fea74c8,
+    transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:51:40.125546Z, preparationTime = 2026-08-29T14:51:40.125546Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+    completion = CompletionInfo(
+      actAs = alice::12205ae2ef33...,
+      commandId = wallet-00398359-0506-4915-9367-e6a420b32bdb,
+      userId = participant_admin,
+      deduplication period = (offset=None),
+      submissionId = Some(ac1c6246-b3af-41c1-8f2e-6c5cfa7d5d47),
+      ...
+    ),
+    nodes = 1,
+    roots = 1,
+    ...
+  )
+)
+2026-08-29 15:51:40,553 [input-mapping-pool-3] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:e19921c17c057a3947d826f0a70abb26 - Storing at offset=54 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:51:40.343839Z)
+2026-08-29 15:51:40,554 [input-mapping-pool-5] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:e19921c17c057a3947d826f0a70abb26 - Phase 7: Storing at offset=53 SequencedTransactionAccepted(
+  recordTime = 2026-08-29T14:51:40.204110Z,
+  updateId = 1220c6653862e042eca151156d528e9a023be530dd6b9d51cc23225894864fea74c8,
+  transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:51:40.125546Z, preparationTime = 2026-08-29T14:51:40.125546Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+  completion = CompletionInfo(
+    actAs = alice::12205ae2ef33...,
+    commandId = wallet-00398359-0506-4915-9367-e6a420b32bdb,
+    userId = participant_admin,
+    deduplication period = (offset=None),
+    submissionId = Some(ac1c6246-b3af-41c1-8f2e-6c5cfa7d5d47),
+    ...
+  ),
+  nodes = 1,
+  roots = 1,
+  ...
+)
+2026-08-29 15:51:40,553 [canton-env-ec-62] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:e19921c17c057a3947d826f0a70abb26 - Finished async result processing of request RequestId(2026-08-29T14:51:40.204110Z)
+2026-08-29 15:51:40,557 [input-mapping-pool-7] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:e19921c17c057a3947d826f0a70abb26 - Storing at offset=55 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:51:40.454150Z)
+2026-08-29 15:51:40,564 [canton-env-ec-56] INFO  c.d.c.p.a.s.ApiUpdateService:participant=sandbox - Received request for update by ID, updateFormat -> {transaction format: [{filters: {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: [], interfaces: [], all-templates, created_event_blob: false}}, transactionShape: 'AcsDelta'}], reassignment filters: [], topology format: []}.
+2026-08-29 15:51:40,585 [canton-env-ec-51] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:957dc7a0a3b4f1d7b98df8cb76341026 - Received request for active contracts: GetActiveContractsRequest(55,Some(EventFormat(Map(alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Value,Purse)),true)))))),None,false))), filters -> {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Value:Purse'], interfaces: []}}.
+2026-08-29 15:51:40,608 [canton-env-ec-67] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:f5635b8591708e369f6f813ce7e0b1e7 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:40.454151Z
+2026-08-29 15:51:40,619 [canton-env-ec-56] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:f5635b8591708e369f6f813ce7e0b1e7 - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-e932126a-64a6-4121-8e60-61737b2f2b94,
+  submissionId = c3370078-551f-47d3-ad26-a63f192c3547,
+  userId = participant_admin,
+  actAs = alice::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:51:40.618494Z,
+  ledgerEffectiveTime = 2026-08-29T14:51:40.618492Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:51:40,620 [canton-env-ec-58] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:f5635b8591708e369f6f813ce7e0b1e7 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:40.454151Z
+2026-08-29 15:51:40,663 [canton-env-ec-52] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:f5635b8591708e369f6f813ce7e0b1e7 - Phase 1 completed: Submitting 3 envelopes for Transaction request, submitters alice::12205ae2ef33..., command-id wallet-e932126a-64a6-4121-8e60-61737b2f2b94
+2026-08-29 15:51:40,674 [canton-env-ec-51] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:f5635b8591708e369f6f813ce7e0b1e7 - 'PAR::sandbox::12205ae2ef33...' sends request with id '773a980b-6e31-4b6c-9fe9-7a972723171b' of size 2577 bytes with 3 envelopes.
+2026-08-29 15:51:40,755 [canton-env-ec-59] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:f5635b8591708e369f6f813ce7e0b1e7 - Processing block 53, data chunk 0. Last chunk timestamp=2026-08-29T14:51:40.454150Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '773a980b-6e31-4b6c-9fe9-7a972723171b' at 2026-08-29T14:51:40.679334Z (tc=f5635b8591708e369f6f813ce7e0b1e7)
+2026-08-29 15:51:40,775 [canton-env-ec-64] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:f5635b8591708e369f6f813ce7e0b1e7 - Processing event at sc=43, ts=2026-08-29T14:51:40.679334Z, messageId=773a980b-6e31-4b6c-9fe9-7a972723171b, with contents=Seq(
+  RootHashMessage(root hash = SHA-256:3c9598659d71..., payload size = 0),
+  EncryptedViewMessage(
+    view hash = ViewHash(SHA-256:efc1f1c01318...),
+    view type = TransactionViewType,
+    size = 1097,
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    number of session keys = 1,
+    view encryption scheme = AES128-GCM
+  )
+)
+2026-08-29 15:51:40,777 [canton-env-ec-66] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:f5635b8591708e369f6f813ce7e0b1e7 - Phase 3: Validating Transaction request=2026-08-29T14:51:40.679334Z with 1 envelope(s)
+2026-08-29 15:51:40,784 [canton-env-ec-63] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:f5635b8591708e369f6f813ce7e0b1e7 - Phase 2: Registered request=2026-08-29T14:51:40.679334Z with 1 view(s). Initial state: ViewPosition("") -> ViewState(
+  quorumsState = Quorum(confirmers = Map(alice::12205ae2ef33... -> 1, sandbox::12205ae2ef33... -> 1), threshold = 2),
+  consortiumVoting = Map(alice::12205ae2ef33... -> ConsortiumVotingState(), sandbox::12205ae2ef33... -> ConsortiumVotingState()),
+  rejections = Seq()
+)
+2026-08-29 15:51:40,806 [canton-env-ec-57] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:f5635b8591708e369f6f813ce7e0b1e7 - Phase 4: Sending for request=2026-08-29T14:51:40.679334Z with msgId=23ba0fd5-c040-4c54-be9c-7237f7d5bb51 approved=1, rejected=0, abstained=0
+2026-08-29 15:51:40,813 [canton-env-ec-50] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:f5635b8591708e369f6f813ce7e0b1e7 - 'PAR::sandbox::12205ae2ef33...' sends request with id '23ba0fd5-c040-4c54-be9c-7237f7d5bb51' of size 744 bytes with 1 envelopes.
+2026-08-29 15:51:40,875 [canton-env-ec-63] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:f5635b8591708e369f6f813ce7e0b1e7 - Processing block 54, data chunk 0. Last chunk timestamp=2026-08-29T14:51:40.679334Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '23ba0fd5-c040-4c54-be9c-7237f7d5bb51' at 2026-08-29T14:51:40.816929Z (tc=f5635b8591708e369f6f813ce7e0b1e7)
+2026-08-29 15:51:40,896 [canton-env-ec-57] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:f5635b8591708e369f6f813ce7e0b1e7 - Processing event at sc=44, ts=2026-08-29T14:51:40.816929Z, messageId=23ba0fd5-c040-4c54-be9c-7237f7d5bb51, with contents=Seq()
+2026-08-29 15:51:40,898 [canton-env-ec-59] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:f5635b8591708e369f6f813ce7e0b1e7 - Phase 5: Received responses for request=2026-08-29T14:51:40.679334Z: ConfirmationResponses(
+  requestId = RequestId(2026-08-29T14:51:40.679334Z),
+  rootHash = SHA-256:3c9598659d71...,
+  sender = PAR::sandbox::12205ae2ef33...,
+  psid = mysynchronizer::12204bbd6079...::34-0,
+  responses = ConfirmationResponse(viewPosition = ViewPosition(""), localVerdict = LocalApprove(), confirmingParties = Set(alice::12205ae2ef33..., sandbox::12205ae2ef33...))
+)
+2026-08-29 15:51:40,902 [canton-env-ec-49] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:f5635b8591708e369f6f813ce7e0b1e7 - Phase 6: Finalized request=RequestId(2026-08-29T14:51:40.679334Z) with verdict Approve
+2026-08-29 15:51:40,913 [canton-env-ec-66] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:f5635b8591708e369f6f813ce7e0b1e7 - 'MED::mediator1::1220be8c4f90...' sends request with id '1459e96e-56ac-43db-b4fd-f1c92fcccd17' of size 719 bytes with 1 envelopes.
+2026-08-29 15:51:40,995 [canton-env-ec-49] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:f5635b8591708e369f6f813ce7e0b1e7 - Processing block 55, data chunk 0. Last chunk timestamp=2026-08-29T14:51:40.816929Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '1459e96e-56ac-43db-b4fd-f1c92fcccd17' at 2026-08-29T14:51:40.917479Z (tc=f5635b8591708e369f6f813ce7e0b1e7)
+2026-08-29 15:51:41,016 [canton-env-ec-67] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:f5635b8591708e369f6f813ce7e0b1e7 - Processing event at sc=45, ts=2026-08-29T14:51:40.917479Z, with contents=SignedProtocolMessage(
+  ConfirmationResultMessage(
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    viewType = TransactionViewType,
+    requestId = 2026-08-29T14:51:40.679334Z,
+    rootHash = SHA-256:3c9598659d71...,
+    verdict = Approve
+  ),
+  signatures = Signature(signature = 7fb190759dc9, format = Concat, signedBy = 12202625fc65..., signingAlgorithmSpec = Some(Ed25519))
+)
+2026-08-29 15:51:41,023 [canton-env-ec-50] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:f5635b8591708e369f6f813ce7e0b1e7 - Finalizing Transaction request=2026-08-29T14:51:40.679334Z.
+2026-08-29 15:51:41,025 [canton-env-ec-58] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:f5635b8591708e369f6f813ce7e0b1e7 - About to wrap up request RequestId(2026-08-29T14:51:40.679334Z) with event Some(
+  SequencedTransactionAccepted(
+    recordTime = 2026-08-29T14:51:40.679334Z,
+    updateId = 12203c9598659d7117781f72eceefcf66aaf6ee7230b0b601e7ae102c92e7255b5bd,
+    transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:51:40.618492Z, preparationTime = 2026-08-29T14:51:40.618492Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+    completion = CompletionInfo(
+      actAs = alice::12205ae2ef33...,
+      commandId = wallet-e932126a-64a6-4121-8e60-61737b2f2b94,
+      userId = participant_admin,
+      deduplication period = (offset=None),
+      submissionId = Some(c3370078-551f-47d3-ad26-a63f192c3547),
+      ...
+    ),
+    nodes = 1,
+    roots = 1,
+    ...
+  )
+)
+2026-08-29 15:51:41,028 [input-mapping-pool-6] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:f5635b8591708e369f6f813ce7e0b1e7 - Phase 7: Storing at offset=56 SequencedTransactionAccepted(
+  recordTime = 2026-08-29T14:51:40.679334Z,
+  updateId = 12203c9598659d7117781f72eceefcf66aaf6ee7230b0b601e7ae102c92e7255b5bd,
+  transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:51:40.618492Z, preparationTime = 2026-08-29T14:51:40.618492Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+  completion = CompletionInfo(
+    actAs = alice::12205ae2ef33...,
+    commandId = wallet-e932126a-64a6-4121-8e60-61737b2f2b94,
+    userId = participant_admin,
+    deduplication period = (offset=None),
+    submissionId = Some(c3370078-551f-47d3-ad26-a63f192c3547),
+    ...
+  ),
+  nodes = 1,
+  roots = 1,
+  ...
+)
+2026-08-29 15:51:41,029 [input-mapping-pool-10] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:f5635b8591708e369f6f813ce7e0b1e7 - Storing at offset=57 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:51:40.816929Z)
+2026-08-29 15:51:41,030 [canton-env-ec-56] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:f5635b8591708e369f6f813ce7e0b1e7 - Finished async result processing of request RequestId(2026-08-29T14:51:40.679334Z)
+2026-08-29 15:51:41,032 [input-mapping-pool-8] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:f5635b8591708e369f6f813ce7e0b1e7 - Storing at offset=58 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:51:40.917479Z)
+2026-08-29 15:51:41,044 [canton-env-ec-57] INFO  c.d.c.p.a.s.ApiUpdateService:participant=sandbox - Received request for update by ID, updateFormat -> {transaction format: [{filters: {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: [], interfaces: [], all-templates, created_event_blob: false}}, transactionShape: 'AcsDelta'}], reassignment filters: [], topology format: []}.
+2026-08-29 15:51:41,054 [canton-env-ec-59] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:79e23638a59553d85c1df23707b734ec - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:40.917480Z
+2026-08-29 15:51:41,061 [canton-env-ec-56] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:79e23638a59553d85c1df23707b734ec - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-8afaf593-9d8f-46cc-8c88-f8d614e42f20,
+  submissionId = e95ab077-556c-4253-8ac2-957bd68d7ae7,
+  userId = participant_admin,
+  actAs = agent::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:51:41.061133Z,
+  ledgerEffectiveTime = 2026-08-29T14:51:41.061132Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:51:41,062 [canton-env-ec-61] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:79e23638a59553d85c1df23707b734ec - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:40.917480Z
+2026-08-29 15:51:41,102 [canton-env-ec-63] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:79e23638a59553d85c1df23707b734ec - Phase 1 completed: Submitting 3 envelopes for Transaction request, submitters agent::12205ae2ef33..., command-id wallet-8afaf593-9d8f-46cc-8c88-f8d614e42f20
+2026-08-29 15:51:41,112 [canton-env-ec-56] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:79e23638a59553d85c1df23707b734ec - 'PAR::sandbox::12205ae2ef33...' sends request with id '8f18f5bb-b14d-4932-962c-5e39f5937591' of size 2781 bytes with 3 envelopes.
+2026-08-29 15:51:41,235 [canton-env-ec-64] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:79e23638a59553d85c1df23707b734ec - Processing block 56, data chunk 0. Last chunk timestamp=2026-08-29T14:51:40.917479Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '8f18f5bb-b14d-4932-962c-5e39f5937591' at 2026-08-29T14:51:41.116152Z (tc=79e23638a59553d85c1df23707b734ec)
+2026-08-29 15:51:41,256 [canton-env-ec-50] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:79e23638a59553d85c1df23707b734ec - Processing event at sc=46, ts=2026-08-29T14:51:41.116152Z, messageId=8f18f5bb-b14d-4932-962c-5e39f5937591, with contents=Seq(
+  RootHashMessage(root hash = SHA-256:725318daa1d9..., payload size = 0),
+  EncryptedViewMessage(
+    view hash = ViewHash(SHA-256:2d84ffab57fc...),
+    view type = TransactionViewType,
+    size = 1291,
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    number of session keys = 1,
+    view encryption scheme = AES128-GCM
+  )
+)
+2026-08-29 15:51:41,261 [canton-env-ec-56] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:79e23638a59553d85c1df23707b734ec - Phase 3: Validating Transaction request=2026-08-29T14:51:41.116152Z with 1 envelope(s)
+2026-08-29 15:51:41,267 [canton-env-ec-60] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:79e23638a59553d85c1df23707b734ec - Phase 2: Registered request=2026-08-29T14:51:41.116152Z with 1 view(s). Initial state: ViewPosition("") -> ViewState(
+  quorumsState = Seq(
+    Quorum(confirmers = Map(agent::12205ae2ef33... -> 1, alice::12205ae2ef33... -> 1, sandbox::12205ae2ef33... -> 1), threshold = 3),
+    Quorum(confirmers = Map(agent::12205ae2ef33... -> 1, alice::12205ae2ef33... -> 1), threshold = 2)
+  ),
+  consortiumVoting = Map(agent::12205ae2ef33... -> ConsortiumVotingState(), alice::12205ae2ef33... -> ConsortiumVotingState(), sandbox::12205ae2ef33... -> ConsortiumVotingState()),
+  rejections = Seq()
+)
+2026-08-29 15:51:41,311 [canton-env-ec-51] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:79e23638a59553d85c1df23707b734ec - Phase 4: Sending for request=2026-08-29T14:51:41.116152Z with msgId=17532922-59e1-4eda-bd9e-a3357133b8c8 approved=1, rejected=0, abstained=0
+2026-08-29 15:51:41,321 [canton-env-ec-66] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:79e23638a59553d85c1df23707b734ec - 'PAR::sandbox::12205ae2ef33...' sends request with id '17532922-59e1-4eda-bd9e-a3357133b8c8' of size 758 bytes with 1 envelopes.
+2026-08-29 15:51:41,476 [canton-env-ec-58] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:79e23638a59553d85c1df23707b734ec - Processing block 57, data chunk 0. Last chunk timestamp=2026-08-29T14:51:41.116152Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '17532922-59e1-4eda-bd9e-a3357133b8c8' at 2026-08-29T14:51:41.325219Z (tc=79e23638a59553d85c1df23707b734ec)
+2026-08-29 15:51:41,501 [canton-env-ec-60] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:79e23638a59553d85c1df23707b734ec - Processing event at sc=47, ts=2026-08-29T14:51:41.325219Z, messageId=17532922-59e1-4eda-bd9e-a3357133b8c8, with contents=Seq()
+2026-08-29 15:51:41,505 [canton-env-ec-61] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:79e23638a59553d85c1df23707b734ec - Phase 5: Received responses for request=2026-08-29T14:51:41.116152Z: ConfirmationResponses(
+  requestId = RequestId(2026-08-29T14:51:41.116152Z),
+  rootHash = SHA-256:725318daa1d9...,
+  sender = PAR::sandbox::12205ae2ef33...,
+  psid = mysynchronizer::12204bbd6079...::34-0,
+  responses = ConfirmationResponse(viewPosition = ViewPosition(""), localVerdict = LocalApprove(), confirmingParties = Set(agent::12205ae2ef33..., alice::12205ae2ef33..., sandbox::12205ae2ef33...))
+)
+2026-08-29 15:51:41,511 [canton-env-ec-58] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:79e23638a59553d85c1df23707b734ec - Phase 6: Finalized request=RequestId(2026-08-29T14:51:41.116152Z) with verdict Approve
+2026-08-29 15:51:41,527 [canton-env-ec-50] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:79e23638a59553d85c1df23707b734ec - 'MED::mediator1::1220be8c4f90...' sends request with id '8e7494f4-fe8c-4882-886a-9e5ce555feb7' of size 716 bytes with 1 envelopes.
+2026-08-29 15:51:41,597 [canton-env-ec-52] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:79e23638a59553d85c1df23707b734ec - Processing block 58, data chunk 0. Last chunk timestamp=2026-08-29T14:51:41.325219Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '8e7494f4-fe8c-4882-886a-9e5ce555feb7' at 2026-08-29T14:51:41.531360Z (tc=79e23638a59553d85c1df23707b734ec)
+2026-08-29 15:51:41,628 [canton-env-ec-49] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:79e23638a59553d85c1df23707b734ec - Processing event at sc=48, ts=2026-08-29T14:51:41.531360Z, with contents=SignedProtocolMessage(
+  ConfirmationResultMessage(
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    viewType = TransactionViewType,
+    requestId = 2026-08-29T14:51:41.116152Z,
+    rootHash = SHA-256:725318daa1d9...,
+    verdict = Approve
+  ),
+  signatures = Signature(signature = 672a79741b76, format = Concat, signedBy = 12202625fc65..., signingAlgorithmSpec = Some(Ed25519))
+)
+2026-08-29 15:51:41,639 [canton-env-ec-64] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:79e23638a59553d85c1df23707b734ec - Finalizing Transaction request=2026-08-29T14:51:41.116152Z.
+2026-08-29 15:51:41,644 [canton-env-ec-60] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:79e23638a59553d85c1df23707b734ec - About to wrap up request RequestId(2026-08-29T14:51:41.116152Z) with event Some(
+  SequencedTransactionAccepted(
+    recordTime = 2026-08-29T14:51:41.116152Z,
+    updateId = 1220725318daa1d9fee48e7a855fcb0fb4e94f8a17dde91ce7f11b08ba3d289bc304,
+    transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:51:41.061132Z, preparationTime = 2026-08-29T14:51:41.061132Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+    completion = CompletionInfo(
+      actAs = agent::12205ae2ef33...,
+      commandId = wallet-8afaf593-9d8f-46cc-8c88-f8d614e42f20,
+      userId = participant_admin,
+      deduplication period = (offset=None),
+      submissionId = Some(e95ab077-556c-4253-8ac2-957bd68d7ae7),
+      ...
+    ),
+    nodes = 2,
+    roots = 1,
+    ...
+  )
+)
+2026-08-29 15:51:41,648 [canton-env-ec-60] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:79e23638a59553d85c1df23707b734ec - Finished async result processing of request RequestId(2026-08-29T14:51:41.116152Z)
+2026-08-29 15:51:41,648 [input-mapping-pool-13] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:79e23638a59553d85c1df23707b734ec - Storing at offset=60 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:51:41.325219Z)
+2026-08-29 15:51:41,648 [input-mapping-pool-11] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:79e23638a59553d85c1df23707b734ec - Phase 7: Storing at offset=59 SequencedTransactionAccepted(
+  recordTime = 2026-08-29T14:51:41.116152Z,
+  updateId = 1220725318daa1d9fee48e7a855fcb0fb4e94f8a17dde91ce7f11b08ba3d289bc304,
+  transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:51:41.061132Z, preparationTime = 2026-08-29T14:51:41.061132Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+  completion = CompletionInfo(
+    actAs = agent::12205ae2ef33...,
+    commandId = wallet-8afaf593-9d8f-46cc-8c88-f8d614e42f20,
+    userId = participant_admin,
+    deduplication period = (offset=None),
+    submissionId = Some(e95ab077-556c-4253-8ac2-957bd68d7ae7),
+    ...
+  ),
+  nodes = 2,
+  roots = 1,
+  ...
+)
+2026-08-29 15:51:41,653 [input-mapping-pool-12] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:79e23638a59553d85c1df23707b734ec - Storing at offset=61 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:51:41.531360Z)
+2026-08-29 15:51:41,670 [canton-env-ec-57] INFO  c.d.c.p.a.s.ApiUpdateService:participant=sandbox - Received request for update by ID, updateFormat -> {transaction format: [{filters: {agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: [], interfaces: [], all-templates, created_event_blob: false}}, transactionShape: 'AcsDelta'}], reassignment filters: [], topology format: []}.
+2026-08-29 15:51:41,970 [canton-env-ec-57] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:f0e51aee6cfe3d752804060e35a6bb01 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:41.531361Z
+2026-08-29 15:51:41,984 [canton-env-ec-63] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:f0e51aee6cfe3d752804060e35a6bb01 - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-98808ac3-1968-42eb-8b6f-5abc393034ef,
+  submissionId = 9fc7d7d2-9ba5-47da-b42d-5268df14ca25,
+  userId = participant_admin,
+  actAs = agent::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:51:41.983002Z,
+  ledgerEffectiveTime = 2026-08-29T14:51:41.983Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:51:41,985 [canton-env-ec-51] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:f0e51aee6cfe3d752804060e35a6bb01 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:41.531361Z
+2026-08-29 15:51:42,027 [canton-env-ec-57] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:f0e51aee6cfe3d752804060e35a6bb01 - CONTRACT_NOT_FOUND(11,9fc7d7d2): Contract could not be found with id 001be646a7e3e86ec5e9379f56e53542422c23d2e51d0316e4b2a38e751dd39b2eca1212208b23613df51dfd375237f995b670ad6ab347334b48e863b2b326676e67c705a8 err-context:{location=RejectionGenerators.scala:100} 
+2026-08-29 15:51:42,033 [canton-env-ec-49] INFO  c.d.c.n.g.ApiRequestLogger:participant=sandbox tid:f0e51aee6cfe3d752804060e35a6bb01 - Request c.d.l.a.v.CommandService/SubmitAndWaitForTransaction by inprocess-grpc-6865: failed with NOT_FOUND/CONTRACT_NOT_FOUND(11,9fc7d7d2): Contract could not be found with id 001be646a7e3e86ec5e9379f56e53542422c23d2e51d0316e4b2a38e751dd39b2eca1212208b23613df51dfd375237f995b670ad6ab347334b48e863b2b326676e67c705a8
+2026-08-29 15:51:42,054 [canton-env-ec-62] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:1538814d13f8e527fa0c69ef43fe1503 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:41.531361Z
+2026-08-29 15:51:42,078 [canton-env-ec-49] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:1538814d13f8e527fa0c69ef43fe1503 - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-85e2488d-ad5f-49e9-939a-a92c2cced67c,
+  submissionId = 27a4ba45-98f7-42c2-9906-defb10d6d343,
+  userId = participant_admin,
+  actAs = agent::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:51:42.075162Z,
+  ledgerEffectiveTime = 2026-08-29T14:51:42.075159Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:51:42,084 [canton-env-ec-51] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:1538814d13f8e527fa0c69ef43fe1503 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:41.531361Z
+2026-08-29 15:51:42,192 [canton-env-ec-56] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:1538814d13f8e527fa0c69ef43fe1503 - Phase 1 completed: Submitting 3 envelopes for Transaction request, submitters agent::12205ae2ef33..., command-id wallet-85e2488d-ad5f-49e9-939a-a92c2cced67c
+2026-08-29 15:51:42,210 [canton-env-ec-50] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:1538814d13f8e527fa0c69ef43fe1503 - 'PAR::sandbox::12205ae2ef33...' sends request with id 'b5db403a-1fca-4ce8-8849-eafb42027cb8' of size 3317 bytes with 3 envelopes.
+2026-08-29 15:51:42,321 [canton-env-ec-59] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:1538814d13f8e527fa0c69ef43fe1503 - Processing block 59, data chunk 0. Last chunk timestamp=2026-08-29T14:51:41.531360Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of 'b5db403a-1fca-4ce8-8849-eafb42027cb8' at 2026-08-29T14:51:42.217411Z (tc=1538814d13f8e527fa0c69ef43fe1503)
+2026-08-29 15:51:42,369 [canton-env-ec-58] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:1538814d13f8e527fa0c69ef43fe1503 - Processing event at sc=49, ts=2026-08-29T14:51:42.217411Z, messageId=b5db403a-1fca-4ce8-8849-eafb42027cb8, with contents=Seq(
+  RootHashMessage(root hash = SHA-256:328dad0a1c07..., payload size = 0),
+  EncryptedViewMessage(
+    view hash = ViewHash(SHA-256:499da5d2d597...),
+    view type = TransactionViewType,
+    size = 1811,
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    number of session keys = 1,
+    view encryption scheme = AES128-GCM
+  )
+)
+2026-08-29 15:51:42,373 [canton-env-ec-67] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:1538814d13f8e527fa0c69ef43fe1503 - Phase 3: Validating Transaction request=2026-08-29T14:51:42.217411Z with 1 envelope(s)
+2026-08-29 15:51:42,384 [canton-env-ec-66] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:1538814d13f8e527fa0c69ef43fe1503 - Phase 2: Registered request=2026-08-29T14:51:42.217411Z with 1 view(s). Initial state: ViewPosition("") -> ViewState(
+  quorumsState = Seq(
+    Quorum(confirmers = Map(agent::12205ae2ef33... -> 1, alice::12205ae2ef33... -> 1, sandbox::12205ae2ef33... -> 1), threshold = 3),
+    Quorum(confirmers = Map(agent::12205ae2ef33... -> 1, alice::12205ae2ef33... -> 1), threshold = 2),
+    Quorum(confirmers = alice::12205ae2ef33... -> 1, threshold = 1)
+  ),
+  consortiumVoting = Map(agent::12205ae2ef33... -> ConsortiumVotingState(), alice::12205ae2ef33... -> ConsortiumVotingState(), sandbox::12205ae2ef33... -> ConsortiumVotingState()),
+  rejections = Seq()
+)
+2026-08-29 15:51:42,467 [canton-env-ec-57] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:1538814d13f8e527fa0c69ef43fe1503 - Phase 4: Sending for request=2026-08-29T14:51:42.217411Z with msgId=f8cc24ec-093e-46e5-bd6c-8d4d294bb7af approved=1, rejected=0, abstained=0
+2026-08-29 15:51:42,488 [canton-env-ec-52] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:1538814d13f8e527fa0c69ef43fe1503 - 'PAR::sandbox::12205ae2ef33...' sends request with id 'f8cc24ec-093e-46e5-bd6c-8d4d294bb7af' of size 751 bytes with 1 envelopes.
+2026-08-29 15:51:42,557 [canton-env-ec-52] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:1538814d13f8e527fa0c69ef43fe1503 - Processing block 60, data chunk 0. Last chunk timestamp=2026-08-29T14:51:42.217411Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of 'f8cc24ec-093e-46e5-bd6c-8d4d294bb7af' at 2026-08-29T14:51:42.492987Z (tc=1538814d13f8e527fa0c69ef43fe1503)
+2026-08-29 15:51:42,592 [canton-env-ec-58] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:1538814d13f8e527fa0c69ef43fe1503 - Processing event at sc=50, ts=2026-08-29T14:51:42.492987Z, messageId=f8cc24ec-093e-46e5-bd6c-8d4d294bb7af, with contents=Seq()
+2026-08-29 15:51:42,597 [canton-env-ec-60] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:1538814d13f8e527fa0c69ef43fe1503 - Phase 5: Received responses for request=2026-08-29T14:51:42.217411Z: ConfirmationResponses(
+  requestId = RequestId(2026-08-29T14:51:42.217411Z),
+  rootHash = SHA-256:328dad0a1c07...,
+  sender = PAR::sandbox::12205ae2ef33...,
+  psid = mysynchronizer::12204bbd6079...::34-0,
+  responses = ConfirmationResponse(viewPosition = ViewPosition(""), localVerdict = LocalApprove(), confirmingParties = Set(agent::12205ae2ef33..., alice::12205ae2ef33..., sandbox::12205ae2ef33...))
+)
+2026-08-29 15:51:42,604 [canton-env-ec-50] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:1538814d13f8e527fa0c69ef43fe1503 - Phase 6: Finalized request=RequestId(2026-08-29T14:51:42.217411Z) with verdict Approve
+2026-08-29 15:51:42,621 [canton-env-ec-57] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:1538814d13f8e527fa0c69ef43fe1503 - 'MED::mediator1::1220be8c4f90...' sends request with id '34d7b884-90b0-45a9-9c1b-5b2fa61f8667' of size 717 bytes with 1 envelopes.
+2026-08-29 15:51:42,676 [canton-env-ec-56] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:1538814d13f8e527fa0c69ef43fe1503 - Processing block 61, data chunk 0. Last chunk timestamp=2026-08-29T14:51:42.492987Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '34d7b884-90b0-45a9-9c1b-5b2fa61f8667' at 2026-08-29T14:51:42.627191Z (tc=1538814d13f8e527fa0c69ef43fe1503)
+2026-08-29 15:51:42,708 [canton-env-ec-52] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:1538814d13f8e527fa0c69ef43fe1503 - Processing event at sc=51, ts=2026-08-29T14:51:42.627191Z, with contents=SignedProtocolMessage(
+  ConfirmationResultMessage(
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    viewType = TransactionViewType,
+    requestId = 2026-08-29T14:51:42.217411Z,
+    rootHash = SHA-256:328dad0a1c07...,
+    verdict = Approve
+  ),
+  signatures = Signature(signature = 5a87e8a24eab, format = Concat, signedBy = 12202625fc65..., signingAlgorithmSpec = Some(Ed25519))
+)
+2026-08-29 15:51:42,717 [canton-env-ec-61] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:1538814d13f8e527fa0c69ef43fe1503 - Finalizing Transaction request=2026-08-29T14:51:42.217411Z.
+2026-08-29 15:51:42,727 [canton-env-ec-59] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:1538814d13f8e527fa0c69ef43fe1503 - About to wrap up request RequestId(2026-08-29T14:51:42.217411Z) with event Some(
+  SequencedTransactionAccepted(
+    recordTime = 2026-08-29T14:51:42.217411Z,
+    updateId = 1220328dad0a1c0716867ee3b63da291828eb927f149e6993e1c5fa94fee2be738a4,
+    transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:51:42.075159Z, preparationTime = 2026-08-29T14:51:42.075159Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+    completion = CompletionInfo(
+      actAs = agent::12205ae2ef33...,
+      commandId = wallet-85e2488d-ad5f-49e9-939a-a92c2cced67c,
+      userId = participant_admin,
+      deduplication period = (offset=None),
+      submissionId = Some(27a4ba45-98f7-42c2-9906-defb10d6d343),
+      ...
+    ),
+    nodes = 5,
+    roots = 1,
+    ...
+  )
+)
+2026-08-29 15:51:42,733 [input-mapping-pool-9] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:1538814d13f8e527fa0c69ef43fe1503 - Phase 7: Storing at offset=62 SequencedTransactionAccepted(
+  recordTime = 2026-08-29T14:51:42.217411Z,
+  updateId = 1220328dad0a1c0716867ee3b63da291828eb927f149e6993e1c5fa94fee2be738a4,
+  transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:51:42.075159Z, preparationTime = 2026-08-29T14:51:42.075159Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+  completion = CompletionInfo(
+    actAs = agent::12205ae2ef33...,
+    commandId = wallet-85e2488d-ad5f-49e9-939a-a92c2cced67c,
+    userId = participant_admin,
+    deduplication period = (offset=None),
+    submissionId = Some(27a4ba45-98f7-42c2-9906-defb10d6d343),
+    ...
+  ),
+  nodes = 5,
+  roots = 1,
+  ...
+)
+2026-08-29 15:51:42,736 [input-mapping-pool-0] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:1538814d13f8e527fa0c69ef43fe1503 - Storing at offset=63 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:51:42.492987Z)
+2026-08-29 15:51:42,737 [canton-env-ec-61] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:1538814d13f8e527fa0c69ef43fe1503 - Finished async result processing of request RequestId(2026-08-29T14:51:42.217411Z)
+2026-08-29 15:51:42,741 [input-mapping-pool-14] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:1538814d13f8e527fa0c69ef43fe1503 - Storing at offset=64 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:51:42.627191Z)
+2026-08-29 15:51:42,766 [canton-env-ec-61] INFO  c.d.c.p.a.s.ApiUpdateService:participant=sandbox - Received request for update by ID, updateFormat -> {transaction format: [{filters: {agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: [], interfaces: [], all-templates, created_event_blob: false}}, transactionShape: 'AcsDelta'}], reassignment filters: [], topology format: []}.
+2026-08-29 15:51:44,750 [canton-env-ec-58] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:8c536028e9e773ec2114473631b9ee80 - Received request for active contracts: GetActiveContractsRequest(64,Some(EventFormat(Map(alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Value,Purse)),true)))))),None,false))), filters -> {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Value:Purse'], interfaces: []}}.
+2026-08-29 15:51:44,783 [canton-env-ec-59] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:52732a895b3f1fae07b283ea7e0379f6 - Received request for active contracts: GetActiveContractsRequest(64,Some(EventFormat(Map(agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Mandate,Mandate)),false)))))),None,false))), filters -> {agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Mandate:Mandate'], interfaces: []}}.
+2026-08-29 15:51:44,803 [canton-env-ec-57] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:c1696c0bdbc7859386412bf9faa2d439 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:42.627192Z
+2026-08-29 15:51:44,814 [canton-env-ec-60] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:c1696c0bdbc7859386412bf9faa2d439 - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-b5ee8776-10bb-4a4f-bba1-b391c559164b,
+  submissionId = da76c0b4-dc79-43c8-860b-7dc1bd53a026,
+  userId = participant_admin,
+  actAs = agent::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:51:44.812296Z,
+  ledgerEffectiveTime = 2026-08-29T14:51:44.812294Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:51:44,815 [canton-env-ec-56] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:c1696c0bdbc7859386412bf9faa2d439 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:42.627192Z
+2026-08-29 15:51:44,872 [canton-env-ec-67] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:c1696c0bdbc7859386412bf9faa2d439 - Phase 1 completed: Submitting 3 envelopes for Transaction request, submitters agent::12205ae2ef33..., command-id wallet-b5ee8776-10bb-4a4f-bba1-b391c559164b
+2026-08-29 15:51:44,882 [canton-env-ec-65] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:c1696c0bdbc7859386412bf9faa2d439 - 'PAR::sandbox::12205ae2ef33...' sends request with id 'cb601f15-d9ab-421c-ab39-2428f26fb20e' of size 3327 bytes with 3 envelopes.
+2026-08-29 15:51:44,945 [canton-env-ec-56] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:c1696c0bdbc7859386412bf9faa2d439 - Processing block 62, data chunk 0. Last chunk timestamp=2026-08-29T14:51:42.627191Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of 'cb601f15-d9ab-421c-ab39-2428f26fb20e' at 2026-08-29T14:51:44.886074Z (tc=c1696c0bdbc7859386412bf9faa2d439)
+2026-08-29 15:51:44,978 [canton-env-ec-57] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:c1696c0bdbc7859386412bf9faa2d439 - Processing event at sc=52, ts=2026-08-29T14:51:44.886074Z, messageId=cb601f15-d9ab-421c-ab39-2428f26fb20e, with contents=Seq(
+  RootHashMessage(root hash = SHA-256:b0f5dca902da..., payload size = 0),
+  EncryptedViewMessage(
+    view hash = ViewHash(SHA-256:9dfb84d1104d...),
+    view type = TransactionViewType,
+    size = 1823,
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    number of session keys = 1,
+    view encryption scheme = AES128-GCM
+  )
+)
+2026-08-29 15:51:44,981 [canton-env-ec-52] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:c1696c0bdbc7859386412bf9faa2d439 - Phase 3: Validating Transaction request=2026-08-29T14:51:44.886074Z with 1 envelope(s)
+2026-08-29 15:51:44,989 [canton-env-ec-52] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:c1696c0bdbc7859386412bf9faa2d439 - Phase 2: Registered request=2026-08-29T14:51:44.886074Z with 1 view(s). Initial state: ViewPosition("") -> ViewState(
+  quorumsState = Seq(
+    Quorum(confirmers = Map(agent::12205ae2ef33... -> 1, alice::12205ae2ef33... -> 1, sandbox::12205ae2ef33... -> 1), threshold = 3),
+    Quorum(confirmers = Map(agent::12205ae2ef33... -> 1, alice::12205ae2ef33... -> 1), threshold = 2),
+    Quorum(confirmers = alice::12205ae2ef33... -> 1, threshold = 1)
+  ),
+  consortiumVoting = Map(agent::12205ae2ef33... -> ConsortiumVotingState(), alice::12205ae2ef33... -> ConsortiumVotingState(), sandbox::12205ae2ef33... -> ConsortiumVotingState()),
+  rejections = Seq()
+)
+2026-08-29 15:51:45,034 [canton-env-ec-49] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:c1696c0bdbc7859386412bf9faa2d439 - Phase 4: Sending for request=2026-08-29T14:51:44.886074Z with msgId=f6617b37-edb7-4585-a028-fdcd89124b9f approved=1, rejected=0, abstained=0
+2026-08-29 15:51:45,044 [canton-env-ec-61] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:c1696c0bdbc7859386412bf9faa2d439 - 'PAR::sandbox::12205ae2ef33...' sends request with id 'f6617b37-edb7-4585-a028-fdcd89124b9f' of size 756 bytes with 1 envelopes.
+2026-08-29 15:51:45,065 [canton-env-ec-67] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:c1696c0bdbc7859386412bf9faa2d439 - Processing block 63, data chunk 0. Last chunk timestamp=2026-08-29T14:51:44.886074Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of 'f6617b37-edb7-4585-a028-fdcd89124b9f' at 2026-08-29T14:51:45.047889Z (tc=c1696c0bdbc7859386412bf9faa2d439)
+2026-08-29 15:51:45,088 [canton-env-ec-62] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:c1696c0bdbc7859386412bf9faa2d439 - Processing event at sc=53, ts=2026-08-29T14:51:45.047889Z, messageId=f6617b37-edb7-4585-a028-fdcd89124b9f, with contents=Seq()
+2026-08-29 15:51:45,089 [canton-env-ec-62] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:c1696c0bdbc7859386412bf9faa2d439 - Phase 5: Received responses for request=2026-08-29T14:51:44.886074Z: ConfirmationResponses(
+  requestId = RequestId(2026-08-29T14:51:44.886074Z),
+  rootHash = SHA-256:b0f5dca902da...,
+  sender = PAR::sandbox::12205ae2ef33...,
+  psid = mysynchronizer::12204bbd6079...::34-0,
+  responses = ConfirmationResponse(viewPosition = ViewPosition(""), localVerdict = LocalApprove(), confirmingParties = Set(agent::12205ae2ef33..., alice::12205ae2ef33..., sandbox::12205ae2ef33...))
+)
+2026-08-29 15:51:45,094 [canton-env-ec-57] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:c1696c0bdbc7859386412bf9faa2d439 - Phase 6: Finalized request=RequestId(2026-08-29T14:51:44.886074Z) with verdict Approve
+2026-08-29 15:51:45,104 [canton-env-ec-60] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:c1696c0bdbc7859386412bf9faa2d439 - 'MED::mediator1::1220be8c4f90...' sends request with id '4410bf25-63fa-43ae-a802-4e9b106e169d' of size 716 bytes with 1 envelopes.
+2026-08-29 15:51:45,186 [canton-env-ec-60] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:c1696c0bdbc7859386412bf9faa2d439 - Processing block 64, data chunk 0. Last chunk timestamp=2026-08-29T14:51:45.047889Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '4410bf25-63fa-43ae-a802-4e9b106e169d' at 2026-08-29T14:51:45.107362Z (tc=c1696c0bdbc7859386412bf9faa2d439)
+2026-08-29 15:51:45,202 [canton-env-ec-66] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:c1696c0bdbc7859386412bf9faa2d439 - Processing event at sc=54, ts=2026-08-29T14:51:45.107362Z, with contents=SignedProtocolMessage(
+  ConfirmationResultMessage(
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    viewType = TransactionViewType,
+    requestId = 2026-08-29T14:51:44.886074Z,
+    rootHash = SHA-256:b0f5dca902da...,
+    verdict = Approve
+  ),
+  signatures = Signature(signature = 4faf79266553, format = Concat, signedBy = 12202625fc65..., signingAlgorithmSpec = Some(Ed25519))
+)
+2026-08-29 15:51:45,207 [canton-env-ec-52] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:c1696c0bdbc7859386412bf9faa2d439 - Finalizing Transaction request=2026-08-29T14:51:44.886074Z.
+2026-08-29 15:51:45,210 [canton-env-ec-60] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:c1696c0bdbc7859386412bf9faa2d439 - About to wrap up request RequestId(2026-08-29T14:51:44.886074Z) with event Some(
+  SequencedTransactionAccepted(
+    recordTime = 2026-08-29T14:51:44.886074Z,
+    updateId = 1220b0f5dca902dade1899e90cc4fb139c936e9e3644cbd4f1d66592fa560746a460,
+    transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:51:44.812294Z, preparationTime = 2026-08-29T14:51:44.812294Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+    completion = CompletionInfo(
+      actAs = agent::12205ae2ef33...,
+      commandId = wallet-b5ee8776-10bb-4a4f-bba1-b391c559164b,
+      userId = participant_admin,
+      deduplication period = (offset=None),
+      submissionId = Some(da76c0b4-dc79-43c8-860b-7dc1bd53a026),
+      ...
+    ),
+    nodes = 5,
+    roots = 1,
+    ...
+  )
+)
+2026-08-29 15:51:45,213 [canton-env-ec-64] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:c1696c0bdbc7859386412bf9faa2d439 - Finished async result processing of request RequestId(2026-08-29T14:51:44.886074Z)
+2026-08-29 15:51:45,213 [input-mapping-pool-4] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:c1696c0bdbc7859386412bf9faa2d439 - Storing at offset=66 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:51:45.047889Z)
+2026-08-29 15:51:45,213 [input-mapping-pool-2] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:c1696c0bdbc7859386412bf9faa2d439 - Phase 7: Storing at offset=65 SequencedTransactionAccepted(
+  recordTime = 2026-08-29T14:51:44.886074Z,
+  updateId = 1220b0f5dca902dade1899e90cc4fb139c936e9e3644cbd4f1d66592fa560746a460,
+  transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:51:44.812294Z, preparationTime = 2026-08-29T14:51:44.812294Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+  completion = CompletionInfo(
+    actAs = agent::12205ae2ef33...,
+    commandId = wallet-b5ee8776-10bb-4a4f-bba1-b391c559164b,
+    userId = participant_admin,
+    deduplication period = (offset=None),
+    submissionId = Some(da76c0b4-dc79-43c8-860b-7dc1bd53a026),
+    ...
+  ),
+  nodes = 5,
+  roots = 1,
+  ...
+)
+2026-08-29 15:51:45,214 [input-mapping-pool-1] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:c1696c0bdbc7859386412bf9faa2d439 - Storing at offset=67 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:51:45.107362Z)
+2026-08-29 15:51:45,226 [canton-env-ec-60] INFO  c.d.c.p.a.s.ApiUpdateService:participant=sandbox - Received request for update by ID, updateFormat -> {transaction format: [{filters: {agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: [], interfaces: [], all-templates, created_event_blob: false}}, transactionShape: 'AcsDelta'}], reassignment filters: [], topology format: []}.
+2026-08-29 15:51:45,297 [canton-env-ec-60] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:f1e4a90c51f73c4fe5b020f7934dc5a6 - Received request for active contracts: GetActiveContractsRequest(67,Some(EventFormat(Map(agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Mandate,Mandate)),false)))))),None,false))), filters -> {agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Mandate:Mandate'], interfaces: []}}.
+2026-08-29 15:51:45,323 [canton-env-ec-62] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:402396dc8b4dc3e93f7de99cd25de364 - Received request for active contracts: GetActiveContractsRequest(67,Some(EventFormat(Map(alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Mandate,ChargeRecord)),false)))))),None,false))), filters -> {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Mandate:ChargeRecord'], interfaces: []}}.
+2026-08-29 15:51:45,367 [canton-env-ec-65] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:31f798d95029acd019f19a9a0e4cc709 - Received request for active contracts: GetActiveContractsRequest(67,Some(EventFormat(Map(alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Value,Purse)),true)))))),None,false))), filters -> {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Value:Purse'], interfaces: []}}.
+2026-08-29 15:51:45,395 [canton-env-ec-60] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:ceaae50e5f7de05917ff6cdc997e5281 - Received request for active contracts: GetActiveContractsRequest(67,Some(EventFormat(Map(agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Mandate,Mandate)),false)))))),None,false))), filters -> {agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Mandate:Mandate'], interfaces: []}}.
+2026-08-29 15:51:45,415 [canton-env-ec-60] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:24058996aed3b0a838114c6a47109f1c - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:45.107363Z
+2026-08-29 15:51:45,425 [canton-env-ec-52] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:24058996aed3b0a838114c6a47109f1c - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-f4c073e5-4b3d-42b5-abf4-ec887b01d982,
+  submissionId = 9847ad74-10a3-4e88-8963-df7855d4679a,
+  userId = participant_admin,
+  actAs = agent::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:51:45.423184Z,
+  ledgerEffectiveTime = 2026-08-29T14:51:45.423182Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:51:45,426 [canton-env-ec-66] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:24058996aed3b0a838114c6a47109f1c - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:45.107363Z
+2026-08-29 15:51:45,436 [canton-env-ec-50] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:24058996aed3b0a838114c6a47109f1c - DAML_FAILURE(9,9847ad74): Interpretation error: Error: User failure: UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed (error category 9): counterparty is not on the allow-list err-context:{error_id=UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed, exercise_trace=    in choice 6f5c3c9a:Mandate:Mandate:Charge on contract 000e2f43e0 (#0)
+    in exercise command 6f5c3c9a:Mandate:Mandate:Charge on contract 000e2f43e0.
+, location=CommandExecutionErrors.scala:850} 
+2026-08-29 15:51:45,438 [canton-env-ec-64] INFO  c.d.c.n.g.ApiRequestLogger:participant=sandbox tid:24058996aed3b0a838114c6a47109f1c - Request c.d.l.a.v.CommandService/SubmitAndWaitForTransaction by inprocess-grpc-6865: failed with FAILED_PRECONDITION/DAML_FAILURE(9,9847ad74): Interpretation error: Error: User failure: UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed (error category 9): counterparty is not on the allow-list
+2026-08-29 15:51:45,466 [canton-env-ec-59] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:7fa512985144d11b7e0ef20df8641c16 - Received request for active contracts: GetActiveContractsRequest(67,Some(EventFormat(Map(alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Value,Purse)),true)))))),None,false))), filters -> {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Value:Purse'], interfaces: []}}.
+2026-08-29 15:51:45,490 [canton-env-ec-64] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:3198cb81b08714a3b2f6ec6c2c5561aa - Received request for active contracts: GetActiveContractsRequest(67,Some(EventFormat(Map(agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Mandate,Mandate)),false)))))),None,false))), filters -> {agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Mandate:Mandate'], interfaces: []}}.
+2026-08-29 15:51:45,507 [canton-env-ec-64] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:ac2657edf052cb5fbe3034f62b884a0f - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:45.107363Z
+2026-08-29 15:51:45,517 [canton-env-ec-67] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:ac2657edf052cb5fbe3034f62b884a0f - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-d62cebd1-0cfc-45c9-8748-c8ef5054b6b6,
+  submissionId = 4874842f-31e4-402c-8dfb-26b459b33114,
+  userId = participant_admin,
+  actAs = agent::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:51:45.515649Z,
+  ledgerEffectiveTime = 2026-08-29T14:51:45.515647Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:51:45,518 [canton-env-ec-64] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:ac2657edf052cb5fbe3034f62b884a0f - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:45.107363Z
+2026-08-29 15:51:45,527 [canton-env-ec-62] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:ac2657edf052cb5fbe3034f62b884a0f - DAML_FAILURE(9,4874842f): Interpretation error: Error: User failure: UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed (error category 9): counterparty is not on the allow-list err-context:{error_id=UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed, exercise_trace=    in choice 6f5c3c9a:Mandate:Mandate:Charge on contract 000e2f43e0 (#0)
+    in exercise command 6f5c3c9a:Mandate:Mandate:Charge on contract 000e2f43e0.
+, location=CommandExecutionErrors.scala:850} 
+2026-08-29 15:51:45,528 [canton-env-ec-51] INFO  c.d.c.n.g.ApiRequestLogger:participant=sandbox tid:ac2657edf052cb5fbe3034f62b884a0f - Request c.d.l.a.v.CommandService/SubmitAndWaitForTransaction by inprocess-grpc-6865: failed with FAILED_PRECONDITION/DAML_FAILURE(9,4874842f): Interpretation error: Error: User failure: UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed (error category 9): counterparty is not on the allow-list
+2026-08-29 15:51:45,554 [canton-env-ec-61] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:ecb5965dc0b3d6686c2da6ab66b9f185 - Received request for active contracts: GetActiveContractsRequest(67,Some(EventFormat(Map(alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Value,Purse)),true)))))),None,false))), filters -> {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Value:Purse'], interfaces: []}}.
+2026-08-29 15:51:45,578 [canton-env-ec-60] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:36bdffa2663c802ff0d20c4e9c9d7b4f - Received request for active contracts: GetActiveContractsRequest(67,Some(EventFormat(Map(agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Mandate,Mandate)),false)))))),None,false))), filters -> {agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Mandate:Mandate'], interfaces: []}}.
+2026-08-29 15:51:45,595 [canton-env-ec-58] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:d3b89f03bebede9708588593ac8b090f - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:45.107363Z
+2026-08-29 15:51:45,604 [canton-env-ec-59] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:d3b89f03bebede9708588593ac8b090f - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-bbb873f9-e57b-4baa-b928-62bff43d08e9,
+  submissionId = 1aa8f9c9-1b61-4c87-b1d0-e169d5e735e7,
+  userId = participant_admin,
+  actAs = agent::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:51:45.603309Z,
+  ledgerEffectiveTime = 2026-08-29T14:51:45.603308Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:51:45,605 [canton-env-ec-61] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:d3b89f03bebede9708588593ac8b090f - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:45.107363Z
+2026-08-29 15:51:45,615 [canton-env-ec-50] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:d3b89f03bebede9708588593ac8b090f - DAML_FAILURE(9,1aa8f9c9): Interpretation error: Error: User failure: UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed (error category 9): counterparty is not on the allow-list err-context:{error_id=UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed, exercise_trace=    in choice 6f5c3c9a:Mandate:Mandate:Charge on contract 000e2f43e0 (#0)
+    in exercise command 6f5c3c9a:Mandate:Mandate:Charge on contract 000e2f43e0.
+, location=CommandExecutionErrors.scala:850} 
+2026-08-29 15:51:45,617 [canton-env-ec-60] INFO  c.d.c.n.g.ApiRequestLogger:participant=sandbox tid:d3b89f03bebede9708588593ac8b090f - Request c.d.l.a.v.CommandService/SubmitAndWaitForTransaction by inprocess-grpc-6865: failed with FAILED_PRECONDITION/DAML_FAILURE(9,1aa8f9c9): Interpretation error: Error: User failure: UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed (error category 9): counterparty is not on the allow-list
+2026-08-29 15:51:45,650 [canton-env-ec-60] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:95f1803464c3afb259fdf3a79fe28ff2 - Received request for active contracts: GetActiveContractsRequest(67,Some(EventFormat(Map(alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Value,Purse)),true)))))),None,false))), filters -> {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Value:Purse'], interfaces: []}}.
+2026-08-29 15:51:45,685 [canton-env-ec-67] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:a5f1349b49ec2e5cedbfb3b431508ac2 - Received request for active contracts: GetActiveContractsRequest(67,Some(EventFormat(Map(agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Mandate,Mandate)),false)))))),None,false))), filters -> {agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Mandate:Mandate'], interfaces: []}}.
+2026-08-29 15:51:45,710 [canton-env-ec-51] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:d4a5bd7c3ca0d97ae5241b89ced9cae9 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:45.107363Z
+2026-08-29 15:51:45,721 [canton-env-ec-61] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:d4a5bd7c3ca0d97ae5241b89ced9cae9 - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-0f8bc1f8-d5c3-4bb2-a290-a712a5efaf1a,
+  submissionId = 2c9d2750-b3df-41d6-9024-946bb7eee950,
+  userId = participant_admin,
+  actAs = agent::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:51:45.720282Z,
+  ledgerEffectiveTime = 2026-08-29T14:51:45.720281Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:51:45,725 [canton-env-ec-60] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:d4a5bd7c3ca0d97ae5241b89ced9cae9 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:45.107363Z
+2026-08-29 15:51:45,739 [canton-env-ec-58] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:d4a5bd7c3ca0d97ae5241b89ced9cae9 - DAML_FAILURE(9,2c9d2750): Interpretation error: Error: User failure: UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed (error category 9): charge would exceed the cap err-context:{error_id=UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed, exercise_trace=    in choice 6f5c3c9a:Mandate:Mandate:Charge on contract 000e2f43e0 (#0)
+    in exercise command 6f5c3c9a:Mandate:Mandate:Charge on contract 000e2f43e0.
+, location=CommandExecutionErrors.scala:850} 
+2026-08-29 15:51:45,741 [canton-env-ec-60] INFO  c.d.c.n.g.ApiRequestLogger:participant=sandbox tid:d4a5bd7c3ca0d97ae5241b89ced9cae9 - Request c.d.l.a.v.CommandService/SubmitAndWaitForTransaction by inprocess-grpc-6865: failed with FAILED_PRECONDITION/DAML_FAILURE(9,2c9d2750): Interpretation error: Error: User failure: UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed (error category 9): charge would exceed the cap
+2026-08-29 15:51:45,776 [canton-env-ec-66] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:0ab2d36ab526ab969957c338cc5bef08 - Received request for active contracts: GetActiveContractsRequest(67,Some(EventFormat(Map(alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Value,Purse)),true)))))),None,false))), filters -> {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Value:Purse'], interfaces: []}}.
+2026-08-29 15:51:45,805 [canton-env-ec-51] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:961fc6dfce821e63f084ce8ecc0bd969 - Received request for active contracts: GetActiveContractsRequest(67,Some(EventFormat(Map(agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Mandate,Mandate)),false)))))),None,false))), filters -> {agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Mandate:Mandate'], interfaces: []}}.
+2026-08-29 15:51:45,826 [canton-env-ec-58] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:2a809b67b3e6bfcb7e19d963d3510841 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:45.107363Z
+2026-08-29 15:51:45,835 [canton-env-ec-66] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:2a809b67b3e6bfcb7e19d963d3510841 - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-14de54b3-78ef-4665-9441-76b79901094e,
+  submissionId = 72b509ce-1039-4509-81e0-2339dac8b343,
+  userId = participant_admin,
+  actAs = agent::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:51:45.833808Z,
+  ledgerEffectiveTime = 2026-08-29T14:51:45.833806Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:51:45,836 [canton-env-ec-62] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:2a809b67b3e6bfcb7e19d963d3510841 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:45.107363Z
+2026-08-29 15:51:45,846 [canton-env-ec-60] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:2a809b67b3e6bfcb7e19d963d3510841 - DAML_FAILURE(9,72b509ce): Interpretation error: Error: User failure: UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed (error category 9): amount must be positive err-context:{error_id=UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed, exercise_trace=    in choice 6f5c3c9a:Mandate:Mandate:Charge on contract 000e2f43e0 (#0)
+    in exercise command 6f5c3c9a:Mandate:Mandate:Charge on contract 000e2f43e0.
+, location=CommandExecutionErrors.scala:850} 
+2026-08-29 15:51:45,850 [canton-env-ec-67] INFO  c.d.c.n.g.ApiRequestLogger:participant=sandbox tid:2a809b67b3e6bfcb7e19d963d3510841 - Request c.d.l.a.v.CommandService/SubmitAndWaitForTransaction by inprocess-grpc-6865: failed with FAILED_PRECONDITION/DAML_FAILURE(9,72b509ce): Interpretation error: Error: User failure: UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed (error category 9): amount must be positive
+2026-08-29 15:51:45,984 [canton-env-ec-66] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:9b1a1b07888db4bb5d936ac5d4002e93 - Received request for active contracts: GetActiveContractsRequest(67,Some(EventFormat(Map(agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Mandate,Mandate)),false)))))),None,false))), filters -> {agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Mandate:Mandate'], interfaces: []}}.
+2026-08-29 15:51:46,011 [canton-env-ec-62] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:d2464f5197a62d5e644433268b42fc72 - Received request for active contracts: GetActiveContractsRequest(67,Some(EventFormat(Map(alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Mandate,ChargeRecord)),false)))))),None,false))), filters -> {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Mandate:ChargeRecord'], interfaces: []}}.
+2026-08-29 15:52:16,130 [canton-env-ec-60] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:a8d5e0e7126ef816e822fac65ac2873d - Processing block 65, data chunk 0. Last chunk timestamp=2026-08-29T14:51:45.107362Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Ack by MED::mediator1::1220be8c4f90... for 2026-08-29T14:51:45.107362Z
+2026-08-29 15:52:18,649 [canton-env-ec-67] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:0edcdbd8435aa25fd377831e7801be5a - Processing block 66, data chunk 0. Last chunk timestamp=2026-08-29T14:51:45.107362Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Ack by PAR::sandbox::12205ae2ef33... for 2026-08-29T14:51:45.107362Z
+2026-08-29 15:53:33,638 [canton-env-ec-65] INFO  c.d.c.p.a.s.a.ApiPartyManagementService:participant=sandbox tid:0c8be5946bb5a8cfa7859214676f0759 - Listing known parties.
+2026-08-29 15:53:33,667 [canton-env-ec-62] INFO  c.d.c.p.a.s.a.ApiPartyManagementService:participant=sandbox tid:56fcc9652dcf55660f3f950eaba4962c - Listing known parties.
+2026-08-29 15:53:33,687 [canton-env-ec-59] INFO  c.d.c.p.a.s.a.ApiPartyManagementService:participant=sandbox tid:f4785a1c884006840333a6aa3f196828 - Listing known parties.
+2026-08-29 15:53:33,710 [canton-env-ec-62] INFO  c.d.c.p.a.s.a.ApiPartyManagementService:participant=sandbox tid:f0fd007f40ed57cc2e62bb6b787315e4 - Listing known parties.
+2026-08-29 15:53:33,750 [canton-env-ec-57] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:0cd4803ba8d8bf71b4b62af8ba785928 - Received request for active contracts: GetActiveContractsRequest(67,Some(EventFormat(Map(alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Value,Purse)),false)))))),None,false))), filters -> {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Value:Purse'], interfaces: []}}.
+2026-08-29 15:53:33,797 [canton-env-ec-56] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:6ca931cb985877dbb592cbd98fb996d2 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:45.107363Z
+2026-08-29 15:53:33,823 [canton-env-ec-65] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:6ca931cb985877dbb592cbd98fb996d2 - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-a2b8694c-4c7a-4327-9220-e6a7542640b8,
+  submissionId = e9e64268-7279-4b04-aa3e-3c98c8236319,
+  userId = participant_admin,
+  actAs = alice::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:53:33.821427Z,
+  ledgerEffectiveTime = 2026-08-29T14:53:33.821425Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:53:33,825 [canton-env-ec-65] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:6ca931cb985877dbb592cbd98fb996d2 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:51:45.107363Z
+2026-08-29 15:53:33,934 [canton-env-ec-66] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:6ca931cb985877dbb592cbd98fb996d2 - Phase 1 completed: Submitting 3 envelopes for Transaction request, submitters alice::12205ae2ef33..., command-id wallet-a2b8694c-4c7a-4327-9220-e6a7542640b8
+2026-08-29 15:53:33,956 [canton-env-ec-64] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:6ca931cb985877dbb592cbd98fb996d2 - 'PAR::sandbox::12205ae2ef33...' sends request with id 'a6cfe526-dff0-4b03-b825-95a55cac3535' of size 2543 bytes with 3 envelopes.
+2026-08-29 15:53:34,013 [canton-env-ec-58] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:6ca931cb985877dbb592cbd98fb996d2 - Processing block 67, data chunk 0. Last chunk timestamp=2026-08-29T14:51:45.107362Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of 'a6cfe526-dff0-4b03-b825-95a55cac3535' at 2026-08-29T14:53:33.965042Z (tc=6ca931cb985877dbb592cbd98fb996d2)
+2026-08-29 15:53:34,062 [canton-env-ec-56] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:6ca931cb985877dbb592cbd98fb996d2 - Processing event at sc=55, ts=2026-08-29T14:53:33.965042Z, messageId=a6cfe526-dff0-4b03-b825-95a55cac3535, with contents=Seq(
+  RootHashMessage(root hash = SHA-256:1f38d0be2412..., payload size = 0),
+  EncryptedViewMessage(
+    view hash = ViewHash(SHA-256:efbc54236536...),
+    view type = TransactionViewType,
+    size = 1082,
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    number of session keys = 1,
+    view encryption scheme = AES128-GCM
+  )
+)
+2026-08-29 15:53:34,068 [canton-env-ec-59] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:6ca931cb985877dbb592cbd98fb996d2 - Phase 3: Validating Transaction request=2026-08-29T14:53:33.965042Z with 1 envelope(s)
+2026-08-29 15:53:34,083 [canton-env-ec-52] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:6ca931cb985877dbb592cbd98fb996d2 - Phase 2: Registered request=2026-08-29T14:53:33.965042Z with 1 view(s). Initial state: ViewPosition("") -> ViewState(
+  quorumsState = Quorum(confirmers = Map(alice::12205ae2ef33... -> 1, sandbox::12205ae2ef33... -> 1), threshold = 2),
+  consortiumVoting = Map(alice::12205ae2ef33... -> ConsortiumVotingState(), sandbox::12205ae2ef33... -> ConsortiumVotingState()),
+  rejections = Seq()
+)
+2026-08-29 15:53:34,123 [canton-env-ec-58] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:6ca931cb985877dbb592cbd98fb996d2 - Phase 4: Sending for request=2026-08-29T14:53:33.965042Z with msgId=49121fc7-42a0-40de-a722-667274a5c8bb approved=1, rejected=0, abstained=0
+2026-08-29 15:53:34,137 [canton-env-ec-56] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:6ca931cb985877dbb592cbd98fb996d2 - 'PAR::sandbox::12205ae2ef33...' sends request with id '49121fc7-42a0-40de-a722-667274a5c8bb' of size 740 bytes with 1 envelopes.
+2026-08-29 15:53:34,250 [canton-env-ec-56] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:6ca931cb985877dbb592cbd98fb996d2 - Processing block 68, data chunk 0. Last chunk timestamp=2026-08-29T14:53:33.965042Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '49121fc7-42a0-40de-a722-667274a5c8bb' at 2026-08-29T14:53:34.144845Z (tc=6ca931cb985877dbb592cbd98fb996d2)
+2026-08-29 15:53:34,282 [canton-env-ec-62] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:6ca931cb985877dbb592cbd98fb996d2 - Processing event at sc=56, ts=2026-08-29T14:53:34.144845Z, messageId=49121fc7-42a0-40de-a722-667274a5c8bb, with contents=Seq()
+2026-08-29 15:53:34,284 [canton-env-ec-52] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:6ca931cb985877dbb592cbd98fb996d2 - Phase 5: Received responses for request=2026-08-29T14:53:33.965042Z: ConfirmationResponses(
+  requestId = RequestId(2026-08-29T14:53:33.965042Z),
+  rootHash = SHA-256:1f38d0be2412...,
+  sender = PAR::sandbox::12205ae2ef33...,
+  psid = mysynchronizer::12204bbd6079...::34-0,
+  responses = ConfirmationResponse(viewPosition = ViewPosition(""), localVerdict = LocalApprove(), confirmingParties = Set(alice::12205ae2ef33..., sandbox::12205ae2ef33...))
+)
+2026-08-29 15:53:34,291 [canton-env-ec-59] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:6ca931cb985877dbb592cbd98fb996d2 - Phase 6: Finalized request=RequestId(2026-08-29T14:53:33.965042Z) with verdict Approve
+2026-08-29 15:53:34,308 [canton-env-ec-51] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:6ca931cb985877dbb592cbd98fb996d2 - 'MED::mediator1::1220be8c4f90...' sends request with id '5413a929-3322-4287-88ec-bf6e50e6a0df' of size 716 bytes with 1 envelopes.
+2026-08-29 15:53:34,371 [canton-env-ec-59] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:6ca931cb985877dbb592cbd98fb996d2 - Processing block 69, data chunk 0. Last chunk timestamp=2026-08-29T14:53:34.144845Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '5413a929-3322-4287-88ec-bf6e50e6a0df' at 2026-08-29T14:53:34.314074Z (tc=6ca931cb985877dbb592cbd98fb996d2)
+2026-08-29 15:53:34,402 [canton-env-ec-49] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:6ca931cb985877dbb592cbd98fb996d2 - Processing event at sc=57, ts=2026-08-29T14:53:34.314074Z, with contents=SignedProtocolMessage(
+  ConfirmationResultMessage(
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    viewType = TransactionViewType,
+    requestId = 2026-08-29T14:53:33.965042Z,
+    rootHash = SHA-256:1f38d0be2412...,
+    verdict = Approve
+  ),
+  signatures = Signature(signature = e44a57052cf0, format = Concat, signedBy = 12202625fc65..., signingAlgorithmSpec = Some(Ed25519))
+)
+2026-08-29 15:53:34,412 [canton-env-ec-66] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:6ca931cb985877dbb592cbd98fb996d2 - Finalizing Transaction request=2026-08-29T14:53:33.965042Z.
+2026-08-29 15:53:34,417 [canton-env-ec-56] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:6ca931cb985877dbb592cbd98fb996d2 - About to wrap up request RequestId(2026-08-29T14:53:33.965042Z) with event Some(
+  SequencedTransactionAccepted(
+    recordTime = 2026-08-29T14:53:33.965042Z,
+    updateId = 12201f38d0be241236d7df2c5ed523ed2d24942c892999ed41985b988c85a6943bfc,
+    transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:53:33.821425Z, preparationTime = 2026-08-29T14:53:33.821425Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+    completion = CompletionInfo(
+      actAs = alice::12205ae2ef33...,
+      commandId = wallet-a2b8694c-4c7a-4327-9220-e6a7542640b8,
+      userId = participant_admin,
+      deduplication period = (offset=None),
+      submissionId = Some(e9e64268-7279-4b04-aa3e-3c98c8236319),
+      ...
+    ),
+    nodes = 1,
+    roots = 1,
+    ...
+  )
+)
+2026-08-29 15:53:34,422 [canton-env-ec-61] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:6ca931cb985877dbb592cbd98fb996d2 - Finished async result processing of request RequestId(2026-08-29T14:53:33.965042Z)
+2026-08-29 15:53:34,422 [input-mapping-pool-3] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:6ca931cb985877dbb592cbd98fb996d2 - Storing at offset=69 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:53:34.144845Z)
+2026-08-29 15:53:34,423 [input-mapping-pool-15] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:6ca931cb985877dbb592cbd98fb996d2 - Phase 7: Storing at offset=68 SequencedTransactionAccepted(
+  recordTime = 2026-08-29T14:53:33.965042Z,
+  updateId = 12201f38d0be241236d7df2c5ed523ed2d24942c892999ed41985b988c85a6943bfc,
+  transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:53:33.821425Z, preparationTime = 2026-08-29T14:53:33.821425Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+  completion = CompletionInfo(
+    actAs = alice::12205ae2ef33...,
+    commandId = wallet-a2b8694c-4c7a-4327-9220-e6a7542640b8,
+    userId = participant_admin,
+    deduplication period = (offset=None),
+    submissionId = Some(e9e64268-7279-4b04-aa3e-3c98c8236319),
+    ...
+  ),
+  nodes = 1,
+  roots = 1,
+  ...
+)
+2026-08-29 15:53:34,425 [input-mapping-pool-5] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:6ca931cb985877dbb592cbd98fb996d2 - Storing at offset=70 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:53:34.314074Z)
+2026-08-29 15:53:34,441 [canton-env-ec-63] INFO  c.d.c.p.p.AcsCommitmentProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:6cec98276f1e30dc83b530c9131422e8 - Persisted ACS commitments at RecordTime(timestamp = 2026-08-29T14:51:44.886074Z, tieBreaker = -9223372036854775808) with CommitmentSnapshot(
+  record time = RecordTime(timestamp = 2026-08-29T14:51:44.886074Z, tieBreaker = -9223372036854775808),
+  active = Map(5 -> c6cf629b4c5f, Set(5, 6) -> da75197fb5ff),
+  delta (parties) = Set(5, Set(5, 6)),
+  deleted = Set()
+) in mode Checkpoint
+2026-08-29 15:53:34,443 [canton-env-ec-56] INFO  c.d.c.p.p.AcsCommitmentProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:6cec98276f1e30dc83b530c9131422e8 - Persisted ACS commitments at RecordTime(timestamp = 2026-08-29T14:51:44.886074Z, tieBreaker = -9223372036854775808) with CommitmentSnapshot(
+  record time = RecordTime(timestamp = 2026-08-29T14:51:44.886074Z, tieBreaker = -9223372036854775808),
+  active = Map(5 -> c6cf629b4c5f, Set(5, 6) -> da75197fb5ff),
+  delta (parties) = Set(5, Set(5, 6)),
+  deleted = Set()
+) in mode Checkpoint
+2026-08-29 15:53:34,447 [canton-env-ec-63] INFO  c.d.c.p.p.AcsCommitmentProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:6cec98276f1e30dc83b530c9131422e8 - Processing completed period CommitmentPeriod(fromExclusive = 2026-08-29T14:51:00Z, toInclusive = 2026-08-29T14:53:00Z). Modes: in catch-up mode = false, and if yes, caught up to catch-up boundary false
+2026-08-29 15:53:34,447 [canton-env-ec-64] INFO  c.d.c.p.a.s.ApiUpdateService:participant=sandbox - Received request for update by ID, updateFormat -> {transaction format: [{filters: {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: [], interfaces: [], all-templates, created_event_blob: false}}, transactionShape: 'AcsDelta'}], reassignment filters: [], topology format: []}.
+2026-08-29 15:53:34,449 [canton-env-ec-56] INFO  c.d.c.p.p.AcsCommitmentProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:6cec98276f1e30dc83b530c9131422e8 - Computing commitments for CommitmentPeriod(fromExclusive = 2026-08-29T14:51:00Z, toInclusive = 2026-08-29T14:53:00Z), number of stakeholder sets: 2
+2026-08-29 15:53:34,454 [canton-env-ec-56] INFO  c.d.c.p.p.AcsCommitmentProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:6cec98276f1e30dc83b530c9131422e8 - Computed and stored 0 commitment messages for period CommitmentPeriod(fromExclusive = 2026-08-29T14:51:00Z, toInclusive = 2026-08-29T14:53:00Z)
+2026-08-29 15:53:34,460 [canton-env-ec-52] INFO  c.d.c.p.p.AcsCommitmentProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:6cec98276f1e30dc83b530c9131422e8 - Persisted ACS commitments at RecordTime(timestamp = 2026-08-29T14:51:44.886074Z, tieBreaker = -9223372036854775808) with CommitmentSnapshot(
+  record time = RecordTime(timestamp = 2026-08-29T14:51:44.886074Z, tieBreaker = -9223372036854775808),
+  active = Map(5 -> c6cf629b4c5f, Set(5, 6) -> da75197fb5ff),
+  delta (parties) = Set(5, Set(5, 6)),
+  deleted = Set()
+) in mode Efficiency
+2026-08-29 15:53:34,460 [canton-env-ec-56] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:f0a6b662ab4bea91ddf993677913a889 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:53:34.314075Z
+2026-08-29 15:53:34,461 [canton-env-ec-65] INFO  c.d.c.p.p.AcsCommitmentProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:6cec98276f1e30dc83b530c9131422e8 - Processing 0 remote commitments
+2026-08-29 15:53:34,462 [canton-env-ec-52] INFO  c.d.c.p.p.AcsCommitmentProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:6cec98276f1e30dc83b530c9131422e8 - Checked buffered remote commitments up to 2026-08-29T14:53:00Z inclusive and ready to check further ones without buffering
+2026-08-29 15:53:34,462 [canton-env-ec-63] INFO  c.d.c.p.p.AcsCommitmentProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:6cec98276f1e30dc83b530c9131422e8 - Deleted buffered commitments and set last computed and sent timestamp set to 2026-08-29T14:53:00Z
+2026-08-29 15:53:34,471 [canton-env-ec-63] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:f0a6b662ab4bea91ddf993677913a889 - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-8a2be40f-c9a2-4f5b-8f5f-7b0491f700d0,
+  submissionId = 7ae4a7ea-a64c-484d-aa71-6b6dff4dc581,
+  userId = participant_admin,
+  actAs = alice::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:53:34.470430Z,
+  ledgerEffectiveTime = 2026-08-29T14:53:34.470427Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:53:34,473 [canton-env-ec-63] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:f0a6b662ab4bea91ddf993677913a889 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:53:34.314075Z
+2026-08-29 15:53:34,520 [canton-env-ec-62] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:f0a6b662ab4bea91ddf993677913a889 - Phase 1 completed: Submitting 3 envelopes for Transaction request, submitters alice::12205ae2ef33..., command-id wallet-8a2be40f-c9a2-4f5b-8f5f-7b0491f700d0
+2026-08-29 15:53:34,534 [canton-env-ec-60] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:f0a6b662ab4bea91ddf993677913a889 - 'PAR::sandbox::12205ae2ef33...' sends request with id '121684d6-1c0c-4dd6-84fe-6433968af716' of size 2500 bytes with 3 envelopes.
+2026-08-29 15:53:34,611 [canton-env-ec-59] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:f0a6b662ab4bea91ddf993677913a889 - Processing block 70, data chunk 0. Last chunk timestamp=2026-08-29T14:53:34.314074Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '121684d6-1c0c-4dd6-84fe-6433968af716' at 2026-08-29T14:53:34.543253Z (tc=f0a6b662ab4bea91ddf993677913a889)
+2026-08-29 15:53:34,645 [canton-env-ec-65] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:f0a6b662ab4bea91ddf993677913a889 - Processing event at sc=58, ts=2026-08-29T14:53:34.543253Z, messageId=121684d6-1c0c-4dd6-84fe-6433968af716, with contents=Seq(
+  RootHashMessage(root hash = SHA-256:ac78b0c324b1..., payload size = 0),
+  EncryptedViewMessage(
+    view hash = ViewHash(SHA-256:22562ff5755e...),
+    view type = TransactionViewType,
+    size = 1038,
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    number of session keys = 1,
+    view encryption scheme = AES128-GCM
+  )
+)
+2026-08-29 15:53:34,648 [canton-env-ec-67] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:f0a6b662ab4bea91ddf993677913a889 - Phase 3: Validating Transaction request=2026-08-29T14:53:34.543253Z with 1 envelope(s)
+2026-08-29 15:53:34,655 [canton-env-ec-51] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:f0a6b662ab4bea91ddf993677913a889 - Phase 2: Registered request=2026-08-29T14:53:34.543253Z with 1 view(s). Initial state: ViewPosition("") -> ViewState(
+  quorumsState = Quorum(confirmers = Map(alice::12205ae2ef33... -> 1, sandbox::12205ae2ef33... -> 1), threshold = 2),
+  consortiumVoting = Map(alice::12205ae2ef33... -> ConsortiumVotingState(), sandbox::12205ae2ef33... -> ConsortiumVotingState()),
+  rejections = Seq()
+)
+2026-08-29 15:53:34,682 [canton-env-ec-63] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:f0a6b662ab4bea91ddf993677913a889 - Phase 4: Sending for request=2026-08-29T14:53:34.543253Z with msgId=dbe5196f-b635-44d1-91a4-0632f7049a80 approved=1, rejected=0, abstained=0
+2026-08-29 15:53:34,694 [canton-env-ec-50] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:f0a6b662ab4bea91ddf993677913a889 - 'PAR::sandbox::12205ae2ef33...' sends request with id 'dbe5196f-b635-44d1-91a4-0632f7049a80' of size 738 bytes with 1 envelopes.
+2026-08-29 15:53:34,851 [canton-env-ec-63] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:f0a6b662ab4bea91ddf993677913a889 - Processing block 71, data chunk 0. Last chunk timestamp=2026-08-29T14:53:34.543253Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of 'dbe5196f-b635-44d1-91a4-0632f7049a80' at 2026-08-29T14:53:34.699783Z (tc=f0a6b662ab4bea91ddf993677913a889)
+2026-08-29 15:53:34,871 [canton-env-ec-58] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:f0a6b662ab4bea91ddf993677913a889 - Processing event at sc=59, ts=2026-08-29T14:53:34.699783Z, messageId=dbe5196f-b635-44d1-91a4-0632f7049a80, with contents=Seq()
+2026-08-29 15:53:34,873 [canton-env-ec-65] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:f0a6b662ab4bea91ddf993677913a889 - Phase 5: Received responses for request=2026-08-29T14:53:34.543253Z: ConfirmationResponses(
+  requestId = RequestId(2026-08-29T14:53:34.543253Z),
+  rootHash = SHA-256:ac78b0c324b1...,
+  sender = PAR::sandbox::12205ae2ef33...,
+  psid = mysynchronizer::12204bbd6079...::34-0,
+  responses = ConfirmationResponse(viewPosition = ViewPosition(""), localVerdict = LocalApprove(), confirmingParties = Set(alice::12205ae2ef33..., sandbox::12205ae2ef33...))
+)
+2026-08-29 15:53:34,877 [canton-env-ec-57] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:f0a6b662ab4bea91ddf993677913a889 - Phase 6: Finalized request=RequestId(2026-08-29T14:53:34.543253Z) with verdict Approve
+2026-08-29 15:53:34,888 [canton-env-ec-63] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:f0a6b662ab4bea91ddf993677913a889 - 'MED::mediator1::1220be8c4f90...' sends request with id '88c4eb3f-63a2-4ef7-bcd2-5269c2233833' of size 719 bytes with 1 envelopes.
+2026-08-29 15:53:34,970 [canton-env-ec-52] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:f0a6b662ab4bea91ddf993677913a889 - Processing block 72, data chunk 0. Last chunk timestamp=2026-08-29T14:53:34.699783Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '88c4eb3f-63a2-4ef7-bcd2-5269c2233833' at 2026-08-29T14:53:34.891837Z (tc=f0a6b662ab4bea91ddf993677913a889)
+2026-08-29 15:53:34,990 [canton-env-ec-49] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:f0a6b662ab4bea91ddf993677913a889 - Processing event at sc=60, ts=2026-08-29T14:53:34.891837Z, with contents=SignedProtocolMessage(
+  ConfirmationResultMessage(
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    viewType = TransactionViewType,
+    requestId = 2026-08-29T14:53:34.543253Z,
+    rootHash = SHA-256:ac78b0c324b1...,
+    verdict = Approve
+  ),
+  signatures = Signature(signature = c2530ceaecdf, format = Concat, signedBy = 12202625fc65..., signingAlgorithmSpec = Some(Ed25519))
+)
+2026-08-29 15:53:34,999 [canton-env-ec-50] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:f0a6b662ab4bea91ddf993677913a889 - Finalizing Transaction request=2026-08-29T14:53:34.543253Z.
+2026-08-29 15:53:35,001 [canton-env-ec-62] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:f0a6b662ab4bea91ddf993677913a889 - About to wrap up request RequestId(2026-08-29T14:53:34.543253Z) with event Some(
+  SequencedTransactionAccepted(
+    recordTime = 2026-08-29T14:53:34.543253Z,
+    updateId = 1220ac78b0c324b1ea591fb3b752f2965debe852b32b0a8cc727ca4c337bc861edb9,
+    transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:53:34.470427Z, preparationTime = 2026-08-29T14:53:34.470427Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+    completion = CompletionInfo(
+      actAs = alice::12205ae2ef33...,
+      commandId = wallet-8a2be40f-c9a2-4f5b-8f5f-7b0491f700d0,
+      userId = participant_admin,
+      deduplication period = (offset=None),
+      submissionId = Some(7ae4a7ea-a64c-484d-aa71-6b6dff4dc581),
+      ...
+    ),
+    nodes = 1,
+    roots = 1,
+    ...
+  )
+)
+2026-08-29 15:53:35,004 [input-mapping-pool-7] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:f0a6b662ab4bea91ddf993677913a889 - Phase 7: Storing at offset=71 SequencedTransactionAccepted(
+  recordTime = 2026-08-29T14:53:34.543253Z,
+  updateId = 1220ac78b0c324b1ea591fb3b752f2965debe852b32b0a8cc727ca4c337bc861edb9,
+  transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:53:34.470427Z, preparationTime = 2026-08-29T14:53:34.470427Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+  completion = CompletionInfo(
+    actAs = alice::12205ae2ef33...,
+    commandId = wallet-8a2be40f-c9a2-4f5b-8f5f-7b0491f700d0,
+    userId = participant_admin,
+    deduplication period = (offset=None),
+    submissionId = Some(7ae4a7ea-a64c-484d-aa71-6b6dff4dc581),
+    ...
+  ),
+  nodes = 1,
+  roots = 1,
+  ...
+)
+2026-08-29 15:53:35,005 [input-mapping-pool-6] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:f0a6b662ab4bea91ddf993677913a889 - Storing at offset=72 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:53:34.699783Z)
+2026-08-29 15:53:35,005 [canton-env-ec-52] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:f0a6b662ab4bea91ddf993677913a889 - Finished async result processing of request RequestId(2026-08-29T14:53:34.543253Z)
+2026-08-29 15:53:35,010 [input-mapping-pool-10] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:f0a6b662ab4bea91ddf993677913a889 - Storing at offset=73 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:53:34.891837Z)
+2026-08-29 15:53:35,016 [canton-env-ec-62] INFO  c.d.c.p.a.s.ApiUpdateService:participant=sandbox - Received request for update by ID, updateFormat -> {transaction format: [{filters: {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: [], interfaces: [], all-templates, created_event_blob: false}}, transactionShape: 'AcsDelta'}], reassignment filters: [], topology format: []}.
+2026-08-29 15:53:35,040 [canton-env-ec-52] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:61b9f98cc59ae67b3cb6f6ca11d1729d - Received request for active contracts: GetActiveContractsRequest(73,Some(EventFormat(Map(alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Value,Purse)),true)))))),None,false))), filters -> {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Value:Purse'], interfaces: []}}.
+2026-08-29 15:53:35,063 [canton-env-ec-52] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:be634cd1a406aff0342949c46aa5ad13 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:53:34.891838Z
+2026-08-29 15:53:35,072 [canton-env-ec-61] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:be634cd1a406aff0342949c46aa5ad13 - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-d4f4fc63-6ea1-4704-aada-1c7ef1693d40,
+  submissionId = 6f46b4cb-4a79-461b-a8c7-249ea0fe7854,
+  userId = participant_admin,
+  actAs = alice::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:53:35.072235Z,
+  ledgerEffectiveTime = 2026-08-29T14:53:35.072233Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:53:35,074 [canton-env-ec-58] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:be634cd1a406aff0342949c46aa5ad13 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:53:34.891838Z
+2026-08-29 15:53:35,111 [canton-env-ec-51] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:be634cd1a406aff0342949c46aa5ad13 - Phase 1 completed: Submitting 3 envelopes for Transaction request, submitters alice::12205ae2ef33..., command-id wallet-d4f4fc63-6ea1-4704-aada-1c7ef1693d40
+2026-08-29 15:53:35,119 [canton-env-ec-51] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:be634cd1a406aff0342949c46aa5ad13 - 'PAR::sandbox::12205ae2ef33...' sends request with id '350419ab-5dbe-412a-9580-61e919ab862d' of size 2571 bytes with 3 envelopes.
+2026-08-29 15:53:35,210 [canton-env-ec-56] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:be634cd1a406aff0342949c46aa5ad13 - Processing block 73, data chunk 0. Last chunk timestamp=2026-08-29T14:53:34.891837Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '350419ab-5dbe-412a-9580-61e919ab862d' at 2026-08-29T14:53:35.123392Z (tc=be634cd1a406aff0342949c46aa5ad13)
+2026-08-29 15:53:35,229 [canton-env-ec-49] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:be634cd1a406aff0342949c46aa5ad13 - Processing event at sc=61, ts=2026-08-29T14:53:35.123392Z, messageId=350419ab-5dbe-412a-9580-61e919ab862d, with contents=Seq(
+  RootHashMessage(root hash = SHA-256:05f24646d67b..., payload size = 0),
+  EncryptedViewMessage(
+    view hash = ViewHash(SHA-256:a18e142af3e8...),
+    view type = TransactionViewType,
+    size = 1094,
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    number of session keys = 1,
+    view encryption scheme = AES128-GCM
+  )
+)
+2026-08-29 15:53:35,230 [canton-env-ec-67] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:be634cd1a406aff0342949c46aa5ad13 - Phase 3: Validating Transaction request=2026-08-29T14:53:35.123392Z with 1 envelope(s)
+2026-08-29 15:53:35,236 [canton-env-ec-49] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:be634cd1a406aff0342949c46aa5ad13 - Phase 2: Registered request=2026-08-29T14:53:35.123392Z with 1 view(s). Initial state: ViewPosition("") -> ViewState(
+  quorumsState = Quorum(confirmers = Map(alice::12205ae2ef33... -> 1, sandbox::12205ae2ef33... -> 1), threshold = 2),
+  consortiumVoting = Map(alice::12205ae2ef33... -> ConsortiumVotingState(), sandbox::12205ae2ef33... -> ConsortiumVotingState()),
+  rejections = Seq()
+)
+2026-08-29 15:53:35,255 [canton-env-ec-67] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:be634cd1a406aff0342949c46aa5ad13 - Phase 4: Sending for request=2026-08-29T14:53:35.123392Z with msgId=026ed017-78d2-4195-becc-65f7ea430b04 approved=1, rejected=0, abstained=0
+2026-08-29 15:53:35,265 [canton-env-ec-58] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:be634cd1a406aff0342949c46aa5ad13 - 'PAR::sandbox::12205ae2ef33...' sends request with id '026ed017-78d2-4195-becc-65f7ea430b04' of size 738 bytes with 1 envelopes.
+2026-08-29 15:53:35,329 [canton-env-ec-66] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:be634cd1a406aff0342949c46aa5ad13 - Processing block 74, data chunk 0. Last chunk timestamp=2026-08-29T14:53:35.123392Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '026ed017-78d2-4195-becc-65f7ea430b04' at 2026-08-29T14:53:35.269386Z (tc=be634cd1a406aff0342949c46aa5ad13)
+2026-08-29 15:53:35,349 [canton-env-ec-66] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:be634cd1a406aff0342949c46aa5ad13 - Processing event at sc=62, ts=2026-08-29T14:53:35.269386Z, messageId=026ed017-78d2-4195-becc-65f7ea430b04, with contents=Seq()
+2026-08-29 15:53:35,351 [canton-env-ec-60] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:be634cd1a406aff0342949c46aa5ad13 - Phase 5: Received responses for request=2026-08-29T14:53:35.123392Z: ConfirmationResponses(
+  requestId = RequestId(2026-08-29T14:53:35.123392Z),
+  rootHash = SHA-256:05f24646d67b...,
+  sender = PAR::sandbox::12205ae2ef33...,
+  psid = mysynchronizer::12204bbd6079...::34-0,
+  responses = ConfirmationResponse(viewPosition = ViewPosition(""), localVerdict = LocalApprove(), confirmingParties = Set(alice::12205ae2ef33..., sandbox::12205ae2ef33...))
+)
+2026-08-29 15:53:35,355 [canton-env-ec-51] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:be634cd1a406aff0342949c46aa5ad13 - Phase 6: Finalized request=RequestId(2026-08-29T14:53:35.123392Z) with verdict Approve
+2026-08-29 15:53:35,364 [canton-env-ec-59] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:be634cd1a406aff0342949c46aa5ad13 - 'MED::mediator1::1220be8c4f90...' sends request with id '366cec2d-b521-4ce9-b904-98670ba14a90' of size 717 bytes with 1 envelopes.
+2026-08-29 15:53:35,450 [canton-env-ec-67] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:be634cd1a406aff0342949c46aa5ad13 - Processing block 75, data chunk 0. Last chunk timestamp=2026-08-29T14:53:35.269386Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '366cec2d-b521-4ce9-b904-98670ba14a90' at 2026-08-29T14:53:35.367854Z (tc=be634cd1a406aff0342949c46aa5ad13)
+2026-08-29 15:53:35,471 [canton-env-ec-50] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:be634cd1a406aff0342949c46aa5ad13 - Processing event at sc=63, ts=2026-08-29T14:53:35.367854Z, with contents=SignedProtocolMessage(
+  ConfirmationResultMessage(
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    viewType = TransactionViewType,
+    requestId = 2026-08-29T14:53:35.123392Z,
+    rootHash = SHA-256:05f24646d67b...,
+    verdict = Approve
+  ),
+  signatures = Signature(signature = d02d69fd9a06, format = Concat, signedBy = 12202625fc65..., signingAlgorithmSpec = Some(Ed25519))
+)
+2026-08-29 15:53:35,479 [canton-env-ec-52] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:be634cd1a406aff0342949c46aa5ad13 - Finalizing Transaction request=2026-08-29T14:53:35.123392Z.
+2026-08-29 15:53:35,483 [canton-env-ec-56] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:be634cd1a406aff0342949c46aa5ad13 - About to wrap up request RequestId(2026-08-29T14:53:35.123392Z) with event Some(
+  SequencedTransactionAccepted(
+    recordTime = 2026-08-29T14:53:35.123392Z,
+    updateId = 122005f24646d67b798f62bd703ba3e4e17351155d6d96c811b04504321a7060af01,
+    transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:53:35.072233Z, preparationTime = 2026-08-29T14:53:35.072233Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+    completion = CompletionInfo(
+      actAs = alice::12205ae2ef33...,
+      commandId = wallet-d4f4fc63-6ea1-4704-aada-1c7ef1693d40,
+      userId = participant_admin,
+      deduplication period = (offset=None),
+      submissionId = Some(6f46b4cb-4a79-461b-a8c7-249ea0fe7854),
+      ...
+    ),
+    nodes = 1,
+    roots = 1,
+    ...
+  )
+)
+2026-08-29 15:53:35,487 [input-mapping-pool-8] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:be634cd1a406aff0342949c46aa5ad13 - Phase 7: Storing at offset=74 SequencedTransactionAccepted(
+  recordTime = 2026-08-29T14:53:35.123392Z,
+  updateId = 122005f24646d67b798f62bd703ba3e4e17351155d6d96c811b04504321a7060af01,
+  transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:53:35.072233Z, preparationTime = 2026-08-29T14:53:35.072233Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+  completion = CompletionInfo(
+    actAs = alice::12205ae2ef33...,
+    commandId = wallet-d4f4fc63-6ea1-4704-aada-1c7ef1693d40,
+    userId = participant_admin,
+    deduplication period = (offset=None),
+    submissionId = Some(6f46b4cb-4a79-461b-a8c7-249ea0fe7854),
+    ...
+  ),
+  nodes = 1,
+  roots = 1,
+  ...
+)
+2026-08-29 15:53:35,487 [input-mapping-pool-13] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:be634cd1a406aff0342949c46aa5ad13 - Storing at offset=75 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:53:35.269386Z)
+2026-08-29 15:53:35,487 [canton-env-ec-56] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:be634cd1a406aff0342949c46aa5ad13 - Finished async result processing of request RequestId(2026-08-29T14:53:35.123392Z)
+2026-08-29 15:53:35,490 [input-mapping-pool-11] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:be634cd1a406aff0342949c46aa5ad13 - Storing at offset=76 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:53:35.367854Z)
+2026-08-29 15:53:35,503 [canton-env-ec-56] INFO  c.d.c.p.a.s.ApiUpdateService:participant=sandbox - Received request for update by ID, updateFormat -> {transaction format: [{filters: {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: [], interfaces: [], all-templates, created_event_blob: false}}, transactionShape: 'AcsDelta'}], reassignment filters: [], topology format: []}.
+2026-08-29 15:53:35,516 [canton-env-ec-62] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:608f9f57a65ff6d211b9d2e79c83862d - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:53:35.367855Z
+2026-08-29 15:53:35,526 [canton-env-ec-67] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:608f9f57a65ff6d211b9d2e79c83862d - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-36ecd290-9174-446c-93df-5daa8794a53f,
+  submissionId = 94c6ad04-bdbc-4e6f-b33b-6da35ffa658a,
+  userId = participant_admin,
+  actAs = agent::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:53:35.525323Z,
+  ledgerEffectiveTime = 2026-08-29T14:53:35.525320Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:53:35,528 [canton-env-ec-65] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:608f9f57a65ff6d211b9d2e79c83862d - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:53:35.367855Z
+2026-08-29 15:53:35,573 [canton-env-ec-61] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:608f9f57a65ff6d211b9d2e79c83862d - Phase 1 completed: Submitting 3 envelopes for Transaction request, submitters agent::12205ae2ef33..., command-id wallet-36ecd290-9174-446c-93df-5daa8794a53f
+2026-08-29 15:53:35,583 [canton-env-ec-59] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:608f9f57a65ff6d211b9d2e79c83862d - 'PAR::sandbox::12205ae2ef33...' sends request with id '7c096461-34d5-4ab4-bafa-76a912ca9a7c' of size 2771 bytes with 3 envelopes.
+2026-08-29 15:53:35,690 [canton-env-ec-62] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:608f9f57a65ff6d211b9d2e79c83862d - Processing block 76, data chunk 0. Last chunk timestamp=2026-08-29T14:53:35.367854Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '7c096461-34d5-4ab4-bafa-76a912ca9a7c' at 2026-08-29T14:53:35.587841Z (tc=608f9f57a65ff6d211b9d2e79c83862d)
+2026-08-29 15:53:35,712 [canton-env-ec-56] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:608f9f57a65ff6d211b9d2e79c83862d - Processing event at sc=64, ts=2026-08-29T14:53:35.587841Z, messageId=7c096461-34d5-4ab4-bafa-76a912ca9a7c, with contents=Seq(
+  RootHashMessage(root hash = SHA-256:189dad5a69cb..., payload size = 0),
+  EncryptedViewMessage(
+    view hash = ViewHash(SHA-256:e5b747ac8e30...),
+    view type = TransactionViewType,
+    size = 1286,
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    number of session keys = 1,
+    view encryption scheme = AES128-GCM
+  )
+)
+2026-08-29 15:53:35,714 [canton-env-ec-52] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:608f9f57a65ff6d211b9d2e79c83862d - Phase 3: Validating Transaction request=2026-08-29T14:53:35.587841Z with 1 envelope(s)
+2026-08-29 15:53:35,720 [canton-env-ec-64] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:608f9f57a65ff6d211b9d2e79c83862d - Phase 2: Registered request=2026-08-29T14:53:35.587841Z with 1 view(s). Initial state: ViewPosition("") -> ViewState(
+  quorumsState = Seq(
+    Quorum(confirmers = Map(agent::12205ae2ef33... -> 1, alice::12205ae2ef33... -> 1, sandbox::12205ae2ef33... -> 1), threshold = 3),
+    Quorum(confirmers = Map(agent::12205ae2ef33... -> 1, alice::12205ae2ef33... -> 1), threshold = 2)
+  ),
+  consortiumVoting = Map(agent::12205ae2ef33... -> ConsortiumVotingState(), alice::12205ae2ef33... -> ConsortiumVotingState(), sandbox::12205ae2ef33... -> ConsortiumVotingState()),
+  rejections = Seq()
+)
+2026-08-29 15:53:35,749 [canton-env-ec-62] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:608f9f57a65ff6d211b9d2e79c83862d - Phase 4: Sending for request=2026-08-29T14:53:35.587841Z with msgId=c04b026d-697d-46f8-b635-7b4fd95a5206 approved=1, rejected=0, abstained=0
+2026-08-29 15:53:35,772 [canton-env-ec-63] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:608f9f57a65ff6d211b9d2e79c83862d - 'PAR::sandbox::12205ae2ef33...' sends request with id 'c04b026d-697d-46f8-b635-7b4fd95a5206' of size 753 bytes with 1 envelopes.
+2026-08-29 15:53:35,810 [canton-env-ec-58] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:608f9f57a65ff6d211b9d2e79c83862d - Processing block 77, data chunk 0. Last chunk timestamp=2026-08-29T14:53:35.587841Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of 'c04b026d-697d-46f8-b635-7b4fd95a5206' at 2026-08-29T14:53:35.776773Z (tc=608f9f57a65ff6d211b9d2e79c83862d)
+2026-08-29 15:53:35,835 [canton-env-ec-63] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:608f9f57a65ff6d211b9d2e79c83862d - Processing event at sc=65, ts=2026-08-29T14:53:35.776773Z, messageId=c04b026d-697d-46f8-b635-7b4fd95a5206, with contents=Seq()
+2026-08-29 15:53:35,840 [canton-env-ec-59] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:608f9f57a65ff6d211b9d2e79c83862d - Phase 5: Received responses for request=2026-08-29T14:53:35.587841Z: ConfirmationResponses(
+  requestId = RequestId(2026-08-29T14:53:35.587841Z),
+  rootHash = SHA-256:189dad5a69cb...,
+  sender = PAR::sandbox::12205ae2ef33...,
+  psid = mysynchronizer::12204bbd6079...::34-0,
+  responses = ConfirmationResponse(viewPosition = ViewPosition(""), localVerdict = LocalApprove(), confirmingParties = Set(agent::12205ae2ef33..., alice::12205ae2ef33..., sandbox::12205ae2ef33...))
+)
+2026-08-29 15:53:35,846 [canton-env-ec-58] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:608f9f57a65ff6d211b9d2e79c83862d - Phase 6: Finalized request=RequestId(2026-08-29T14:53:35.587841Z) with verdict Approve
+2026-08-29 15:53:35,857 [canton-env-ec-67] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:608f9f57a65ff6d211b9d2e79c83862d - 'MED::mediator1::1220be8c4f90...' sends request with id '234d35bb-998d-4d3e-8350-ee70c5f9dbf1' of size 717 bytes with 1 envelopes.
+2026-08-29 15:53:35,930 [canton-env-ec-56] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:608f9f57a65ff6d211b9d2e79c83862d - Processing block 78, data chunk 0. Last chunk timestamp=2026-08-29T14:53:35.776773Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '234d35bb-998d-4d3e-8350-ee70c5f9dbf1' at 2026-08-29T14:53:35.860726Z (tc=608f9f57a65ff6d211b9d2e79c83862d)
+2026-08-29 15:53:35,951 [canton-env-ec-66] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:608f9f57a65ff6d211b9d2e79c83862d - Processing event at sc=66, ts=2026-08-29T14:53:35.860726Z, with contents=SignedProtocolMessage(
+  ConfirmationResultMessage(
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    viewType = TransactionViewType,
+    requestId = 2026-08-29T14:53:35.587841Z,
+    rootHash = SHA-256:189dad5a69cb...,
+    verdict = Approve
+  ),
+  signatures = Signature(signature = 83b1333215ee, format = Concat, signedBy = 12202625fc65..., signingAlgorithmSpec = Some(Ed25519))
+)
+2026-08-29 15:53:35,963 [canton-env-ec-57] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:608f9f57a65ff6d211b9d2e79c83862d - Finalizing Transaction request=2026-08-29T14:53:35.587841Z.
+2026-08-29 15:53:35,967 [canton-env-ec-63] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:608f9f57a65ff6d211b9d2e79c83862d - About to wrap up request RequestId(2026-08-29T14:53:35.587841Z) with event Some(
+  SequencedTransactionAccepted(
+    recordTime = 2026-08-29T14:53:35.587841Z,
+    updateId = 1220189dad5a69cbacfec80c0b86d8a496f5e68175d6b1409bde929a10b8b5ed9eae,
+    transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:53:35.525320Z, preparationTime = 2026-08-29T14:53:35.525320Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+    completion = CompletionInfo(
+      actAs = agent::12205ae2ef33...,
+      commandId = wallet-36ecd290-9174-446c-93df-5daa8794a53f,
+      userId = participant_admin,
+      deduplication period = (offset=None),
+      submissionId = Some(94c6ad04-bdbc-4e6f-b33b-6da35ffa658a),
+      ...
+    ),
+    nodes = 2,
+    roots = 1,
+    ...
+  )
+)
+2026-08-29 15:53:35,980 [canton-env-ec-63] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:608f9f57a65ff6d211b9d2e79c83862d - Finished async result processing of request RequestId(2026-08-29T14:53:35.587841Z)
+2026-08-29 15:53:35,980 [input-mapping-pool-0] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:608f9f57a65ff6d211b9d2e79c83862d - Storing at offset=78 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:53:35.776773Z)
+2026-08-29 15:53:35,980 [input-mapping-pool-12] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:608f9f57a65ff6d211b9d2e79c83862d - Phase 7: Storing at offset=77 SequencedTransactionAccepted(
+  recordTime = 2026-08-29T14:53:35.587841Z,
+  updateId = 1220189dad5a69cbacfec80c0b86d8a496f5e68175d6b1409bde929a10b8b5ed9eae,
+  transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:53:35.525320Z, preparationTime = 2026-08-29T14:53:35.525320Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+  completion = CompletionInfo(
+    actAs = agent::12205ae2ef33...,
+    commandId = wallet-36ecd290-9174-446c-93df-5daa8794a53f,
+    userId = participant_admin,
+    deduplication period = (offset=None),
+    submissionId = Some(94c6ad04-bdbc-4e6f-b33b-6da35ffa658a),
+    ...
+  ),
+  nodes = 2,
+  roots = 1,
+  ...
+)
+2026-08-29 15:53:35,986 [input-mapping-pool-9] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:608f9f57a65ff6d211b9d2e79c83862d - Storing at offset=79 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:53:35.860726Z)
+2026-08-29 15:53:35,998 [canton-env-ec-51] INFO  c.d.c.p.a.s.ApiUpdateService:participant=sandbox - Received request for update by ID, updateFormat -> {transaction format: [{filters: {agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: [], interfaces: [], all-templates, created_event_blob: false}}, transactionShape: 'AcsDelta'}], reassignment filters: [], topology format: []}.
+2026-08-29 15:53:36,225 [canton-env-ec-51] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:54ee524486b5dae40dff9b61b8f9373a - Received request for active contracts: GetActiveContractsRequest(79,Some(EventFormat(Map(alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Value,Purse)),true)))))),None,false))), filters -> {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Value:Purse'], interfaces: []}}.
+2026-08-29 15:53:36,244 [canton-env-ec-52] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:514785c0c93e91314d9d1a79652f445d - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:53:35.860727Z
+2026-08-29 15:53:36,252 [canton-env-ec-59] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:514785c0c93e91314d9d1a79652f445d - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-ec3ed90e-a79d-4a24-b972-7001755a2c88,
+  submissionId = a036f42b-5ae0-40be-8e40-60edd0cb3e41,
+  userId = participant_admin,
+  actAs = agent::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:53:36.252014Z,
+  ledgerEffectiveTime = 2026-08-29T14:53:36.252012Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:53:36,254 [canton-env-ec-61] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:514785c0c93e91314d9d1a79652f445d - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:53:35.860727Z
+2026-08-29 15:53:36,267 [canton-env-ec-67] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:514785c0c93e91314d9d1a79652f445d - CONTRACT_NOT_FOUND(11,a036f42b): Contract could not be found with id 0061b475d20acab46c9b1981869d9fc6ffbb35d09ca9f79726682676ca2ed36977ca12122009d1a1ccab07adb862747fceaf912c1ef5c5f84070789ee641019b450f0e82f3 err-context:{location=RejectionGenerators.scala:100} 
+2026-08-29 15:53:36,269 [canton-env-ec-51] INFO  c.d.c.n.g.ApiRequestLogger:participant=sandbox tid:514785c0c93e91314d9d1a79652f445d - Request c.d.l.a.v.CommandService/SubmitAndWaitForTransaction by inprocess-grpc-6865: failed with NOT_FOUND/CONTRACT_NOT_FOUND(11,a036f42b): Contract could not be found with id 0061b475d20acab46c9b1981869d9fc6ffbb35d09ca9f79726682676ca2ed36977ca12122009d1a1ccab07adb862747fceaf912c1ef5c5f84070789ee641019b450f0e82f3
+2026-08-29 15:53:36,279 [canton-env-ec-67] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:62061ad3e673f33bf9072e5bd2a66d45 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:53:35.860727Z
+2026-08-29 15:53:36,289 [canton-env-ec-61] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:62061ad3e673f33bf9072e5bd2a66d45 - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-49bdcbca-5881-41b3-8e1b-f5443ed86e92,
+  submissionId = 7b3a395f-6856-4871-8db9-249947ddde9e,
+  userId = participant_admin,
+  actAs = agent::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:53:36.287711Z,
+  ledgerEffectiveTime = 2026-08-29T14:53:36.287709Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:53:36,290 [canton-env-ec-64] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:62061ad3e673f33bf9072e5bd2a66d45 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:53:35.860727Z
+2026-08-29 15:53:36,337 [canton-env-ec-52] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:62061ad3e673f33bf9072e5bd2a66d45 - Phase 1 completed: Submitting 3 envelopes for Transaction request, submitters agent::12205ae2ef33..., command-id wallet-49bdcbca-5881-41b3-8e1b-f5443ed86e92
+2026-08-29 15:53:36,347 [canton-env-ec-52] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:62061ad3e673f33bf9072e5bd2a66d45 - 'PAR::sandbox::12205ae2ef33...' sends request with id 'e7d2e26d-4841-4653-a8e4-82bc01a4f279' of size 3324 bytes with 3 envelopes.
+2026-08-29 15:53:36,410 [canton-env-ec-65] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:62061ad3e673f33bf9072e5bd2a66d45 - Processing block 79, data chunk 0. Last chunk timestamp=2026-08-29T14:53:35.860726Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of 'e7d2e26d-4841-4653-a8e4-82bc01a4f279' at 2026-08-29T14:53:36.350957Z (tc=62061ad3e673f33bf9072e5bd2a66d45)
+2026-08-29 15:53:36,432 [canton-env-ec-67] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:62061ad3e673f33bf9072e5bd2a66d45 - Processing event at sc=67, ts=2026-08-29T14:53:36.350957Z, messageId=e7d2e26d-4841-4653-a8e4-82bc01a4f279, with contents=Seq(
+  RootHashMessage(root hash = SHA-256:892d95529085..., payload size = 0),
+  EncryptedViewMessage(
+    view hash = ViewHash(SHA-256:50f32e793695...),
+    view type = TransactionViewType,
+    size = 1815,
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    number of session keys = 1,
+    view encryption scheme = AES128-GCM
+  )
+)
+2026-08-29 15:53:36,434 [canton-env-ec-50] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:62061ad3e673f33bf9072e5bd2a66d45 - Phase 3: Validating Transaction request=2026-08-29T14:53:36.350957Z with 1 envelope(s)
+2026-08-29 15:53:36,441 [canton-env-ec-61] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:62061ad3e673f33bf9072e5bd2a66d45 - Phase 2: Registered request=2026-08-29T14:53:36.350957Z with 1 view(s). Initial state: ViewPosition("") -> ViewState(
+  quorumsState = Seq(
+    Quorum(confirmers = Map(agent::12205ae2ef33... -> 1, alice::12205ae2ef33... -> 1, sandbox::12205ae2ef33... -> 1), threshold = 3),
+    Quorum(confirmers = Map(agent::12205ae2ef33... -> 1, alice::12205ae2ef33... -> 1), threshold = 2),
+    Quorum(confirmers = alice::12205ae2ef33... -> 1, threshold = 1)
+  ),
+  consortiumVoting = Map(agent::12205ae2ef33... -> ConsortiumVotingState(), alice::12205ae2ef33... -> ConsortiumVotingState(), sandbox::12205ae2ef33... -> ConsortiumVotingState()),
+  rejections = Seq()
+)
+2026-08-29 15:53:36,476 [canton-env-ec-58] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:62061ad3e673f33bf9072e5bd2a66d45 - Phase 4: Sending for request=2026-08-29T14:53:36.350957Z with msgId=3ae38c2b-a8d8-4a50-a0d5-beda03a95bce approved=1, rejected=0, abstained=0
+2026-08-29 15:53:36,485 [canton-env-ec-58] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:62061ad3e673f33bf9072e5bd2a66d45 - 'PAR::sandbox::12205ae2ef33...' sends request with id '3ae38c2b-a8d8-4a50-a0d5-beda03a95bce' of size 753 bytes with 1 envelopes.
+2026-08-29 15:53:36,530 [canton-env-ec-64] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:62061ad3e673f33bf9072e5bd2a66d45 - Processing block 80, data chunk 0. Last chunk timestamp=2026-08-29T14:53:36.350957Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '3ae38c2b-a8d8-4a50-a0d5-beda03a95bce' at 2026-08-29T14:53:36.490180Z (tc=62061ad3e673f33bf9072e5bd2a66d45)
+2026-08-29 15:53:36,556 [canton-env-ec-58] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:62061ad3e673f33bf9072e5bd2a66d45 - Processing event at sc=68, ts=2026-08-29T14:53:36.490180Z, messageId=3ae38c2b-a8d8-4a50-a0d5-beda03a95bce, with contents=Seq()
+2026-08-29 15:53:36,558 [canton-env-ec-50] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:62061ad3e673f33bf9072e5bd2a66d45 - Phase 5: Received responses for request=2026-08-29T14:53:36.350957Z: ConfirmationResponses(
+  requestId = RequestId(2026-08-29T14:53:36.350957Z),
+  rootHash = SHA-256:892d95529085...,
+  sender = PAR::sandbox::12205ae2ef33...,
+  psid = mysynchronizer::12204bbd6079...::34-0,
+  responses = ConfirmationResponse(viewPosition = ViewPosition(""), localVerdict = LocalApprove(), confirmingParties = Set(agent::12205ae2ef33..., alice::12205ae2ef33..., sandbox::12205ae2ef33...))
+)
+2026-08-29 15:53:36,563 [canton-env-ec-58] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:62061ad3e673f33bf9072e5bd2a66d45 - Phase 6: Finalized request=RequestId(2026-08-29T14:53:36.350957Z) with verdict Approve
+2026-08-29 15:53:36,575 [canton-env-ec-60] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:62061ad3e673f33bf9072e5bd2a66d45 - 'MED::mediator1::1220be8c4f90...' sends request with id '568b7cf1-d01f-4b63-901e-bfc4098f7ad3' of size 718 bytes with 1 envelopes.
+2026-08-29 15:53:36,650 [canton-env-ec-60] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:62061ad3e673f33bf9072e5bd2a66d45 - Processing block 81, data chunk 0. Last chunk timestamp=2026-08-29T14:53:36.490180Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '568b7cf1-d01f-4b63-901e-bfc4098f7ad3' at 2026-08-29T14:53:36.579234Z (tc=62061ad3e673f33bf9072e5bd2a66d45)
+2026-08-29 15:53:36,678 [canton-env-ec-62] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:62061ad3e673f33bf9072e5bd2a66d45 - Processing event at sc=69, ts=2026-08-29T14:53:36.579234Z, with contents=SignedProtocolMessage(
+  ConfirmationResultMessage(
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    viewType = TransactionViewType,
+    requestId = 2026-08-29T14:53:36.350957Z,
+    rootHash = SHA-256:892d95529085...,
+    verdict = Approve
+  ),
+  signatures = Signature(signature = efb5e0225918, format = Concat, signedBy = 12202625fc65..., signingAlgorithmSpec = Some(Ed25519))
+)
+2026-08-29 15:53:36,685 [canton-env-ec-62] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:62061ad3e673f33bf9072e5bd2a66d45 - Finalizing Transaction request=2026-08-29T14:53:36.350957Z.
+2026-08-29 15:53:36,690 [canton-env-ec-60] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:62061ad3e673f33bf9072e5bd2a66d45 - About to wrap up request RequestId(2026-08-29T14:53:36.350957Z) with event Some(
+  SequencedTransactionAccepted(
+    recordTime = 2026-08-29T14:53:36.350957Z,
+    updateId = 1220892d955290858d49e13e3db2e960e81ed593cd375d236176cf9e4c2fc71d81a5,
+    transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:53:36.287709Z, preparationTime = 2026-08-29T14:53:36.287709Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+    completion = CompletionInfo(
+      actAs = agent::12205ae2ef33...,
+      commandId = wallet-49bdcbca-5881-41b3-8e1b-f5443ed86e92,
+      userId = participant_admin,
+      deduplication period = (offset=None),
+      submissionId = Some(7b3a395f-6856-4871-8db9-249947ddde9e),
+      ...
+    ),
+    nodes = 5,
+    roots = 1,
+    ...
+  )
+)
+2026-08-29 15:53:36,694 [canton-env-ec-67] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:62061ad3e673f33bf9072e5bd2a66d45 - Finished async result processing of request RequestId(2026-08-29T14:53:36.350957Z)
+2026-08-29 15:53:36,694 [input-mapping-pool-14] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:62061ad3e673f33bf9072e5bd2a66d45 - Phase 7: Storing at offset=80 SequencedTransactionAccepted(
+  recordTime = 2026-08-29T14:53:36.350957Z,
+  updateId = 1220892d955290858d49e13e3db2e960e81ed593cd375d236176cf9e4c2fc71d81a5,
+  transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:53:36.287709Z, preparationTime = 2026-08-29T14:53:36.287709Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+  completion = CompletionInfo(
+    actAs = agent::12205ae2ef33...,
+    commandId = wallet-49bdcbca-5881-41b3-8e1b-f5443ed86e92,
+    userId = participant_admin,
+    deduplication period = (offset=None),
+    submissionId = Some(7b3a395f-6856-4871-8db9-249947ddde9e),
+    ...
+  ),
+  nodes = 5,
+  roots = 1,
+  ...
+)
+2026-08-29 15:53:36,694 [input-mapping-pool-4] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:62061ad3e673f33bf9072e5bd2a66d45 - Storing at offset=81 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:53:36.490180Z)
+2026-08-29 15:53:36,697 [input-mapping-pool-2] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:62061ad3e673f33bf9072e5bd2a66d45 - Storing at offset=82 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:53:36.579234Z)
+2026-08-29 15:53:36,712 [canton-env-ec-61] INFO  c.d.c.p.a.s.ApiUpdateService:participant=sandbox - Received request for update by ID, updateFormat -> {transaction format: [{filters: {agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: [], interfaces: [], all-templates, created_event_blob: false}}, transactionShape: 'AcsDelta'}], reassignment filters: [], topology format: []}.
+2026-08-29 15:53:38,873 [canton-env-ec-50] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:1674fea530ec8a11195eaca7f8f8aacf - Received request for active contracts: GetActiveContractsRequest(82,Some(EventFormat(Map(alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Value,Purse)),true)))))),None,false))), filters -> {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Value:Purse'], interfaces: []}}.
+2026-08-29 15:53:38,911 [canton-env-ec-63] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:7b7667f53a8c3ac693b2832181cffa12 - Received request for active contracts: GetActiveContractsRequest(82,Some(EventFormat(Map(agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Mandate,Mandate)),false)))))),None,false))), filters -> {agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Mandate:Mandate'], interfaces: []}}.
+2026-08-29 15:53:38,939 [canton-env-ec-63] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:1ac4174c7f46a713a1edd0054cee2bce - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:53:36.579235Z
+2026-08-29 15:53:38,953 [canton-env-ec-61] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:1ac4174c7f46a713a1edd0054cee2bce - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-37ef3673-1a80-41ea-9b04-d4bba471fff4,
+  submissionId = 83c457d1-deb6-4922-b73c-72a3f8c5eaad,
+  userId = participant_admin,
+  actAs = agent::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:53:38.949751Z,
+  ledgerEffectiveTime = 2026-08-29T14:53:38.949748Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:53:38,955 [canton-env-ec-59] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:1ac4174c7f46a713a1edd0054cee2bce - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:53:36.579235Z
+2026-08-29 15:53:39,034 [canton-env-ec-51] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:1ac4174c7f46a713a1edd0054cee2bce - Phase 1 completed: Submitting 3 envelopes for Transaction request, submitters agent::12205ae2ef33..., command-id wallet-37ef3673-1a80-41ea-9b04-d4bba471fff4
+2026-08-29 15:53:39,052 [canton-env-ec-65] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:1ac4174c7f46a713a1edd0054cee2bce - 'PAR::sandbox::12205ae2ef33...' sends request with id 'ce0839c5-94df-4d4c-9afb-5b8ed32c81ca' of size 3323 bytes with 3 envelopes.
+2026-08-29 15:53:39,154 [canton-env-ec-65] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:1ac4174c7f46a713a1edd0054cee2bce - Processing block 82, data chunk 0. Last chunk timestamp=2026-08-29T14:53:36.579234Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of 'ce0839c5-94df-4d4c-9afb-5b8ed32c81ca' at 2026-08-29T14:53:39.057743Z (tc=1ac4174c7f46a713a1edd0054cee2bce)
+2026-08-29 15:53:39,182 [canton-env-ec-66] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:1ac4174c7f46a713a1edd0054cee2bce - Processing event at sc=70, ts=2026-08-29T14:53:39.057743Z, messageId=ce0839c5-94df-4d4c-9afb-5b8ed32c81ca, with contents=Seq(
+  RootHashMessage(root hash = SHA-256:a544c724a581..., payload size = 0),
+  EncryptedViewMessage(
+    view hash = ViewHash(SHA-256:064db0cec512...),
+    view type = TransactionViewType,
+    size = 1818,
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    number of session keys = 1,
+    view encryption scheme = AES128-GCM
+  )
+)
+2026-08-29 15:53:39,187 [canton-env-ec-50] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:1ac4174c7f46a713a1edd0054cee2bce - Phase 3: Validating Transaction request=2026-08-29T14:53:39.057743Z with 1 envelope(s)
+2026-08-29 15:53:39,195 [canton-env-ec-57] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:1ac4174c7f46a713a1edd0054cee2bce - Phase 2: Registered request=2026-08-29T14:53:39.057743Z with 1 view(s). Initial state: ViewPosition("") -> ViewState(
+  quorumsState = Seq(
+    Quorum(confirmers = Map(agent::12205ae2ef33... -> 1, alice::12205ae2ef33... -> 1, sandbox::12205ae2ef33... -> 1), threshold = 3),
+    Quorum(confirmers = Map(agent::12205ae2ef33... -> 1, alice::12205ae2ef33... -> 1), threshold = 2),
+    Quorum(confirmers = alice::12205ae2ef33... -> 1, threshold = 1)
+  ),
+  consortiumVoting = Map(agent::12205ae2ef33... -> ConsortiumVotingState(), alice::12205ae2ef33... -> ConsortiumVotingState(), sandbox::12205ae2ef33... -> ConsortiumVotingState()),
+  rejections = Seq()
+)
+2026-08-29 15:53:39,246 [canton-env-ec-62] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:1ac4174c7f46a713a1edd0054cee2bce - Phase 4: Sending for request=2026-08-29T14:53:39.057743Z with msgId=8ccd9240-f096-4162-be4f-08923b17111a approved=1, rejected=0, abstained=0
+2026-08-29 15:53:39,257 [canton-env-ec-57] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:1ac4174c7f46a713a1edd0054cee2bce - 'PAR::sandbox::12205ae2ef33...' sends request with id '8ccd9240-f096-4162-be4f-08923b17111a' of size 753 bytes with 1 envelopes.
+2026-08-29 15:53:39,392 [canton-env-ec-59] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:1ac4174c7f46a713a1edd0054cee2bce - Processing block 83, data chunk 0. Last chunk timestamp=2026-08-29T14:53:39.057743Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '8ccd9240-f096-4162-be4f-08923b17111a' at 2026-08-29T14:53:39.262333Z (tc=1ac4174c7f46a713a1edd0054cee2bce)
+2026-08-29 15:53:39,417 [canton-env-ec-66] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:1ac4174c7f46a713a1edd0054cee2bce - Processing event at sc=71, ts=2026-08-29T14:53:39.262333Z, messageId=8ccd9240-f096-4162-be4f-08923b17111a, with contents=Seq()
+2026-08-29 15:53:39,422 [canton-env-ec-66] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:1ac4174c7f46a713a1edd0054cee2bce - Phase 5: Received responses for request=2026-08-29T14:53:39.057743Z: ConfirmationResponses(
+  requestId = RequestId(2026-08-29T14:53:39.057743Z),
+  rootHash = SHA-256:a544c724a581...,
+  sender = PAR::sandbox::12205ae2ef33...,
+  psid = mysynchronizer::12204bbd6079...::34-0,
+  responses = ConfirmationResponse(viewPosition = ViewPosition(""), localVerdict = LocalApprove(), confirmingParties = Set(agent::12205ae2ef33..., alice::12205ae2ef33..., sandbox::12205ae2ef33...))
+)
+2026-08-29 15:53:39,433 [canton-env-ec-50] INFO  c.d.c.s.m.ConfirmationRequestAndResponseProcessor:mediator=mediator1/psid=mysynchronizer::12204bbd6079::34-0 tid:1ac4174c7f46a713a1edd0054cee2bce - Phase 6: Finalized request=RequestId(2026-08-29T14:53:39.057743Z) with verdict Approve
+2026-08-29 15:53:39,449 [canton-env-ec-52] INFO  c.d.c.s.s.s.GrpcSequencerService:sequencer=sequencer1 tid:1ac4174c7f46a713a1edd0054cee2bce - 'MED::mediator1::1220be8c4f90...' sends request with id '1f497533-9e21-4ad7-bb6f-ac65f007a158' of size 714 bytes with 1 envelopes.
+2026-08-29 15:53:39,513 [canton-env-ec-58] INFO  c.d.c.s.b.u.BlockChunkProcessor:sequencer=sequencer1/psid=mysynchronizer::12204bbd6079::34-0 tid:1ac4174c7f46a713a1edd0054cee2bce - Processing block 84, data chunk 0. Last chunk timestamp=2026-08-29T14:53:39.262333Z, last sequencer event timestamp=Some(2026-08-29T14:46:25.354293Z). 1 events:
+  Send of '1f497533-9e21-4ad7-bb6f-ac65f007a158' at 2026-08-29T14:53:39.456315Z (tc=1ac4174c7f46a713a1edd0054cee2bce)
+2026-08-29 15:53:39,546 [canton-env-ec-65] INFO  c.d.c.p.p.ParallelMessageDispatcher:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:1ac4174c7f46a713a1edd0054cee2bce - Processing event at sc=72, ts=2026-08-29T14:53:39.456315Z, with contents=SignedProtocolMessage(
+  ConfirmationResultMessage(
+    psid = mysynchronizer::12204bbd6079...::34-0,
+    viewType = TransactionViewType,
+    requestId = 2026-08-29T14:53:39.057743Z,
+    rootHash = SHA-256:a544c724a581...,
+    verdict = Approve
+  ),
+  signatures = Signature(signature = 7c3939e5d5ad, format = Concat, signedBy = 12202625fc65..., signingAlgorithmSpec = Some(Ed25519))
+)
+2026-08-29 15:53:39,558 [canton-env-ec-66] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:1ac4174c7f46a713a1edd0054cee2bce - Finalizing Transaction request=2026-08-29T14:53:39.057743Z.
+2026-08-29 15:53:39,565 [canton-env-ec-67] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:1ac4174c7f46a713a1edd0054cee2bce - About to wrap up request RequestId(2026-08-29T14:53:39.057743Z) with event Some(
+  SequencedTransactionAccepted(
+    recordTime = 2026-08-29T14:53:39.057743Z,
+    updateId = 1220a544c724a5816ecff34f5e455f9615014e3ed0f53e150dfd620f10b6b5b33e34,
+    transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:53:38.949748Z, preparationTime = 2026-08-29T14:53:38.949748Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+    completion = CompletionInfo(
+      actAs = agent::12205ae2ef33...,
+      commandId = wallet-37ef3673-1a80-41ea-9b04-d4bba471fff4,
+      userId = participant_admin,
+      deduplication period = (offset=None),
+      submissionId = Some(83c457d1-deb6-4922-b73c-72a3f8c5eaad),
+      ...
+    ),
+    nodes = 5,
+    roots = 1,
+    ...
+  )
+)
+2026-08-29 15:53:39,570 [input-mapping-pool-1] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:1ac4174c7f46a713a1edd0054cee2bce - Phase 7: Storing at offset=83 SequencedTransactionAccepted(
+  recordTime = 2026-08-29T14:53:39.057743Z,
+  updateId = 1220a544c724a5816ecff34f5e455f9615014e3ed0f53e150dfd620f10b6b5b33e34,
+  transactionMeta = TransactionMeta(ledgerEffectiveTime = 2026-08-29T14:53:38.949748Z, preparationTime = 2026-08-29T14:53:38.949748Z, timeBoundaries = LedgerTimeBoundaries(constrained = true), ...),
+  completion = CompletionInfo(
+    actAs = agent::12205ae2ef33...,
+    commandId = wallet-37ef3673-1a80-41ea-9b04-d4bba471fff4,
+    userId = participant_admin,
+    deduplication period = (offset=None),
+    submissionId = Some(83c457d1-deb6-4922-b73c-72a3f8c5eaad),
+    ...
+  ),
+  nodes = 5,
+  roots = 1,
+  ...
+)
+2026-08-29 15:53:39,571 [input-mapping-pool-3] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:1ac4174c7f46a713a1edd0054cee2bce - Storing at offset=84 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:53:39.262333Z)
+2026-08-29 15:53:39,570 [canton-env-ec-52] INFO  c.d.c.p.p.TransactionProcessor:participant=sandbox/psid=mysynchronizer::12204bbd6079::34-0 tid:1ac4174c7f46a713a1edd0054cee2bce - Finished async result processing of request RequestId(2026-08-29T14:53:39.057743Z)
+2026-08-29 15:53:39,575 [input-mapping-pool-15] INFO  c.d.c.p.i.p.ParallelIndexerSubscription:participant=sandbox tid:1ac4174c7f46a713a1edd0054cee2bce - Storing at offset=85 SequencerIndexMoved(synchronizerId = mysynchronizer::12204bbd6079..., sequencerTimestamp = 2026-08-29T14:53:39.456315Z)
+2026-08-29 15:53:39,598 [canton-env-ec-65] INFO  c.d.c.p.a.s.ApiUpdateService:participant=sandbox - Received request for update by ID, updateFormat -> {transaction format: [{filters: {agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: [], interfaces: [], all-templates, created_event_blob: false}}, transactionShape: 'AcsDelta'}], reassignment filters: [], topology format: []}.
+2026-08-29 15:53:39,711 [canton-env-ec-61] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:d745697aaac2962c3375b79d2e0c45ea - Received request for active contracts: GetActiveContractsRequest(85,Some(EventFormat(Map(agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Mandate,Mandate)),false)))))),None,false))), filters -> {agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Mandate:Mandate'], interfaces: []}}.
+2026-08-29 15:53:39,751 [canton-env-ec-63] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:6f648587100f110bdb3a004fe5d211dc - Received request for active contracts: GetActiveContractsRequest(85,Some(EventFormat(Map(alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Mandate,ChargeRecord)),false)))))),None,false))), filters -> {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Mandate:ChargeRecord'], interfaces: []}}.
+2026-08-29 15:53:39,804 [canton-env-ec-65] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:8485f79a88074ed2e425704c30f381c0 - Received request for active contracts: GetActiveContractsRequest(85,Some(EventFormat(Map(alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Value,Purse)),true)))))),None,false))), filters -> {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Value:Purse'], interfaces: []}}.
+2026-08-29 15:53:39,841 [canton-env-ec-65] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:fe1877ffb61a73e6bc5efe881b290a40 - Received request for active contracts: GetActiveContractsRequest(85,Some(EventFormat(Map(agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Mandate,Mandate)),false)))))),None,false))), filters -> {agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Mandate:Mandate'], interfaces: []}}.
+2026-08-29 15:53:39,871 [canton-env-ec-65] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:decf84e994cf79bf1d5c4dbff9eff2d3 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:53:39.456316Z
+2026-08-29 15:53:39,887 [canton-env-ec-60] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:decf84e994cf79bf1d5c4dbff9eff2d3 - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-0051b134-4b33-4426-97dc-c178b838bac8,
+  submissionId = 0b6af93d-9e08-4eab-8a59-5ecb30270c66,
+  userId = participant_admin,
+  actAs = agent::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:53:39.885060Z,
+  ledgerEffectiveTime = 2026-08-29T14:53:39.885058Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:53:39,888 [canton-env-ec-67] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:decf84e994cf79bf1d5c4dbff9eff2d3 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:53:39.456316Z
+2026-08-29 15:53:39,903 [canton-env-ec-67] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:decf84e994cf79bf1d5c4dbff9eff2d3 - DAML_FAILURE(9,0b6af93d): Interpretation error: Error: User failure: UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed (error category 9): counterparty is not on the allow-list err-context:{error_id=UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed, exercise_trace=    in choice 6f5c3c9a:Mandate:Mandate:Charge on contract 00c51cb842 (#0)
+    in exercise command 6f5c3c9a:Mandate:Mandate:Charge on contract 00c51cb842.
+, location=CommandExecutionErrors.scala:850} 
+2026-08-29 15:53:39,904 [canton-env-ec-67] INFO  c.d.c.n.g.ApiRequestLogger:participant=sandbox tid:decf84e994cf79bf1d5c4dbff9eff2d3 - Request c.d.l.a.v.CommandService/SubmitAndWaitForTransaction by inprocess-grpc-6865: failed with FAILED_PRECONDITION/DAML_FAILURE(9,0b6af93d): Interpretation error: Error: User failure: UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed (error category 9): counterparty is not on the allow-list
+2026-08-29 15:53:39,942 [canton-env-ec-51] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:7950787465388da80af15d1aa941b710 - Received request for active contracts: GetActiveContractsRequest(85,Some(EventFormat(Map(alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Value,Purse)),true)))))),None,false))), filters -> {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Value:Purse'], interfaces: []}}.
+2026-08-29 15:53:39,980 [canton-env-ec-64] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:740cf8ad99f38c0359bcf5d049eb39e7 - Received request for active contracts: GetActiveContractsRequest(85,Some(EventFormat(Map(agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Mandate,Mandate)),false)))))),None,false))), filters -> {agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Mandate:Mandate'], interfaces: []}}.
+2026-08-29 15:53:40,007 [canton-env-ec-51] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:b8a8ad65c24e342301e0b0e8e8ef01d7 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:53:39.456316Z
+2026-08-29 15:53:40,019 [canton-env-ec-64] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:b8a8ad65c24e342301e0b0e8e8ef01d7 - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-1107da53-4571-4378-971e-e9e517a8485f,
+  submissionId = 1cbc3641-97e1-4247-a512-619ddc4ce611,
+  userId = participant_admin,
+  actAs = agent::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:53:40.016822Z,
+  ledgerEffectiveTime = 2026-08-29T14:53:40.016819Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:53:40,021 [canton-env-ec-52] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:b8a8ad65c24e342301e0b0e8e8ef01d7 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:53:39.456316Z
+2026-08-29 15:53:40,037 [canton-env-ec-51] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:b8a8ad65c24e342301e0b0e8e8ef01d7 - DAML_FAILURE(9,1cbc3641): Interpretation error: Error: User failure: UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed (error category 9): counterparty is not on the allow-list err-context:{error_id=UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed, exercise_trace=    in choice 6f5c3c9a:Mandate:Mandate:Charge on contract 00c51cb842 (#0)
+    in exercise command 6f5c3c9a:Mandate:Mandate:Charge on contract 00c51cb842.
+, location=CommandExecutionErrors.scala:850} 
+2026-08-29 15:53:40,039 [canton-env-ec-61] INFO  c.d.c.n.g.ApiRequestLogger:participant=sandbox tid:b8a8ad65c24e342301e0b0e8e8ef01d7 - Request c.d.l.a.v.CommandService/SubmitAndWaitForTransaction by inprocess-grpc-6865: failed with FAILED_PRECONDITION/DAML_FAILURE(9,1cbc3641): Interpretation error: Error: User failure: UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed (error category 9): counterparty is not on the allow-list
+2026-08-29 15:53:40,077 [canton-env-ec-67] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:2aea978a686b9b2324f9999cc313f8a2 - Received request for active contracts: GetActiveContractsRequest(85,Some(EventFormat(Map(alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Value,Purse)),true)))))),None,false))), filters -> {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Value:Purse'], interfaces: []}}.
+2026-08-29 15:53:40,116 [canton-env-ec-63] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:7591c6c844b708f085bc94a4c0d13efd - Received request for active contracts: GetActiveContractsRequest(85,Some(EventFormat(Map(agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Mandate,Mandate)),false)))))),None,false))), filters -> {agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Mandate:Mandate'], interfaces: []}}.
+2026-08-29 15:53:40,141 [canton-env-ec-65] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:0cf262e4816528039af9d41220e84bc6 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:53:39.456316Z
+2026-08-29 15:53:40,154 [canton-env-ec-63] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:0cf262e4816528039af9d41220e84bc6 - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-9692252a-0b9a-48ea-b15c-ab3819f3048e,
+  submissionId = a6a4e5ff-fd36-4283-a4ff-bab4318f2072,
+  userId = participant_admin,
+  actAs = agent::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:53:40.152492Z,
+  ledgerEffectiveTime = 2026-08-29T14:53:40.152490Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:53:40,156 [canton-env-ec-57] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:0cf262e4816528039af9d41220e84bc6 - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:53:39.456316Z
+2026-08-29 15:53:40,169 [canton-env-ec-63] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:0cf262e4816528039af9d41220e84bc6 - DAML_FAILURE(9,a6a4e5ff): Interpretation error: Error: User failure: UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed (error category 9): counterparty is not on the allow-list err-context:{error_id=UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed, exercise_trace=    in choice 6f5c3c9a:Mandate:Mandate:Charge on contract 00c51cb842 (#0)
+    in exercise command 6f5c3c9a:Mandate:Mandate:Charge on contract 00c51cb842.
+, location=CommandExecutionErrors.scala:850} 
+2026-08-29 15:53:40,171 [canton-env-ec-65] INFO  c.d.c.n.g.ApiRequestLogger:participant=sandbox tid:0cf262e4816528039af9d41220e84bc6 - Request c.d.l.a.v.CommandService/SubmitAndWaitForTransaction by inprocess-grpc-6865: failed with FAILED_PRECONDITION/DAML_FAILURE(9,a6a4e5ff): Interpretation error: Error: User failure: UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed (error category 9): counterparty is not on the allow-list
+2026-08-29 15:53:40,208 [canton-env-ec-57] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:2ad627b8fb87b38bde50415d01087d91 - Received request for active contracts: GetActiveContractsRequest(85,Some(EventFormat(Map(alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Value,Purse)),true)))))),None,false))), filters -> {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Value:Purse'], interfaces: []}}.
+2026-08-29 15:53:40,241 [canton-env-ec-57] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:c612dd329ed28f3d6f01289f9a501121 - Received request for active contracts: GetActiveContractsRequest(85,Some(EventFormat(Map(agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Mandate,Mandate)),false)))))),None,false))), filters -> {agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Mandate:Mandate'], interfaces: []}}.
+2026-08-29 15:53:40,266 [canton-env-ec-60] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:e969aacca5f969f2ece0fe7cbbf20ccf - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:53:39.456316Z
+2026-08-29 15:53:40,277 [canton-env-ec-67] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:e969aacca5f969f2ece0fe7cbbf20ccf - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-d11d6d94-ced1-49b0-b591-7445e908a7f6,
+  submissionId = beeb09c0-7f36-42d3-8131-3a9e925ce2f5,
+  userId = participant_admin,
+  actAs = agent::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:53:40.276108Z,
+  ledgerEffectiveTime = 2026-08-29T14:53:40.276106Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:53:40,279 [canton-env-ec-59] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:e969aacca5f969f2ece0fe7cbbf20ccf - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:53:39.456316Z
+2026-08-29 15:53:40,293 [canton-env-ec-60] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:e969aacca5f969f2ece0fe7cbbf20ccf - DAML_FAILURE(9,beeb09c0): Interpretation error: Error: User failure: UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed (error category 9): charge would exceed the cap err-context:{error_id=UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed, exercise_trace=    in choice 6f5c3c9a:Mandate:Mandate:Charge on contract 00c51cb842 (#0)
+    in exercise command 6f5c3c9a:Mandate:Mandate:Charge on contract 00c51cb842.
+, location=CommandExecutionErrors.scala:850} 
+2026-08-29 15:53:40,294 [canton-env-ec-63] INFO  c.d.c.n.g.ApiRequestLogger:participant=sandbox tid:e969aacca5f969f2ece0fe7cbbf20ccf - Request c.d.l.a.v.CommandService/SubmitAndWaitForTransaction by inprocess-grpc-6865: failed with FAILED_PRECONDITION/DAML_FAILURE(9,beeb09c0): Interpretation error: Error: User failure: UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed (error category 9): charge would exceed the cap
+2026-08-29 15:53:40,328 [canton-env-ec-63] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:eb3b5725a87cb859e74e2958f723294d - Received request for active contracts: GetActiveContractsRequest(85,Some(EventFormat(Map(alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Value,Purse)),true)))))),None,false))), filters -> {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Value:Purse'], interfaces: []}}.
+2026-08-29 15:53:40,363 [canton-env-ec-67] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:c81c7cf3ee5ae006d6a9639cea0d2e10 - Received request for active contracts: GetActiveContractsRequest(85,Some(EventFormat(Map(agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Mandate,Mandate)),false)))))),None,false))), filters -> {agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Mandate:Mandate'], interfaces: []}}.
+2026-08-29 15:53:40,386 [canton-env-ec-51] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:253617a38a96d99a80dca585c9307f1e - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:53:39.456316Z
+2026-08-29 15:53:40,398 [canton-env-ec-59] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:253617a38a96d99a80dca585c9307f1e - Phase 1 started: Submitting commands for interpretation: Commands(
+  commandId = wallet-b1d24a9f-7178-4101-95bd-b498fb42b59d,
+  submissionId = 4dd7642d-2162-4eaf-8eef-2a18e0191170,
+  userId = participant_admin,
+  actAs = agent::12205ae2ef33...,
+  submittedAt = 2026-08-29T14:53:40.397593Z,
+  ledgerEffectiveTime = 2026-08-29T14:53:40.397591Z,
+  deduplicationPeriod = (duration=PT168H),
+  ...
+).
+2026-08-29 15:53:40,400 [canton-env-ec-57] INFO  c.d.c.p.s.CantonSyncService:participant=sandbox tid:253617a38a96d99a80dca585c9307f1e - Routing state contains connected synchronizers mysynchronizer::12204bbd6079...::34-0 and topology mysynchronizer::12204bbd6079...::34-0 at 2026-08-29T14:53:39.456316Z
+2026-08-29 15:53:40,413 [canton-env-ec-61] INFO  c.d.c.p.a.s.c.CommandSubmissionServiceImpl:participant=sandbox tid:253617a38a96d99a80dca585c9307f1e - DAML_FAILURE(9,4dd7642d): Interpretation error: Error: User failure: UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed (error category 9): amount must be positive err-context:{error_id=UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed, exercise_trace=    in choice 6f5c3c9a:Mandate:Mandate:Charge on contract 00c51cb842 (#0)
+    in exercise command 6f5c3c9a:Mandate:Mandate:Charge on contract 00c51cb842.
+, location=CommandExecutionErrors.scala:850} 
+2026-08-29 15:53:40,416 [canton-env-ec-61] INFO  c.d.c.n.g.ApiRequestLogger:participant=sandbox tid:253617a38a96d99a80dca585c9307f1e - Request c.d.l.a.v.CommandService/SubmitAndWaitForTransaction by inprocess-grpc-6865: failed with FAILED_PRECONDITION/DAML_FAILURE(9,4dd7642d): Interpretation error: Error: User failure: UNHANDLED_EXCEPTION/DA.Exception.AssertionFailed:AssertionFailed (error category 9): amount must be positive
+2026-08-29 15:53:40,602 [canton-env-ec-61] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:502aa8f87c43fe0652371aac3da99c94 - Received request for active contracts: GetActiveContractsRequest(85,Some(EventFormat(Map(agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Mandate,Mandate)),false)))))),None,false))), filters -> {agent::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Mandate:Mandate'], interfaces: []}}.
+2026-08-29 15:53:40,639 [canton-env-ec-57] INFO  c.d.c.p.a.s.ApiStateService:participant=sandbox tid:4b4570aa5ed0df95d0ca7419f75d4d6e - Received request for active contracts: GetActiveContractsRequest(85,Some(EventFormat(Map(alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70 -> Filters(Vector(CumulativeFilter(TemplateFilter(TemplateFilter(Some(Identifier(#agent-mandate,Mandate,ChargeRecord)),false)))))),None,false))), filters -> {alice::12205ae2ef335c8336e106c2b69ce54a8c78ce3a1089d2c33cd69d445f3dda8e7b70: {templates: ['#agent-mandate:Mandate:ChargeRecord'], interfaces: []}}.

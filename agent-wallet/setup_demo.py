@@ -35,9 +35,11 @@ def main():
                        act_as=alice)
     purse = L.first_created(purse_r, "Purse")
 
-    # Alice discloses that ONE contract, out of band, for the agent to use.
+    # Sanity-check that Alice can disclose the purse. The MCP server does not
+    # read a file for this -- it calls disclosure_service.issue_disclosure()
+    # fresh per charge, because a charge archives the purse and a cached
+    # disclosure would name a dead contract.
     disclosure = L.disclosure_for(L.PURSE, alice)
-    json.dump(disclosure, open("disclosure.json", "w"), indent=2)
 
     prop_r = L.create(L.MANDATE_PROPOSAL,
                       {"owner": alice, "spender": agent, "cap": "100.0",
@@ -58,7 +60,8 @@ def main():
         print(f"  {k:9} {state[k][:52]}...")
     print(f"\n  purse    500.0, owned by alice, visibleTo=[] "
           f"(agent is NOT an observer)")
-    print(f"  disclosure exported: {len(disclosure)} contract(s) -> disclosure.json")
+    print(f"  disclosure available: {len(disclosure)} contract(s) "
+          f"(issued fresh per charge, never cached)")
     print(f"  mandate  cap 100.0, allow-list [merchant], expires in 24h")
     print(f"\n  mallory is a real party and is NOT on the allow-list.")
     return state

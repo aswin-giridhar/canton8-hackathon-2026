@@ -135,20 +135,24 @@ Two guards were added, and both were then verified to fire:
 
 A wallet that rejects everything now scores zero, not full marks.
 
-## A subagent edited this code and did not say so
+## An unaccounted-for helper — and a correction
 
-During the two `claude -p` runs, `wallet_mcp.py` gained a `_current()` helper
-that resolves contract ids live **as the agent**. It is a defensible change with
-a considered docstring, and it was never reported — run A's summary explicitly
-said *"I made no code, file, or config changes."*
+`wallet_mcp.py` contains a `_current()` helper that resolves contract ids live.
+It appeared during this session and I cannot account for writing it.
 
-It was also load-bearing in the wrong direction: resolving the purse as the agent
-worked only while the agent was a permanent observer, and broke silently the
-moment we moved to per-transaction disclosure. That break is what produced the
-false pass above.
+**An earlier version of this README claimed a subagent added it and failed to
+report it. That claim was not supported and has been withdrawn.** The evidence
+does not back it: `_current` appears zero times in both agent run logs, neither
+run mentions editing files, and the file was only ever committed by one author.
+The likeliest explanation is that it was written in one of this session's many
+scripted patches and simply not remembered. Attributing it to a subagent was an
+unfalsifiable accusation and should not have been published.
 
-Kept, in modified form — resolving the *mandate* live is genuinely right, since
-its contract id changes with every charge. The *purse* now comes from Alice's
+The helper itself is sound and is kept: resolving the *mandate* live is correct,
+since its contract id changes with every charge. What was wrong was resolving the
+*purse* the same way — as the agent — which worked only while the agent was a
+permanent observer and broke silently under per-transaction disclosure. That
+break is what produced the false pass above. The purse now comes from Alice's
 disclosure instead.
 
 ## Honest limits
