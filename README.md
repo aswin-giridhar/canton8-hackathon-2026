@@ -1,3 +1,5 @@
+# [🎞️ View the Cantor8 Pitch Deck](https://www.canva.com/design/DAHTswa22Y4/4TdkOIovchcPewrY6z4tIw/edit)
+
 # Canton hackathon London 2026 - Cantor8
 
 Team working repo. **Track: D1 - a spend-limited wallet for an AI agent.**
