@@ -133,27 +133,27 @@ kbd{font-family:var(--mono);font-size:.7rem;border:1px solid var(--rule);padding
 <header>
   <div class="eyebrow">
     <span><span class="live"></span><b>Canton LocalNet</b></span>
-    <span>ledger offset <b id="off">—</b></span>
+    <span>ledger offset <b id="off">&mdash;</b></span>
     <span>instrument <b>Amulet</b></span>
-    <span id="cap-at">—</span>
+    <span id="cap-at">&mdash;</span>
   </div>
   <h1>The ledger refuses. <em>Not the app.</em></h1>
   <p class="sub">An AI agent holds a wallet. Its cap, its allow-list and its expiry live in a Daml
-  contract, so a compromised agent cannot spend past them — there is no policy check in the
+  contract, so a compromised agent cannot spend past them &mdash; there is no policy check in the
   application to route around.</p>
 </header>
 
 <div class="instrument" id="inst">
   <div class="i-grid">
-    <dl class="field"><dt>Owner</dt><dd id="f-owner">—</dd></dl>
-    <dl class="field"><dt>Spender (agent)</dt><dd id="f-agent">—</dd></dl>
-    <dl class="field"><dt>Permitted counterparties</dt><dd id="f-allow">—</dd></dl>
-    <dl class="field"><dt>Expires</dt><dd id="f-exp">—</dd></dl>
+    <dl class="field"><dt>Owner</dt><dd id="f-owner">&mdash;</dd></dl>
+    <dl class="field"><dt>Spender (agent)</dt><dd id="f-agent">&mdash;</dd></dl>
+    <dl class="field"><dt>Permitted counterparties</dt><dd id="f-allow">&mdash;</dd></dl>
+    <dl class="field"><dt>Expires</dt><dd id="f-exp">&mdash;</dd></dl>
   </div>
   <div class="meter">
-    <div class="meter-head"><span>Spent against cap</span><span id="m-pct">—</span></div>
+    <div class="meter-head"><span>Spent against cap</span><span id="m-pct">&mdash;</span></div>
     <div class="meter-bar"><div class="meter-fill" id="m-fill"></div></div>
-    <div class="meter-nums"><b id="m-spent">—</b> of <span id="m-cap">—</span> CC</div>
+    <div class="meter-nums"><b id="m-spent">&mdash;</b> of <span id="m-cap">&mdash;</span> CC</div>
   </div>
 </div>
 
@@ -169,11 +169,11 @@ kbd{font-family:var(--mono);font-size:.7rem;border:1px solid var(--rule);padding
   Each refusal names the Daml rule that produced it.</p>
   <div class="worlds">
     <div class="machine">
-      <div class="world-head">Agent — tool calls</div>
+      <div class="world-head">Agent &mdash; tool calls</div>
       <div id="attempts"></div>
     </div>
     <div class="paper">
-      <div class="world-head">Ledger — verdict</div>
+      <div class="world-head">Ledger &mdash; verdict</div>
       <div id="verdicts"></div>
     </div>
   </div>
@@ -192,12 +192,12 @@ kbd{font-family:var(--mono);font-size:.7rem;border:1px solid var(--rule);padding
 <div class="figures" id="figs"></div>
 
 <footer>
-  <p><b>What is real:</b> every figure above is read back from a running Canton ledger — balances,
+  <p><b>What is real:</b> every figure above is read back from a running Canton ledger &mdash; balances,
   cap consumption, audit records and refusal messages. The refusals are the ledger's own words.</p>
   <div class="caveat"><b>What is not:</b> this runs on LocalNet, not the shared DevNet. The
-  prompt-injection demo is driven at the tool-call layer — two real Claude runs refused the
+  prompt-injection demo is driven at the tool-call layer &mdash; two real Claude runs refused the
   injection outright, which is a good result and not a security control.</div>
-  <p><code>daml test</code> 24 scripts · 10 guards mutation-tested · 100/100 concurrency races
+  <p><code>daml test</code> 24 scripts &middot; 10 guards mutation-tested &middot; 100/100 concurrency races
   verified from ledger state</p>
 </footer>
 </div>
@@ -209,10 +209,10 @@ kbd{font-family:var(--mono);font-size:.7rem;border:1px solid var(--rule);padding
 const FALLBACK = {"captured_at": "2026-08-29T16:51:21+00:00","ledger_end": 365,"network": "LocalNet (Canton 0.6.8)","parties": {"owner": "app_user_agentmandate-dev-1","agent": "amulet_agent","receiver": "mandate_receiver","attacker": "amulet_mallory"},"balances": {"owner": 3564.16,"receiver": 86.0,"attacker": 0},"mandates": [{"cap": "50.0000000000","spent": "0.0000000000","allowed": ["mandate_receiver"],"expiresAt": "2026-08-30T16:42:58Z"},{"cap": "50.0000000000","spent": "0.0000000000","allowed": ["mandate_receiver"],"expiresAt": "2026-08-30T16:43:36Z"},{"cap": "50.0000000000","spent": "0.0000000000","allowed": ["mandate_receiver"],"expiresAt": "2026-08-30T16:43:59Z"},{"cap": "50.0000000000","spent": "12.0000000000","allowed": ["mandate_receiver"],"expiresAt": "2026-08-30T16:44:45Z"},{"cap": "50.0000000000","spent": "12.0000000000","allowed": ["mandate_receiver"],"expiresAt": "2026-08-30T16:45:56Z"},{"cap": "50.0000000000","spent": "12.0000000000","allowed": ["mandate_receiver"],"expiresAt": "2026-08-30T16:46:56Z"},{"cap": "50.0000000000","spent": "0.0000000000","allowed": ["mandate_receiver"],"expiresAt": "2026-08-30T16:47:37Z"}],"charges": [{"amount": "12.0000000000","receiver": "mandate_receiver","spentAfter": "12.0000000000","cap": "50.0000000000","permittedBy": "token standard transfer within cap (12.0 of 50.0) to an allow-listed counterparty","at": "2026-08-29T16:44:47.368737Z"},{"amount": "12.0000000000","receiver": "mandate_receiver","spentAfter": "12.0000000000","cap": "50.0000000000","permittedBy": "token standard transfer within cap (12.0 of 50.0) to an allow-listed counterparty","at": "2026-08-29T16:45:58.341778Z"},{"amount": "12.0000000000","receiver": "mandate_receiver","spentAfter": "12.0000000000","cap": "50.0000000000","permittedBy": "token standard transfer within cap (12.0 of 50.0) to an allow-listed counterparty","at": "2026-08-29T16:46:58.249854Z"}]};
 
 const RULES = [
-  {call:'charge(receiver, 12.0)', ok:true,  rule:'within cap, counterparty allow-listed', src:'Mandate.daml — ChargeViaTokenStandard'},
-  {call:'charge(mallory, 10.0)',  ok:false, rule:'counterparty is not on the allow-list', src:'Mandate.daml:52 — assertMsg'},
-  {call:'charge(receiver, 500.0)',ok:false, rule:'charge would exceed the cap',           src:'Mandate.daml:49 — assertMsg + ensure invariant'},
-  {call:'charge(receiver, -50.0)',ok:false, rule:'amount must be positive',               src:'Mandate.daml:48 — assertMsg + ensure invariant'},
+  {call:'charge(receiver, 12.0)', ok:true,  rule:'within cap, counterparty allow-listed', src:'Mandate.daml &mdash; ChargeViaTokenStandard'},
+  {call:'charge(mallory, 10.0)',  ok:false, rule:'counterparty is not on the allow-list', src:'Mandate.daml:52 &mdash; assertMsg'},
+  {call:'charge(receiver, 500.0)',ok:false, rule:'charge would exceed the cap',           src:'Mandate.daml:49 &mdash; assertMsg + ensure invariant'},
+  {call:'charge(receiver, -50.0)',ok:false, rule:'amount must be positive',               src:'Mandate.daml:48 &mdash; assertMsg + ensure invariant'},
   {call:'charge(mallory, 0.01)',  ok:false, rule:'counterparty is not on the allow-list', src:'a cap-only guard would have allowed this one'},
 ];
 
@@ -228,7 +228,7 @@ function render(d){
   const m = (d.mandates||[]).find(x=>parseFloat(x.spent)>0) || (d.mandates||[])[0];
   if(!m){ q('inst').innerHTML = '<div class="state">No active mandate. Nothing can be spent.</div>'; }
   else {
-    q('f-allow').textContent = (m.allowed||[]).join(', ') || 'none — this agent can pay nobody';
+    q('f-allow').textContent = (m.allowed||[]).join(', ') || 'none &mdash; this agent can pay nobody';
     q('f-exp').textContent = String(m.expiresAt||'').replace('T',' ').replace('Z','');
     const cap=parseFloat(m.cap), spent=parseFloat(m.spent), pct=cap?Math.min(100,spent/cap*100):0;
     q('m-cap').textContent = cap.toFixed(2);
@@ -241,7 +241,7 @@ function render(d){
   A.innerHTML=''; V.innerHTML='';
   RULES.forEach((r,i)=>{
     A.insertAdjacentHTML('beforeend',
-      `<div class="attempt pending" data-i="${i}"><span class="who">agent · mcp tool call</span><code>${r.call}</code></div>`);
+      `<div class="attempt pending" data-i="${i}"><span class="who">agent &middot; mcp tool call</span><code>${r.call}</code></div>`);
     V.insertAdjacentHTML('beforeend',
       `<div class="verdict pending" data-i="${i}">
          <span class="tag ${r.ok?'yes':'no'}">${r.ok?'Settled on-ledger':'Refused on-ledger'}</span>

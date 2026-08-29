@@ -18,6 +18,10 @@ Team working repo. **Track: D1 - a spend-limited wallet for an AI agent.**
 | [`context/03-d1-team-plan.md`](context/03-d1-team-plan.md) | **Who does what.** Four workstreams split by tool capacity, dependency graph, cut list. |
 | [`context/01-brainstorm-api-and-daml.md`](context/01-brainstorm-api-and-daml.md) | Background: both tracks compared, before we picked D1. |
 | [`devnet-findings.md`](devnet-findings.md) | The DevNet bug report, standalone. Shareable with the organisers. |
+| [`STATUS.md`](STATUS.md) | **Current state.** What is proven, what is mocked, what is pending. |
+| [`token-standard/`](token-standard/) | Real Canton Coin moving through the mandate. |
+| [`frontend/`](frontend/) | The demo page. Presenter-driven; press Space to step through. |
+| [`deck/`](deck/) | The pitch deck. Nine slides, arrow keys to advance. |
 
 ## Setup
 
@@ -52,10 +56,16 @@ Verified green on SDK 3.4.10 — both tests pass in ~19s, no node or network nee
 ## Layout
 
 ```
-context/         the thinking — read these first
-agent-mandate/   our Daml project (working copy of the upstream starter)
-devnet-findings.md   standalone bug report
-example.env      template; copy to .env and fill in
+context/           the thinking - read these first
+agent-mandate/     the Daml contracts (templates only)
+agent-mandate-tests/  24 scripts: attacks, properties, coverage
+agent-wallet/      MCP wallet server + attack harnesses
+token-standard/    real Canton Coin through the mandate
+frontend/          the demo page
+deck/              the pitch deck
+STATUS.md          what is proven vs mocked vs pending
+devnet-findings.md standalone bug report for the organisers
+example.env        template; copy to .env and fill in
 ```
 
 `hackathon-toolkit/` (the upstream Cantor8 repo) is deliberately **not** committed

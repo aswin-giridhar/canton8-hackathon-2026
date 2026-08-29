@@ -15,7 +15,10 @@ incomplete build.
 | `agent-mandate-tests/` | 3 Daml | 24 scripts: attacks, properties, coverage. |
 | `agent-wallet/` | 8 Python | MCP server, ledger client, disclosure service, harnesses. |
 | `context/` | 4 md | Research, strategy, team plan, measured DevNet state. |
-| root | 4 md | README, this file, DevNet findings, example env. |
+| `token-standard/` | 3 py + md | Real Amulet moving through the mandate. |
+| `frontend/` | html + json | The demo page, driven from real ledger data. |
+| `deck/` | 1 html | Nine-slide pitch deck. |
+| root | 5 md | README, this file, DevNet findings, the Davide ask, example env. |
 
 **593 lines of Daml · 658 of Python · 1,573 of documentation**, across 12
 commits (10 mine, 2 from Ravi).
