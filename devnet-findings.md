@@ -152,3 +152,74 @@ Useful if someone's creds are not working yet:
   unverified. Untested here because it writes permanent state to a shared network.
 - `transfer()` end to end, and whether `transferKind` comes back `direct` or `offer`.
 - Whether the `hackathon` client has act-as rights on any party it can submit for.
+
+---
+
+# UPDATE — DevNet verified end to end, 29 Aug ~16:10
+
+The "Not yet tested" section above is now resolved. Everything below was run
+against live DevNet with the `hackathon` client.
+
+## Party allocation on DevNet WORKS — plain `POST /v2/parties`
+
+The toolkit README says:
+
+> *"Not yet verified on DevNet. Party allocation there may need the
+> external-party topology flow rather than `POST /v2/parties`."*
+
+It does not. Plain `POST /v2/parties` returns **HTTP 200** with
+`isLocal: true`:
+
+```bash
+curl -X POST "$C8_BASE/v2/parties" -H "Authorization: Bearer $TOK" \
+     -H 'Content-Type: application/json' -d '{"partyIdHint":"agentmandate-aswin-1"}'
+# -> {"partyDetails":{"party":"agentmandate-aswin-1::12204e94c0e4…","isLocal":true,…}}
+```
+
+Note the namespace `12204e94c0e4…` is the **same as the Cantor8 admin party**
+`cantor8-digik-1::12204e94c0e4…`, so allocated parties are hosted on the
+Cantor8 participant.
+
+`POST /v2/users/{userId}/rights` also returns 200 for both
+`validator-backend@clients` and `participant_admin`.
+
+## The token-standard two-phase flow works on DevNet
+
+Against the Cantor8 registry (`/api/c8` prefix, admin `cantor8-digik-1::…`):
+
+```
+POST /api/c8/registry/transfer-instruction/v1/transfer-factory   HTTP 200
+  factoryId       00429e1e682fbbd187f3094fd789fa6f2c6470d5d144…
+  transferKind    offer            (no preapproval on a fresh party)
+  disclosed       2 contracts
+  choiceContext   {"tokenConfigCid": …}
+```
+
+Submitting `TransferFactory_Transfer` with those disclosed contracts attached
+reaches the ledger and is rejected by the issuer's own Daml:
+
+```
+Interpretation error: ... AssertionFailed: The requirement 'Insufficient funds'
+was not met.
+```
+
+**That is the flow working.** Auth, party, rights, registry, choice context,
+disclosed contracts and submission are all verified end to end. The only missing
+piece is funding.
+
+## What is still blocked, and it needs a human
+
+A fresh party holds nothing, and there is no public funding route — the
+registry's spec endpoints (`/openapi.json`, `/docs`) return **403**.
+
+**The ask:** send test tokens (`c8TEST` is ideal, or Canton Coin) to
+
+```
+agentmandate-aswin-1::12204e94c0e449c0efcd270dd1e68259c36471cebef132e5c7dfc2750fe8c9eed77f
+```
+
+## Still true from the original findings
+
+The five breakages listed above are unchanged. In particular the **900-second
+token** still stands, and `c8lab.py` still never refreshes it — that remains the
+finding most likely to cost an API-track team an afternoon.
