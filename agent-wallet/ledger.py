@@ -11,11 +11,10 @@ import json, urllib.error, urllib.request, uuid, os
 BASE = os.environ.get("WALLET_LEDGER", "http://localhost:7575")
 USER = os.environ.get("WALLET_USER", "participant_admin")
 
-# Full package id, not "#agent-mandate". The package-name reference needs an
-# UPGRADABLE package, and ours depends on daml-script (the compiler warns about
-# this), which disqualifies it. Splitting tests into their own package is the
-# proper fix; see RESULTS.md. The package id works today and is unambiguous.
-PKG = "2da421f913f3848c625394c29e08bca6d39ee2d2671406e4ff65eda1dc388160"
+# Package NAME reference, now that the templates package no longer depends on
+# daml-script. Name references need an upgradable package; they survive a
+# rebuild, whereas a package id changes every time the code does.
+PKG = "#agent-mandate"
 MANDATE          = f"{PKG}:Mandate:Mandate"
 MANDATE_PROPOSAL = f"{PKG}:Mandate:MandateProposal"
 CHARGE_RECORD    = f"{PKG}:Mandate:ChargeRecord"
@@ -67,13 +66,16 @@ def allocate_party(hint):
     return _req("/v2/parties", {"partyIdHint": hint})["partyDetails"]["party"]
 
 
-def submit(commands, act_as, read_as=None):
+def submit(commands, act_as, read_as=None, disclosed=None):
+    body = {"commands": commands,
+            "commandId": f"wallet-{uuid.uuid4()}",
+            "actAs": act_as if isinstance(act_as, list) else [act_as],
+            "readAs": read_as or [],
+            "userId": USER}
+    if disclosed:
+        body["disclosedContracts"] = disclosed
     return _req("/v2/commands/submit-and-wait-for-transaction",
-                {"commands": {"commands": commands,
-                              "commandId": f"wallet-{uuid.uuid4()}",
-                              "actAs": act_as if isinstance(act_as, list) else [act_as],
-                              "readAs": read_as or [],
-                              "userId": USER}})
+                {"commands": body})
 
 
 def create(template_id, args, act_as):
@@ -81,11 +83,39 @@ def create(template_id, args, act_as):
                                       "createArguments": args}}], act_as)
 
 
-def exercise(template_id, contract_id, choice, arg, act_as, read_as=None):
+def exercise(template_id, contract_id, choice, arg, act_as, read_as=None,
+             disclosed=None):
     return submit([{"ExerciseCommand": {"templateId": template_id,
                                         "contractId": contract_id,
                                         "choice": choice,
-                                        "choiceArgument": arg}}], act_as, read_as)
+                                        "choiceArgument": arg}}],
+                  act_as, read_as, disclosed)
+
+
+def disclosure_for(template_id, party):
+    """Build explicit-disclosure payloads for contracts `party` can see.
+
+    This is how Canton lets a submitter use a contract they are NOT a
+    stakeholder on: someone who CAN see it hands over the created-event blob,
+    good for that one transaction. It is the mechanism the token standard's
+    registry uses, and it is strictly better than making the spender a
+    permanent observer -- a permanent observer sees every future holding too.
+    """
+    body = {"filter": {"filtersByParty": {party: {"cumulative": [
+                {"identifierFilter": {"TemplateFilter": {"value": {
+                    "templateId": template_id,
+                    "includeCreatedEventBlob": True}}}}]}}},
+            "verbose": False, "activeAtOffset": ledger_end()}
+    out = []
+    for item in _req("/v2/state/active-contracts", body):
+        ac = item.get("contractEntry", {}).get("JsActiveContract", {})
+        ev = ac.get("createdEvent", {})
+        if ev.get("createdEventBlob"):
+            out.append({"templateId": ev["templateId"],
+                        "contractId": ev["contractId"],
+                        "createdEventBlob": ev["createdEventBlob"],
+                        "synchronizerId": ac.get("synchronizerId", "")})
+    return out
 
 
 def active(template_id, party):

@@ -22,12 +22,22 @@ def main():
 
     now = datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0)
 
-    # Alice's money. The agent may SEE it (so it can spend through the mandate)
-    # but has no authority over it -- Purse's only signatory is Alice.
+    # Clear any purse from an earlier run so the demo is repeatable.
+    for cid, _ in L.active(L.PURSE, alice):
+        L.exercise(L.PURSE, cid, "Archive", {}, act_as=alice)
+
+    # Alice's money. NOTE visibleTo = [] -- the agent is NOT an observer and
+    # cannot see this contract at all. It gets access per-transaction, via an
+    # explicit disclosure Alice hands out, exactly as the token standard's
+    # registry does. A permanent observer would leak every future holding too.
     purse_r = L.create(L.PURSE,
-                       {"owner": alice, "amount": "500.0", "visibleTo": [agent]},
+                       {"owner": alice, "amount": "500.0", "visibleTo": []},
                        act_as=alice)
     purse = L.first_created(purse_r, "Purse")
+
+    # Alice discloses that ONE contract, out of band, for the agent to use.
+    disclosure = L.disclosure_for(L.PURSE, alice)
+    json.dump(disclosure, open("disclosure.json", "w"), indent=2)
 
     prop_r = L.create(L.MANDATE_PROPOSAL,
                       {"owner": alice, "spender": agent, "cap": "100.0",
@@ -46,7 +56,9 @@ def main():
     print("demo world ready\n")
     for k in ("alice", "agent", "merchant", "mallory"):
         print(f"  {k:9} {state[k][:52]}...")
-    print(f"\n  purse    500.0, owned by alice, visible to agent")
+    print(f"\n  purse    500.0, owned by alice, visibleTo=[] "
+          f"(agent is NOT an observer)")
+    print(f"  disclosure exported: {len(disclosure)} contract(s) -> disclosure.json")
     print(f"  mandate  cap 100.0, allow-list [merchant], expires in 24h")
     print(f"\n  mallory is a real party and is NOT on the allow-list.")
     return state
