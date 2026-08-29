@@ -267,6 +267,11 @@ def one_concurrency_run(run_number: int) -> dict:
     f = new_fixture(cap="1.0")
     gate = threading.Barrier(2)
 
+    # parties() deliberately reuses stable party hints, so successor mandates
+    # from earlier runs remain visible. Snapshot contract ids and compare sets
+    # rather than assuming there is only one live mandate for this agent.
+    before = {cid for cid, _ in L.active(L.MANDATE, f.agent)}
+
     def submit(worker: int) -> dict:
         gate.wait()
         started = time.perf_counter()
@@ -294,9 +299,26 @@ def one_concurrency_run(run_number: int) -> dict:
     successes = sum(r["outcome"] == "success" for r in results)
     aborts = sum(r["outcome"] == "contention_abort" for r in results)
     infra = sum(r["outcome"] == "infrastructure_error" for r in results)
+
+    # Responses describe what the participant says happened. The ACS is the
+    # ledger state itself: exactly one new successor must exist, it must record
+    # one unit spent, and the original input contract must have been consumed.
+    after = dict(L.active(L.MANDATE, f.agent))
+    successors = [args for cid, args in after.items() if cid not in before]
+    spent_after = (float(successors[0]["spent"])
+                   if len(successors) == 1 else None)
+    original_consumed = f.mandate not in after
+    state_ok = (len(successors) == 1
+                and spent_after == 1.0
+                and original_consumed)
     return {"run": run_number, "successes": successes, "aborts": aborts,
             "infrastructure_errors": infra,
-            "exactly_one_won": successes == 1 and aborts == 1 and infra == 0,
+            "successors_created": len(successors),
+            "spent_after": spent_after,
+            "original_consumed": original_consumed,
+            "state_verified": state_ok,
+            "exactly_one_won": (successes == 1 and aborts == 1
+                                and infra == 0 and state_ok),
             "attempts": results}
 
 
@@ -311,6 +333,8 @@ def run_concurrency(count: int) -> dict:
             runs.append({
                 "run": number, "successes": 0, "aborts": 0,
                 "infrastructure_errors": 1, "exactly_one_won": False,
+                "successors_created": None, "spent_after": None,
+                "original_consumed": None, "state_verified": False,
                 "attempts": [{"worker": None,
                               "outcome": "infrastructure_error",
                               "reason": str(error),
@@ -321,6 +345,7 @@ def run_concurrency(count: int) -> dict:
     return {
         "runs_requested": count,
         "runs_exactly_one_won": sum(r["exactly_one_won"] for r in runs),
+        "runs_state_verified": sum(r["state_verified"] for r in runs),
         "total_attempts": len(attempts),
         "successes": sum(a["outcome"] == "success" for a in attempts),
         "aborts": sum(a["outcome"] == "contention_abort" for a in attempts),
@@ -399,12 +424,13 @@ def markdown(results: dict) -> str:
                  and (tests.get("skipped") or tests.get("passed")))
     lines = [
         "# W3 — measured results", "",
-        f"Generated `{results['generated_at']}` against `{results['ledger']}`. ",
+        f"Generated `{results['generated_at']}` against `{results['ledger']}`.",
         f"Overall harness verdict: **{'PASS' if integrity else 'FAIL'}**.", "",
         "## Scorecard", "",
         "| Measurement | Result |", "|---|---|",
         f"| Attack rules rejected for the expected reason | **{good_attacks}/{len(attacks)}** |",
         f"| Concurrency runs with exactly 1 success + 1 abort | **{concurrency['runs_exactly_one_won']}/{concurrency['runs_requested']}** |",
+        f"| Concurrency runs verified from ledger state | **{concurrency['runs_state_verified']}/{concurrency['runs_requested']}** |",
         f"| Concurrent submissions | {concurrency['total_attempts']} ({concurrency['successes']} success, {concurrency['aborts']} contention abort, {concurrency['infrastructure_errors']} infrastructure error) |",
         f"| Successful-charge latency | p50 **{concurrency['success_latency']['p50_ms']:.1f} ms**, p95 **{concurrency['success_latency']['p95_ms']:.1f} ms** |",
         f"| Sequential charges end-to-end | **{sequential['executed_end_to_end']}/{sequential['requested']}** |",
@@ -427,7 +453,7 @@ def markdown(results: dict) -> str:
             f"`{src['file']}:{src['line']}` — `{code}` |")
     lines += [
         "", "## Interpretation", "",
-        "Each race submitted two `Charge` exercises against the same immutable Mandate contract id. A consuming choice permits only one transaction to consume that contract; the other submission must abort. The successor mandate is not shared with the losing command, so aggregate spend cannot be lost through a read/check/write race.",
+        "Each race submitted two `Charge` exercises against the same immutable Mandate contract id. A consuming choice permits only one transaction to consume that contract; the other submission must abort. After every race the harness queried the active contract set and verified that the original mandate was consumed, exactly one successor was created, and its `spent` field was `1.0`. The verdict therefore depends on committed ledger state, not only HTTP responses.",
         "",
         "The Markdown table compacts errors for readability. `w3-results.json` retains every HTTP error body verbatim, along with per-attempt timings and all concurrency outcomes.",
         "",
@@ -457,7 +483,7 @@ def main() -> int:
         return 2
 
     results = {
-        "schema_version": 1,
+        "schema_version": 2,
         "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
         "ledger": L.BASE,
         "configuration": {
