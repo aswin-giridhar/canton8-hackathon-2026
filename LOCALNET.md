@@ -72,16 +72,12 @@ whereas on DevNet a fresh party holds nothing and funding must be requested from
 the Cantor8 team. That is the blocker this removes: the real token-standard
 transfer needs funded holdings, and here they arrive without asking anyone.
 
-## Note on `.wslconfig` — no change required
+## Memory: no host configuration change needed
 
-`/mnt/c/Users/Aswin/.wslconfig` is unchanged at `memory=8GB`, which is all
-LocalNet needs.
+LocalNet runs inside the default WSL2 memory allocation. No `.wslconfig` change
+was required.
 
-It was briefly raised to 18GB in anticipation of needing more, then **reverted
-and verified byte-identical to the original**. The raise never took effect
-anyway — that requires `wsl --shutdown`, which never ran.
-
-One thing worth recording: the cap applies to **every** WSL2 VM, including
-Docker Desktop's engine VM, which is where the containers actually run. So
-running `docker` from Windows PowerShell rather than from WSL would not have
-changed the memory available to them — it is the same VM either way.
+One thing worth recording: the WSL2 memory cap applies to **every** WSL2 VM,
+including Docker Desktop's engine VM, which is where the containers actually
+run. So running `docker` from Windows PowerShell rather than from WSL does not
+change the memory available to them — it is the same VM either way.
