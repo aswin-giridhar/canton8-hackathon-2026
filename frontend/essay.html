@@ -1,0 +1,115 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Approved-Supplier List</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Public+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+:root{--stock:#E6E2D8;--surface:#DDD8CC;--rule:#C6BFAF;--ink:#191B1F;--ink-soft:#4A4E56;
+--stamp:#B3282D;--settled:#1F5D45;--serif:"Instrument Serif",Georgia,serif;
+--sans:"Public Sans",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--stock);color:var(--ink);font-family:var(--sans);font-weight:300;
+line-height:1.65;-webkit-font-smoothing:antialiased;
+background-image:repeating-linear-gradient(to bottom,transparent 0 31px,rgba(198,191,175,.5) 31px 32px)}
+main{max-width:74ch;margin:0 auto;padding:6rem clamp(1.25rem,5vw,2.5rem) 5rem}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,6vw,4rem);line-height:1.02;
+letter-spacing:-.02em;margin:0 0 .4rem;text-wrap:balance}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,3.2vw,2.1rem);
+margin:2.8rem 0 .8rem;line-height:1.15;text-wrap:balance}
+h3{font-family:var(--mono);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;
+color:var(--ink-soft);margin:2rem 0 .7rem;font-weight:500}
+p{margin:0 0 1.1rem}
+strong{font-weight:600;color:var(--ink)}
+em{font-style:italic}
+code{font-family:var(--mono);font-size:.88em;background:var(--surface);padding:.1em .3em}
+hr{border:0;border-top:1px solid var(--rule);margin:2.6rem 0}
+ul,ol{margin:0 0 1.2rem;padding-left:1.3rem;display:flex;flex-direction:column;gap:.5rem}
+li strong{color:var(--ink)}
+.tablewrap{overflow-x:auto;border:1px solid var(--rule);background:var(--surface);margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;min-width:660px;font-family:var(--mono);font-size:.76rem}
+th{text-align:left;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+color:var(--ink-soft);font-weight:500;padding:.7rem .9rem;border-bottom:1px solid var(--ink);vertical-align:bottom}
+td{padding:.65rem .9rem;border-bottom:1px solid var(--rule)}
+td strong{color:var(--stamp);font-weight:700}
+tr:last-child td{border-bottom:0}
+.coda{font-size:.9rem;color:var(--ink-soft);border-left:2px solid var(--rule);padding-left:1rem}
+.sitenav{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;background:var(--stock);
+border-bottom:1px solid var(--rule)}
+.sitenav a{flex:0 0 auto;font-family:var(--mono);font-size:.63rem;letter-spacing:.16em;
+text-transform:uppercase;text-decoration:none;color:var(--ink-soft);padding:.7rem 1.15rem;
+border-right:1px solid var(--rule)}
+.sitenav a:hover{background:var(--surface);color:var(--ink)}
+.sitenav a[aria-current="page"]{color:var(--ink);font-weight:700}
+.sitenav a[aria-current="page"]::before{content:"";display:inline-block;width:5px;height:5px;
+background:var(--stamp);margin-right:.5rem;vertical-align:middle}
+.sitenav a:focus-visible{outline:2px solid var(--stamp);outline-offset:-2px}
+.sitenav .spacer{flex:1;border-right:0}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<nav class="sitenav" aria-label="Site"><a href="./index.html">Live mandate</a><a href="./deck.html">The pitch</a><a href="./essay.html" aria-current="page">The argument</a><span class="spacer"></span></nav>
+<main>
+<h1>The approved-supplier list is the secret</h1>
+<h2>What you can build on Canton that you cannot build on Ethereum</h2>
+<p class="coda">Cantor8 London Hackathon 2026 · Non-technical track (N1)</p>
+<hr>
+<h2>The claim in one sentence</h2>
+<p>You can give an autonomous agent spending authority that <strong>every counterparty can rely on and no counterparty can read</strong>. On a public chain those two properties are mutually exclusive, because the only way to let a merchant verify a limit is to publish it.</p>
+<hr>
+<h2>The use case, named</h2>
+<p>A listed pharmaceutical company — call it <strong>Meridian Therapeutics</strong> — runs an AI procurement agent that buys <strong>spot manufacturing capacity from contract manufacturing organisations (CMOs)</strong>.</p>
+<p>When a batch fails quality control or a launch date pulls forward, Meridian needs fill-finish capacity within days. Today a human buyer phones three CMOs, gets quotes, and raises a purchase order. The agent&#x27;s job is to do that continuously: monitor batch yields, and when capacity is needed, buy it from a pre-approved CMO within a budget the treasury team set.</p>
+<p>The parties are real and specific:</p>
+<ul><li><strong>Meridian Treasury</strong> — sets the budget, owns the money</li><li><strong>Meridian&#x27;s procurement agent</strong> — an AI agent, spends within the mandate</li><li><strong>Lonza, Catalent, Recipharm</strong> — three approved CMOs, mutual competitors</li><li><strong>Meridian&#x27;s statutory auditor</strong> — must reconstruct every purchase afterwards</li></ul>
+<hr>
+<h2>What breaks today</h2>
+<p><strong>The CMO cannot verify the agent&#x27;s authority.</strong> Meridian&#x27;s mandate lives in its ERP. When the agent commits to a €400,000 booking, Lonza has no way to check that it was authorised — Lonza is being asked to take Meridian&#x27;s own system&#x27;s word for it. In practice this is patched with a phone call to a named buyer, which is exactly the step an autonomous agent is supposed to remove.</p>
+<p><strong>Why not just a database?</strong> Because a database has an owner, and here nobody will accept the other side&#x27;s. Meridian will not give Lonza a login to its procurement system, and Lonza will not treat a webhook from Meridian&#x27;s ERP as proof of anything — the counterparty controls it and can rewrite it. Two firms that compete for the same molecules do not share a schema. This is not a single-owner problem, so Postgres is the wrong answer.</p>
+<p><strong>Why hasn&#x27;t a public chain solved it?</strong> Because of what the mandate contains.</p>
+<p>To let Lonza verify &quot;this agent may spend up to €2m, with these counterparties, until 31 March&quot;, the mandate has to be readable by Lonza. On Ethereum that means readable by everyone. And <strong>the approved-CMO list is the drug pipeline.</strong></p>
+<p>Consider what a competitor learns from a public mandate:</p>
+<ul><li>Meridian approved a <strong>sterile injectable</strong> CMO last week → an injectable is</li></ul>
+<p>  moving to commercial scale</p>
+<ul><li>The cap rose from €400k to €2m → a launch, not a trial batch</li><li>The list includes a <strong>high-potency API</strong> specialist → oncology</li><li>Spend against the cap is accelerating in Q3 → the launch date</li></ul>
+<p>None of that is disclosed today. For a listed company it is price-sensitive. Publishing the mandate to make it verifiable would leak the thing the mandate is for. And Lonza would see that Catalent is also approved, and roughly what Meridian is prepared to pay — which is Lonza&#x27;s negotiating position, handed over.</p>
+<p>So the requirement is genuinely awkward: <strong>the mandate must bind everyone and be legible to no one.</strong></p>
+<hr>
+<h2>Which Canton property does the work</h2>
+<p>Both, and they are separable.</p>
+<p><strong>Privacy — enforcement without disclosure.</strong> On Canton a contract is visible only to its stakeholders. The <code>Mandate</code> is signed by Meridian Treasury and the agent; the CMOs are not parties to it and never see it. When the agent buys from Lonza, Lonza becomes a stakeholder on <em>that booking</em> and nothing else. The cap constrains all three CMOs and is legible to none of them.</p>
+<p>This is the part that has no Ethereum equivalent. Not &quot;harder&quot; — structurally absent. A public chain can hide values behind commitments or zero-knowledge proofs, but then the CMO must trust a proving system and an off-chain prover, and the counterparty set itself still leaks through the transaction graph.</p>
+<p><strong>Atomic settlement across organisations that do not trust each other.</strong> The booking, the payment, and the audit record commit in one transaction across Meridian&#x27;s validator and Lonza&#x27;s. There is no window in which Lonza has confirmed capacity but not been paid, or Meridian has paid for capacity not reserved. And because the mandate contract is <em>consumed</em> by the charge, the same authorisation cannot be spent twice — even if the agent is compromised and retries.</p>
+<h3>Who sees what, party by party</h3>
+<div class="tablewrap"><table><thead><tr><th></th><th>Mandate terms (cap, allow-list, expiry)</th><th>Meridian↔Lonza booking</th><th>Meridian↔Catalent booking</th><th>Running total spent</th></tr></thead><tbody><tr><td><strong>Meridian Treasury</strong></td><td>yes — signatory</td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><strong>Procurement agent</strong></td><td>yes — signatory</td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><strong>Lonza</strong></td><td><strong>no</strong></td><td>yes — stakeholder</td><td><strong>no</strong></td><td><strong>no</strong></td></tr><tr><td><strong>Catalent</strong></td><td><strong>no</strong></td><td><strong>no</strong></td><td>yes — stakeholder</td><td><strong>no</strong></td></tr><tr><td><strong>Recipharm</strong> (approved, unused)</td><td><strong>no</strong></td><td><strong>no</strong></td><td><strong>no</strong></td><td><strong>no</strong></td></tr><tr><td><strong>Auditor</strong></td><td>yes — observer</td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><strong>Everyone else</strong></td><td><strong>no</strong></td><td><strong>no</strong></td><td><strong>no</strong></td><td><strong>no</strong></td></tr></tbody></table></div>
+<p>Naming the exclusions precisely: <strong>Lonza cannot see that Catalent is approved.</strong> Recipharm cannot tell it is on the list at all. No CMO learns the cap, the remaining budget, or the rate of spend. A competitor with a Canton node sees nothing whatsoever.</p>
+<hr>
+<h2>The flow</h2>
+<ol><li><strong>Meridian Treasury proposes</strong> a mandate: €2m cap, allow-list of the three</li></ol>
+<p>   CMOs, expiring 31 March. Signed by Treasury.</p>
+<ol><li><strong>The agent accepts.</strong> Both are now signatories; the contract exists and binds</li></ol>
+<p>   both. Neither can be enrolled without consenting.</p>
+<ol><li><strong>A batch fails.</strong> The agent needs 40,000 vials of fill-finish capacity.</li><li><strong>The agent commits to Lonza.</strong> It exercises a charge on the mandate. The</li></ol>
+<p>   ledger checks — not Meridian&#x27;s server — that Lonza is on the allow-list, that    €400k is within the remaining cap, and that the mandate has not expired or    been revoked. Lonza&#x27;s node sees a booking it is party to, and can rely on it    without seeing the mandate.</p>
+<ol><li><strong>Atomically, in the same transaction:</strong> the booking is created, payment</li></ol>
+<p>   settles, the mandate is consumed and replaced with one recording €400k spent,    and an audit record is written naming which rule permitted the charge.</p>
+<ol><li><strong>Something goes wrong.</strong> A CMO is placed under an FDA consent decree.</li></ol>
+<p>   Treasury removes it from the allow-list unilaterally — the agent cannot block    or delay this, and the other two CMOs are unaffected. The mandate survives;    only its scope narrows.</p>
+<ol><li><strong>Year end.</strong> The auditor, an observer throughout, reconstructs every purchase</li></ol>
+<p>   and the rule that authorised it. No party had to be asked for records.</p>
+<hr>
+<h2>What you are still trusting</h2>
+<p>Canton is not trustless, and pretending otherwise would be the easiest way to lose this argument.</p>
+<p><strong>The synchronizer operators.</strong> The global synchronizer is run by a vetted set of organisations. They cannot read transaction contents, but they order and confirm them, and they could in principle censor. Meridian is trusting a named consortium not to, and has contractual recourse rather than cryptographic guarantees.</p>
+<p><strong>Your validator operator.</strong> Unless Meridian runs its own node, whoever hosts its party can see everything that party can see. That is an outsourcing decision with the same shape as custody.</p>
+<p><strong>The token issuer.</strong> Whatever settles the payment — Canton Coin or a tokenised deposit — has a named legal entity behind it. If that issuer freezes, fails, or is compelled by a court, the ledger&#x27;s guarantees do not save you.</p>
+<p><strong>The CMO&#x27;s real-world performance.</strong> The ledger proves the booking was authorised and paid. It cannot prove vials were filled. Every on-chain system terminates in an off-chain promise.</p>
+<p><strong>And the cost of the privacy itself.</strong> You cannot audit Canton the way you audit Ethereum. On Ethereum, anyone can re-derive total supply and every balance from public data. On Canton you see only your own slice — you cannot independently verify that the issuer has not minted quietly, or that some other party&#x27;s mandate has not been abused. You trade <em>universal verifiability</em> for</p>
+<p><em>confidentiality</em>, and you get selective disclosure to a regulator instead of open inspection by anyone.</p>
+<p>That is a real loss. For a pharmaceutical procurement desk it is obviously the right trade, because the thing being protected is the pipeline and the alternative is not being able to use the system at all. For a permissionless DeFi protocol it would obviously be the wrong one. The point is that it is a <em>choice</em>, and Canton is the system that lets you make it.</p>
+<hr>
+<h2>Why this is the difference between possible and impossible</h2>
+<p>Strip either property away and the use case collapses.</p>
+<p><strong>Without privacy</strong> Meridian will not do it, because the mandate discloses the pipeline and the negotiating position. Legal will stop it before procurement does.</p>
+<p><strong>Without atomic cross-organisation settlement</strong> the CMOs will not do it, because they are back to trusting Meridian&#x27;s ERP — and a shared ledger that still requires you to trust the counterparty&#x27;s system has bought you nothing.</p>
+<p>Only the combination makes an autonomous procurement agent something a listed pharmaceutical company could actually deploy. That combination is what Canton provides and Ethereum, by construction, does not.</p>
+<hr>
+<p><em>Companion technical build: a spending mandate enforced in Daml, with the cap, allow-list, expiry and revocation as ledger invariants rather than backend checks. 24 Daml scripts, 10 guards mutation-tested, 100/100 concurrency races.</em></p>
+</main>
