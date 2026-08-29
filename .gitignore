@@ -12,3 +12,6 @@ hackathon-toolkit/
 
 __pycache__/
 *.pyc
+
+# sandbox demo state
+agent-wallet/demo_state.json

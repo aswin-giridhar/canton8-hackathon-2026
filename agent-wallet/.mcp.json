@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "wallet": {
+      "command": "python3",
+      "args": ["/mnt/e/Hackathon/canton8_hackathon_2026/agent-wallet/wallet_mcp.py"],
+      "cwd": "/mnt/e/Hackathon/canton8_hackathon_2026/agent-wallet"
+    }
+  }
+}
