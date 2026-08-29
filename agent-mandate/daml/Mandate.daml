@@ -21,6 +21,7 @@ template Mandate
     spender  : Party      -- merchant, or agent
     cap      : Decimal    -- total they may spend over the mandate's life
     spent    : Decimal    -- how much so far
+    allowedCounterparties : [Party]  -- who the spender may pay
     expiresAt : Time
   where
     ensure cap > 0.0 && spent >= 0.0 && spent <= cap
@@ -31,7 +32,9 @@ template Mandate
 
     -- Spend within the mandate. No owner signature needed, that is the point.
     choice Charge : ContractId Mandate
-      with amount : Decimal
+      with
+        amount : Decimal
+        receiver : Party
       controller spender
       do
         now <- getTime
@@ -39,6 +42,23 @@ template Mandate
         assertMsg "mandate expired" (now < expiresAt)
         assertMsg "amount must be positive" (amount > 0.0)
         assertMsg "charge would exceed the cap" (spent + amount <= cap)
+        -- The allow-list. A prompt-injected agent can be talked into ANY
+        -- receiver; this is the line that makes that harmless.
+        assertMsg "counterparty is not on the allow-list"
+          (receiver `elem` allowedCounterparties)
+
+        -- Every charge leaves a record naming which rule permitted it. Written
+        -- in the same transaction as the spend, so a charge without an audit
+        -- entry is not a state the ledger can reach.
+        create ChargeRecord with
+          owner; spender; receiver; amount
+          spentAfter = spent + amount
+          cap
+          permittedBy =
+            "within cap (" <> show (spent + amount) <> " of " <> show cap
+              <> ") and counterparty on the allow-list"
+          chargedAt = now
+
         create this with spent = spent + amount
 
     -- The owner can always stop it, and the spender cannot block that.
@@ -55,6 +75,25 @@ template Mandate
         create this with cap = newCap
 
 
+-- The audit trail. One immutable record per charge, naming what the agent did
+-- AND which rule permitted it -- the difference between a log and an audit trail.
+--
+-- Signed by both, so neither can rewrite history alone. Non-consuming to create
+-- and never archived by any choice: records accumulate.
+template ChargeRecord
+  with
+    owner       : Party
+    spender     : Party
+    receiver    : Party
+    amount      : Decimal
+    spentAfter  : Decimal   -- running total AFTER this charge
+    cap         : Decimal   -- the cap in force at the time
+    permittedBy : Text      -- the rule that allowed it, in words
+    chargedAt   : Time
+  where
+    signatory owner, spender
+
+
 -- Propose and accept: the most common shape in Daml.
 -- You cannot force a contract on someone who has to sign it, and you are
 -- rarely online at the same time. So you offer, and they accept later.
@@ -63,6 +102,7 @@ template MandateProposal
     owner    : Party
     spender  : Party
     cap      : Decimal
+    allowedCounterparties : [Party]
     expiresAt : Time
   where
     signatory owner
@@ -70,7 +110,8 @@ template MandateProposal
 
     choice Accept : ContractId Mandate
       controller spender
-      do create Mandate with owner; spender; cap; spent = 0.0; expiresAt
+      do create Mandate with
+           owner; spender; cap; spent = 0.0; allowedCounterparties; expiresAt
 
     choice Reject : ()
       controller spender
