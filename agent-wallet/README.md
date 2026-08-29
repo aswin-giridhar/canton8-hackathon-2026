@@ -31,6 +31,10 @@ and **mallory — a real party, deliberately not on the allow-list.**
 
 ## The MCP server
 
+`.mcp.json` uses relative paths, so **run `claude` from the `agent-wallet`
+directory** — otherwise the server will not start.
+
+
 `wallet_mcp.py` exposes six tools: `get_mandate`, `get_balance`, `list_payees`,
 `charge`, `get_statement`, and `read_task_inbox`.
 

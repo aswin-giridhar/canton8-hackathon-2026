@@ -191,7 +191,7 @@ the Assistant is removed in SDK 3.5). LocalNet is not running (nothing on :2975)
 
 ### Housekeeping
 
-Credentials live in `./.env`, outside the
+Credentials live in a `.env` at the repository root, outside the
 toolkit repo so they cannot be committed upstream. **`/mnt/<drive>` is a DrvFs mount and
 ignores POSIX modes**, so the `chmod 600` did not stick. Consider moving the file
 to the Linux filesystem (e.g. `~/.canton8.env`) if that matters.
