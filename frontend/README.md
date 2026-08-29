@@ -7,7 +7,7 @@ Two pages, one deployable static site:
 | Page | What |
 |---|---|
 | `/` | **Live mandate** — the running state, and the attack sequence you drive |
-| `/deck.html` | **The pitch** — nine slides, arrow keys to advance |
+| `/deck.html` | **The pitch** — nine slides. Prev/Next buttons, arrow keys, or Home/End |
 
 Every figure on the dashboard is read back from a running Canton ledger.
 

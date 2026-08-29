@@ -245,7 +245,7 @@ function render(d){
   const m = (d.mandates||[]).find(x=>parseFloat(x.spent)>0) || (d.mandates||[])[0];
   if(!m){ q('inst').innerHTML = '<div class="state">No active mandate. Nothing can be spent.</div>'; }
   else {
-    q('f-allow').textContent = (m.allowed||[]).join(', ') || 'none &mdash; this agent can pay nobody';
+    q('f-allow').textContent = (m.allowed||[]).join(', ') || 'none - this agent can pay nobody';
     q('f-exp').textContent = String(m.expiresAt||'').replace('T',' ').replace('Z','');
     const cap=parseFloat(m.cap), spent=parseFloat(m.spent), pct=cap?Math.min(100,spent/cap*100):0;
     q('m-cap').textContent = cap.toFixed(2);
