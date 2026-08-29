@@ -92,10 +92,22 @@ verified to fire (exit 1 wrong-reason, exit 2 broken, exit 0 genuine pass).
 
 ## 5. Pending
 
-### Blocked on a network
-- **Real token-standard transfer.** Needs a registry — DevNet permission or
-  LocalNet (6GB Docker). The largest remaining technical gap.
-- **Anything on DevNet at all**, including validating the 900s refresh.
+### Done since this was written
+- **Real token-standard transfer — SETTLED.** Real Amulet, real registry, real
+  disclosed contracts, both phases, on LocalNet. Sender −25.0, receiver +25.0,
+  verified by reading state back. Reproducible. See `token-standard/`.
+- **DevNet verified end to end** — party allocation works via plain
+  `POST /v2/parties`, and the registry flow reaches the ledger, stopping only on
+  `Insufficient funds`. See `devnet-findings.md`.
+- **The 900s expiry observed live** — token died at t+911s.
+- **W3 concurrency** — covered by Furqan's PR #2: 100/100 races with exactly one
+  success and one abort, 12/12 attacks rejected for the expected reason.
+
+### Still open
+- **Join the mandate to real value.** `Charge` still debits the local `Purse`,
+  not Amulet. Needs our DAR on LocalNet plus the Splice token-standard interfaces
+  as Daml dependencies. The transfer works and the mandate works; they are not
+  yet joined.
 
 ### Not blocked — can start now
 - **W3 concurrency test.** Two charges racing one mandate; one must abort on
