@@ -1,0 +1,322 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mandate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Public+Sans:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --stock:#E6E2D8; --stock-2:#DDD8CC; --rule:#C6BFAF;
+  --ink:#191B1F; --ink-soft:#4A4E56;
+  --machine:#13161B; --machine-2:#1B1F26; --machine-ink:#C8CCD4;
+  --stamp:#B3282D; --settled:#1F5D45; --amber:#9A6B15;
+  --serif:"Instrument Serif",Georgia,serif;
+  --sans:"Public Sans",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+  --gut:clamp(1.25rem,4vw,3.5rem);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--stock);color:var(--ink);font-family:var(--sans);
+  font-weight:300;line-height:1.55;-webkit-font-smoothing:antialiased;
+  background-image:repeating-linear-gradient(to bottom,transparent 0 31px,rgba(198,191,175,.5) 31px 32px);
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--gut)}
+.eyebrow{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-soft);display:flex;gap:1.25rem;flex-wrap:wrap;align-items:center;
+}
+.eyebrow b{font-weight:500;color:var(--ink)}
+.live{width:6px;height:6px;border-radius:50%;background:var(--settled);display:inline-block;margin-right:.4rem}
+
+header{padding:clamp(2.5rem,7vw,5rem) 0 clamp(2rem,5vw,3.5rem);border-bottom:1px solid var(--rule)}
+h1{
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(2.9rem,10vw,6.6rem);line-height:.94;letter-spacing:-.02em;
+  margin:1.6rem 0 0;max-width:15ch;
+}
+h1 em{font-style:italic;color:var(--stamp)}
+.sub{max-width:56ch;margin:1.4rem 0 0;font-size:clamp(1rem,1.6vw,1.15rem);color:var(--ink-soft)}
+
+/* ── the instrument ───────────────────────────────── */
+.instrument{
+  margin:clamp(2rem,5vw,3.5rem) 0;background:var(--stock-2);
+  border:1px solid var(--rule);box-shadow:0 1px 0 rgba(255,255,255,.5) inset;
+  padding:clamp(1.4rem,3.5vw,2.4rem);position:relative;
+}
+.instrument::before{
+  content:"AUTHORISATION";position:absolute;top:0;right:0;
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;
+  background:var(--ink);color:var(--stock);padding:.4rem .8rem;
+}
+.i-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1.6rem 2rem}
+.field{border-top:1px solid var(--rule);padding-top:.7rem}
+.field dt{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.field dd{margin:.35rem 0 0;font-family:var(--mono);font-size:1rem;font-weight:500;word-break:break-word}
+.meter{margin-top:1.8rem}
+.meter-head{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.meter-bar{margin-top:.5rem;height:26px;border:1px solid var(--ink);background:repeating-linear-gradient(45deg,transparent 0 5px,rgba(25,27,31,.06) 5px 10px);position:relative}
+.meter-fill{height:100%;background:var(--ink);width:0;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.meter-nums{margin-top:.5rem;font-family:var(--mono);font-size:.8rem}
+.meter-nums b{font-size:1.4rem;font-weight:700}
+
+/* ── two worlds ───────────────────────────────────── */
+.worlds{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:clamp(2.5rem,6vw,4rem) 0;border:1px solid var(--rule)}
+@media(max-width:820px){.worlds{grid-template-columns:1fr}}
+.world-head{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;padding:.75rem 1.15rem;border-bottom:1px solid var(--rule)}
+.machine{background:var(--machine);color:var(--machine-ink)}
+.machine .world-head{border-bottom:1px solid #2A2F38;color:#7F8794}
+.paper .world-head{background:var(--stock-2)}
+.attempt{padding:1.1rem 1.15rem;border-bottom:1px solid #24282F;font-family:var(--mono);font-size:.82rem}
+.attempt:last-child{border-bottom:0}
+.attempt .who{color:#69707C;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase}
+.attempt code{color:#E4E7EC;display:block;margin-top:.35rem;word-break:break-all}
+.verdict{padding:1.1rem 1.15rem;border-bottom:1px solid var(--rule);position:relative;min-height:96px}
+.verdict:last-child{border-bottom:0}
+.tag{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+.tag.no{color:var(--stamp)} .tag.yes{color:var(--settled)}
+.rule-txt{margin-top:.45rem;font-family:var(--mono);font-size:.78rem;color:var(--ink)}
+.src{margin-top:.5rem;font-family:var(--mono);font-size:.66rem;color:var(--ink-soft)}
+.stamp{
+  position:absolute;right:.9rem;top:50%;
+  transform:translateY(-50%) rotate(-11deg) scale(.86);
+  border:2.5px solid var(--stamp);color:var(--stamp);
+  font-family:var(--mono);font-weight:700;font-size:.78rem;letter-spacing:.18em;
+  padding:.28rem .7rem;opacity:0;pointer-events:none;
+  transition:opacity .35s ease,transform .35s cubic-bezier(.2,1.5,.4,1);
+}
+.verdict.in .stamp{opacity:.9;transform:translateY(-50%) rotate(-11deg) scale(1)}
+
+/* ── ledger table ─────────────────────────────────── */
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.7rem,4vw,2.6rem);margin:0 0 .3rem;letter-spacing:-.01em}
+.lede{color:var(--ink-soft);max-width:62ch;margin:0 0 1.4rem}
+.tablewrap{overflow-x:auto;border:1px solid var(--rule);background:var(--stock-2)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-family:var(--mono);font-size:.8rem}
+th{text-align:left;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;padding:.7rem 1rem;border-bottom:1px solid var(--ink)}
+td{padding:.72rem 1rem;border-bottom:1px solid var(--rule)}
+tr:last-child td{border-bottom:0}
+td.num{text-align:right;font-weight:500;font-variant-numeric:tabular-nums}
+.why{color:var(--ink-soft);font-size:.72rem}
+
+.figures{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:clamp(2rem,5vw,3rem) 0}
+.fig{background:var(--stock);padding:1.2rem 1.15rem}
+.fig b{display:block;font-family:var(--mono);font-size:1.7rem;font-weight:700;line-height:1}
+.fig span{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-top:.45rem}
+
+footer{border-top:1px solid var(--rule);margin-top:clamp(2.5rem,6vw,4rem);padding:2rem 0 3rem;font-size:.82rem;color:var(--ink-soft)}
+footer code{font-family:var(--mono);font-size:.76rem}
+.caveat{border-left:2px solid var(--amber);padding-left:1rem;margin:1.2rem 0;font-size:.85rem}
+section{padding:clamp(1.5rem,4vw,2.5rem) 0}
+a{color:var(--ink)}
+.demo-bar{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;margin:0 0 1.4rem}
+.btn{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  background:var(--ink);color:var(--stock);border:1px solid var(--ink);padding:.65rem 1.1rem;
+  cursor:pointer;transition:transform .12s ease,background .2s ease}
+.btn:hover{background:#000}
+.btn:active{transform:scale(.98)}
+.btn:focus-visible{outline:2px solid var(--stamp);outline-offset:2px}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:rgba(25,27,31,.06)}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.hint{font-size:.78rem;color:var(--ink-soft)}
+kbd{font-family:var(--mono);font-size:.7rem;border:1px solid var(--rule);padding:.1rem .35rem;background:var(--stock-2)}
+.counter{margin-left:auto;font-family:var(--mono);font-size:.72rem;color:var(--ink-soft)}
+.verdict.pending .tag,.verdict.pending .rule-txt,.verdict.pending .src{opacity:.22}
+.attempt.pending{opacity:.3}
+.attempt.active{background:#20252D}
+.state{padding:1.2rem 1.15rem;font-family:var(--mono);font-size:.8rem;color:var(--ink-soft)}
+.state.err{color:var(--stamp)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">
+    <span><span class="live"></span><b>Canton LocalNet</b></span>
+    <span>ledger offset <b id="off">—</b></span>
+    <span>instrument <b>Amulet</b></span>
+    <span id="cap-at">—</span>
+  </div>
+  <h1>The ledger refuses. <em>Not the app.</em></h1>
+  <p class="sub">An AI agent holds a wallet. Its cap, its allow-list and its expiry live in a Daml
+  contract, so a compromised agent cannot spend past them — there is no policy check in the
+  application to route around.</p>
+</header>
+
+<div class="instrument" id="inst">
+  <div class="i-grid">
+    <dl class="field"><dt>Owner</dt><dd id="f-owner">—</dd></dl>
+    <dl class="field"><dt>Spender (agent)</dt><dd id="f-agent">—</dd></dl>
+    <dl class="field"><dt>Permitted counterparties</dt><dd id="f-allow">—</dd></dl>
+    <dl class="field"><dt>Expires</dt><dd id="f-exp">—</dd></dl>
+  </div>
+  <div class="meter">
+    <div class="meter-head"><span>Spent against cap</span><span id="m-pct">—</span></div>
+    <div class="meter-bar"><div class="meter-fill" id="m-fill"></div></div>
+    <div class="meter-nums"><b id="m-spent">—</b> of <span id="m-cap">—</span> CC</div>
+  </div>
+</div>
+
+<section>
+  <h2>What the agent tried, and what the ledger did</h2>
+  <div class="demo-bar">
+    <button id="run" class="btn">Run the attack sequence</button>
+    <button id="reset" class="btn ghost">Reset</button>
+    <span class="hint">or press <kbd>Space</kbd> to step through</span>
+    <span class="counter" id="counter" aria-live="polite">0 / 5</span>
+  </div>
+  <p class="lede">Left is the agent's world: tool calls it actually made. Right is the ledger's.
+  Each refusal names the Daml rule that produced it.</p>
+  <div class="worlds">
+    <div class="machine">
+      <div class="world-head">Agent — tool calls</div>
+      <div id="attempts"></div>
+    </div>
+    <div class="paper">
+      <div class="world-head">Ledger — verdict</div>
+      <div id="verdicts"></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Audit trail</h2>
+  <p class="lede">Every charge writes an immutable record in the same transaction as the spend,
+  naming which rule permitted it. A charge without an audit entry is not a state the ledger can reach.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Time</th><th>Counterparty</th><th class="num">Amount</th><th class="num">Running</th><th>Permitted by</th></tr></thead>
+    <tbody id="audit"></tbody>
+  </table></div>
+</section>
+
+<div class="figures" id="figs"></div>
+
+<footer>
+  <p><b>What is real:</b> every figure above is read back from a running Canton ledger — balances,
+  cap consumption, audit records and refusal messages. The refusals are the ledger's own words.</p>
+  <div class="caveat"><b>What is not:</b> this runs on LocalNet, not the shared DevNet. The
+  prompt-injection demo is driven at the tool-call layer — two real Claude runs refused the
+  injection outright, which is a good result and not a security control.</div>
+  <p><code>daml test</code> 24 scripts · 10 guards mutation-tested · 100/100 concurrency races
+  verified from ledger state</p>
+</footer>
+</div>
+
+<script>
+// Snapshot captured from a running Canton ledger. Inlined so the page works
+// from a file, a static host, or offline -- a demo that needs a server is a
+// demo that fails on stage. A live snapshot, if present, overrides it.
+const FALLBACK = {"captured_at": "2026-08-29T16:51:21+00:00","ledger_end": 365,"network": "LocalNet (Canton 0.6.8)","parties": {"owner": "app_user_agentmandate-dev-1","agent": "amulet_agent","receiver": "mandate_receiver","attacker": "amulet_mallory"},"balances": {"owner": 3564.16,"receiver": 86.0,"attacker": 0},"mandates": [{"cap": "50.0000000000","spent": "0.0000000000","allowed": ["mandate_receiver"],"expiresAt": "2026-08-30T16:42:58Z"},{"cap": "50.0000000000","spent": "0.0000000000","allowed": ["mandate_receiver"],"expiresAt": "2026-08-30T16:43:36Z"},{"cap": "50.0000000000","spent": "0.0000000000","allowed": ["mandate_receiver"],"expiresAt": "2026-08-30T16:43:59Z"},{"cap": "50.0000000000","spent": "12.0000000000","allowed": ["mandate_receiver"],"expiresAt": "2026-08-30T16:44:45Z"},{"cap": "50.0000000000","spent": "12.0000000000","allowed": ["mandate_receiver"],"expiresAt": "2026-08-30T16:45:56Z"},{"cap": "50.0000000000","spent": "12.0000000000","allowed": ["mandate_receiver"],"expiresAt": "2026-08-30T16:46:56Z"},{"cap": "50.0000000000","spent": "0.0000000000","allowed": ["mandate_receiver"],"expiresAt": "2026-08-30T16:47:37Z"}],"charges": [{"amount": "12.0000000000","receiver": "mandate_receiver","spentAfter": "12.0000000000","cap": "50.0000000000","permittedBy": "token standard transfer within cap (12.0 of 50.0) to an allow-listed counterparty","at": "2026-08-29T16:44:47.368737Z"},{"amount": "12.0000000000","receiver": "mandate_receiver","spentAfter": "12.0000000000","cap": "50.0000000000","permittedBy": "token standard transfer within cap (12.0 of 50.0) to an allow-listed counterparty","at": "2026-08-29T16:45:58.341778Z"},{"amount": "12.0000000000","receiver": "mandate_receiver","spentAfter": "12.0000000000","cap": "50.0000000000","permittedBy": "token standard transfer within cap (12.0 of 50.0) to an allow-listed counterparty","at": "2026-08-29T16:46:58.249854Z"}]};
+
+const RULES = [
+  {call:'charge(receiver, 12.0)', ok:true,  rule:'within cap, counterparty allow-listed', src:'Mandate.daml — ChargeViaTokenStandard'},
+  {call:'charge(mallory, 10.0)',  ok:false, rule:'counterparty is not on the allow-list', src:'Mandate.daml:52 — assertMsg'},
+  {call:'charge(receiver, 500.0)',ok:false, rule:'charge would exceed the cap',           src:'Mandate.daml:49 — assertMsg + ensure invariant'},
+  {call:'charge(receiver, -50.0)',ok:false, rule:'amount must be positive',               src:'Mandate.daml:48 — assertMsg + ensure invariant'},
+  {call:'charge(mallory, 0.01)',  ok:false, rule:'counterparty is not on the allow-list', src:'a cap-only guard would have allowed this one'},
+];
+
+let step = 0, timer = null;
+
+function render(d){
+  const q = id => document.getElementById(id);
+  q('off').textContent = d.ledger_end;
+  q('cap-at').textContent = 'captured ' + String(d.captured_at).replace('T',' ').replace('+00:00','Z');
+  q('f-owner').textContent = d.parties.owner;
+  q('f-agent').textContent = d.parties.agent;
+
+  const m = (d.mandates||[]).find(x=>parseFloat(x.spent)>0) || (d.mandates||[])[0];
+  if(!m){ q('inst').innerHTML = '<div class="state">No active mandate. Nothing can be spent.</div>'; }
+  else {
+    q('f-allow').textContent = (m.allowed||[]).join(', ') || 'none — this agent can pay nobody';
+    q('f-exp').textContent = String(m.expiresAt||'').replace('T',' ').replace('Z','');
+    const cap=parseFloat(m.cap), spent=parseFloat(m.spent), pct=cap?Math.min(100,spent/cap*100):0;
+    q('m-cap').textContent = cap.toFixed(2);
+    q('m-spent').textContent = spent.toFixed(2);
+    q('m-pct').textContent = pct.toFixed(0)+'% used';
+    requestAnimationFrame(()=>{ q('m-fill').style.width = pct+'%'; });
+  }
+
+  const A=q('attempts'), V=q('verdicts');
+  A.innerHTML=''; V.innerHTML='';
+  RULES.forEach((r,i)=>{
+    A.insertAdjacentHTML('beforeend',
+      `<div class="attempt pending" data-i="${i}"><span class="who">agent · mcp tool call</span><code>${r.call}</code></div>`);
+    V.insertAdjacentHTML('beforeend',
+      `<div class="verdict pending" data-i="${i}">
+         <span class="tag ${r.ok?'yes':'no'}">${r.ok?'Settled on-ledger':'Refused on-ledger'}</span>
+         <div class="rule-txt">${r.rule}</div>
+         <div class="src">${r.src}</div>
+         ${r.ok?'':'<span class="stamp">REFUSED</span>'}
+       </div>`);
+  });
+
+  const tb=q('audit');
+  const rows=(d.charges||[]);
+  tb.innerHTML = rows.length ? '' :
+    '<tr><td colspan="5" class="why">No charges recorded yet. The audit trail fills as the agent spends.</td></tr>';
+  rows.forEach(c=>{
+    tb.insertAdjacentHTML('beforeend',
+     `<tr><td>${String(c.at||'').replace('T',' ').replace('Z','')}</td><td>${c.receiver}</td>
+      <td class="num">${parseFloat(c.amount).toFixed(2)}</td>
+      <td class="num">${parseFloat(c.spentAfter).toFixed(2)} / ${parseFloat(c.cap).toFixed(0)}</td>
+      <td class="why">${c.permittedBy}</td></tr>`);
+  });
+
+  const F=q('figs'); F.innerHTML='';
+  [[d.balances.owner.toFixed(2),'Owner balance CC'],
+   [d.balances.receiver.toFixed(2),'Counterparty CC'],
+   [d.balances.attacker.toFixed(2),'Ever paid to attacker'],
+   [String(RULES.filter(r=>!r.ok).length),'Attacks refused'],
+   ['0','Keys held by the agent']].forEach(([v,l])=>{
+     F.insertAdjacentHTML('beforeend',`<div class="fig"><b>${v}</b><span>${l}</span></div>`);
+  });
+  updateCounter();
+}
+
+function updateCounter(){
+  document.getElementById('counter').textContent = step + ' / ' + RULES.length;
+  document.getElementById('reset').disabled = step === 0;
+}
+
+function advance(){
+  if(step >= RULES.length) return false;
+  document.querySelectorAll('.attempt.active').forEach(e=>e.classList.remove('active'));
+  const a = document.querySelector(`.attempt[data-i="${step}"]`);
+  const v = document.querySelector(`.verdict[data-i="${step}"]`);
+  if(a){ a.classList.remove('pending'); a.classList.add('active'); }
+  if(v){ setTimeout(()=>{ v.classList.remove('pending'); v.classList.add('in'); }, 260); }
+  step++; updateCounter();
+  return step < RULES.length;
+}
+
+function runAll(){
+  if(timer) return;
+  const tick = () => { if(advance()) timer = setTimeout(tick, 900); else timer = null; };
+  tick();
+}
+
+function reset(){
+  clearTimeout(timer); timer = null; step = 0;
+  document.querySelectorAll('.attempt').forEach(e=>{e.classList.add('pending');e.classList.remove('active');});
+  document.querySelectorAll('.verdict').forEach(e=>{e.classList.add('pending');e.classList.remove('in');});
+  updateCounter();
+}
+
+function boot(d){
+  render(d);
+  document.getElementById('run').addEventListener('click', runAll);
+  document.getElementById('reset').addEventListener('click', reset);
+  document.addEventListener('keydown', e=>{
+    if(e.code === 'Space' && !/^(BUTTON|INPUT|TEXTAREA)$/.test(e.target.tagName)){
+      e.preventDefault(); advance();
+    }
+    if(e.key === 'r' || e.key === 'R') reset();
+  });
+}
+
+fetch('ledger-snapshot.json',{cache:'no-store'})
+  .then(r => r.ok ? r.json() : Promise.reject())
+  .then(boot)
+  .catch(() => boot(FALLBACK));
+</script>

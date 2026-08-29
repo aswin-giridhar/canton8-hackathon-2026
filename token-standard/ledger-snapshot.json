@@ -1,0 +1,100 @@
+{
+  "captured_at": "2026-08-29T16:51:21+00:00",
+  "ledger_end": 365,
+  "network": "LocalNet (Canton 0.6.8)",
+  "parties": {
+    "owner": "app_user_agentmandate-dev-1",
+    "agent": "amulet_agent",
+    "receiver": "mandate_receiver",
+    "attacker": "amulet_mallory"
+  },
+  "balances": {
+    "owner": 3564.16,
+    "receiver": 86.0,
+    "attacker": 0
+  },
+  "mandates": [
+    {
+      "cap": "50.0000000000",
+      "spent": "0.0000000000",
+      "allowed": [
+        "mandate_receiver"
+      ],
+      "expiresAt": "2026-08-30T16:42:58Z"
+    },
+    {
+      "cap": "50.0000000000",
+      "spent": "0.0000000000",
+      "allowed": [
+        "mandate_receiver"
+      ],
+      "expiresAt": "2026-08-30T16:43:36Z"
+    },
+    {
+      "cap": "50.0000000000",
+      "spent": "0.0000000000",
+      "allowed": [
+        "mandate_receiver"
+      ],
+      "expiresAt": "2026-08-30T16:43:59Z"
+    },
+    {
+      "cap": "50.0000000000",
+      "spent": "12.0000000000",
+      "allowed": [
+        "mandate_receiver"
+      ],
+      "expiresAt": "2026-08-30T16:44:45Z"
+    },
+    {
+      "cap": "50.0000000000",
+      "spent": "12.0000000000",
+      "allowed": [
+        "mandate_receiver"
+      ],
+      "expiresAt": "2026-08-30T16:45:56Z"
+    },
+    {
+      "cap": "50.0000000000",
+      "spent": "12.0000000000",
+      "allowed": [
+        "mandate_receiver"
+      ],
+      "expiresAt": "2026-08-30T16:46:56Z"
+    },
+    {
+      "cap": "50.0000000000",
+      "spent": "0.0000000000",
+      "allowed": [
+        "mandate_receiver"
+      ],
+      "expiresAt": "2026-08-30T16:47:37Z"
+    }
+  ],
+  "charges": [
+    {
+      "amount": "12.0000000000",
+      "receiver": "mandate_receiver",
+      "spentAfter": "12.0000000000",
+      "cap": "50.0000000000",
+      "permittedBy": "token standard transfer within cap (12.0 of 50.0) to an allow-listed counterparty",
+      "at": "2026-08-29T16:44:47.368737Z"
+    },
+    {
+      "amount": "12.0000000000",
+      "receiver": "mandate_receiver",
+      "spentAfter": "12.0000000000",
+      "cap": "50.0000000000",
+      "permittedBy": "token standard transfer within cap (12.0 of 50.0) to an allow-listed counterparty",
+      "at": "2026-08-29T16:45:58.341778Z"
+    },
+    {
+      "amount": "12.0000000000",
+      "receiver": "mandate_receiver",
+      "spentAfter": "12.0000000000",
+      "cap": "50.0000000000",
+      "permittedBy": "token standard transfer within cap (12.0 of 50.0) to an allow-listed counterparty",
+      "at": "2026-08-29T16:46:58.249854Z"
+    }
+  ]
+}
