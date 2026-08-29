@@ -14,6 +14,8 @@
 --   * an audit view of every charge
 module Mandate where
 
+import Value
+
 
 template Mandate
   with
@@ -35,6 +37,9 @@ template Mandate
       with
         amount : Decimal
         receiver : Party
+        -- Optional so there is ONE charge path, not two. Two paths would need
+        -- the same guards in both places, and that is how guards diverge.
+        purse : Optional (ContractId Purse)
       controller spender
       do
         now <- getTime
@@ -59,12 +64,44 @@ template Mandate
               <> ") and counterparty on the allow-list"
           chargedAt = now
 
+        -- THE CLAIM UNDER TEST: this exercise needs the OWNER's authority
+        -- (Debit is `controller owner`), and the agent submitting alone does
+        -- not have it. It succeeds only because a choice body carries the
+        -- authority of the CONTRACT's signatories -- and Alice is one.
+        -- No hot key. No owner signature at spend time.
+        case purse of
+          None -> pure ()
+          Some p -> do
+            _ <- exercise p Debit with amt = amount
+            pure ()
+
         create this with spent = spent + amount
 
     -- The owner can always stop it, and the spender cannot block that.
     choice Revoke : ()
       controller owner
       do pure ()
+
+    -- NARROWING IS UNILATERAL. The owner can always shrink what the agent may
+    -- do, and the agent cannot block or delay it -- the same principle as
+    -- Revoke, applied to scope rather than existence.
+    --
+    -- Without this, the only way to cut off one counterparty is to Revoke the
+    -- whole mandate and re-propose, which the agent can stall by not accepting.
+    -- Widening still requires both signatures, via Adjust.
+    choice Restrict : ContractId Mandate
+      with
+        newCap     : Decimal
+        newAllowed : [Party]
+      controller owner
+      do
+        assertMsg "Restrict may only lower the cap; use Adjust to raise it"
+          (newCap <= cap)
+        assertMsg "cannot restrict the cap below what is already spent"
+          (newCap >= spent)
+        assertMsg "Restrict may only remove counterparties; use Adjust to add"
+          (all (`elem` allowedCounterparties) newAllowed)
+        create this with cap = newCap, allowedCounterparties = newAllowed
 
     -- Raising the cap needs both parties, because both are signatories.
     choice Adjust : ContractId Mandate

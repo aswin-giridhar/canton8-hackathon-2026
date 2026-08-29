@@ -1,0 +1,33 @@
+-- Does a spender-controlled choice carry the OWNER's authority?
+--
+-- This is the load-bearing claim of the whole project: if true, an agent can
+-- move its owner's money with no hot key and no owner signature at spend time,
+-- because the Mandate contract itself carries the owner's authority.
+--
+-- Purse is a deliberately minimal stand-in for a token-standard Holding: the
+-- owner is the sole signatory, so debiting it requires the owner's authority
+-- and nobody else's. That is exactly the property we need to test.
+module Value where
+
+template Purse
+  with
+    owner     : Party
+    amount    : Decimal
+    visibleTo : [Party]   -- who may SEE it. Separate from who may SPEND it.
+  where
+    ensure amount >= 0.0
+    signatory owner
+    -- Visibility is a different gate from authority. Without this the agent
+    -- cannot even fetch the contract, and the error says nothing about
+    -- authorization. In production Canton this is what disclosed contracts
+    -- from the token registry provide, per-transaction, instead of a
+    -- permanent observer.
+    observer visibleTo
+
+    -- Requires the OWNER's authority. The agent does not have this.
+    choice Debit : ContractId Purse
+      with amt : Decimal
+      controller owner
+      do
+        assertMsg "insufficient funds" (amt <= amount)
+        create this with amount = amount - amt

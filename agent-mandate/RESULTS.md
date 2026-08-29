@@ -7,9 +7,10 @@ export PATH="$HOME/.daml/bin:$PATH"
 cd agent-mandate && daml test        # ~19s, no node, no network
 ```
 
-**Count, stated precisely:** 15 scripts run — **12 tests** in `Attacks.daml`, plus
-`setupFixture` (a fixture, not a test), plus the starter's `testIou` and
-`testMandate`. All pass.
+**Count, stated precisely:** 24 scripts run — **21 tests** across `Attacks.daml`
+and `TestValue.daml`, plus `setupFixture` (a fixture, not a test), plus the
+starter's `testIou` and `testMandate`. All pass, in ~19s, with no node and no
+network.
 
 ## The rejection suite — 12 tests
 
@@ -114,12 +115,88 @@ excuse the two untested choices.
 - **The audit record is written in the same transaction as the spend**, so "charged
   without an audit entry" is not a state the ledger can reach.
 
+## Value movement — the load-bearing claim, now measured
+
+The project rests on one claim: **a spender-controlled choice carries the
+OWNER's authority**, so an agent can move its owner's funds with no hot key and
+no owner signature at spend time.
+
+`Value.daml` defines a minimal `Purse` whose sole signatory is the owner, so
+debiting it requires the owner's authority and nobody else's.
+
+| Test | Result |
+|---|---|
+| agent alone debits Alice's purse **directly** | **rejected** |
+| agent alone debits it **through `Charge`** | **succeeds** — 500.0 → 470.0 |
+
+Visibility is held constant between the two (the agent can see the purse in
+both), so the only difference is whether the debit goes through the Mandate.
+Mutation confirms the mechanism: dropping `owner` from `signatory owner, spender`
+gives `failed due to a missing authorization from 'Alice'`.
+
+**The claim holds.**
+
+### What we learned failing first: visibility and authority are separate gates
+
+The first attempt failed, and not on authorization:
+
+```
+Attempt to fetch or exercise a contract not visible to the reading parties.
+Contract: #0:0 (Value:Purse)   actAs: 'AgentV2'   Disclosed to: 'AliceV2'
+```
+
+The agent could not **see** the purse, so it never reached the authority check.
+This is exactly why Canton's token standard hands you **disclosed contracts**
+from the registry: privacy means you cannot fetch what you cannot see, and the
+issuer discloses it for that one transaction. The toolkit's warning that building
+a transfer by hand "will not work, and the error will not tell you why" is this
+error.
+
+In `Purse` we model that with an explicit `visibleTo` observer list. **In
+production this must be per-transaction disclosure, not a permanent observer** —
+a permanent observer leaks the owner's whole balance to the agent.
+
+### What this is NOT
+
+`Purse` is **our own minimal template**, not a Canton token-standard `Holding`.
+It proves the authority semantics; it does **not** prove we can drive a real
+token-standard transfer, which additionally needs the registry factory, a choice
+context, and disclosed contracts fetched over HTTP. That remains unbuilt.
+
+## Scope narrowing — a gap found by asking the design question
+
+`Adjust` requires **both** signatures, so an owner who wanted to cut off one
+counterparty, or lower the cap, could only do it by revoking the whole mandate
+and re-proposing — which the agent can stall by simply not accepting.
+
+`Restrict` closes that: **narrowing is unilateral, widening stays bilateral.**
+Owner-only, and it may only shrink — mirroring `Revoke`, applied to scope rather
+than existence.
+
+| Guard disabled | Attack that then succeeds |
+|---|---|
+| `newCap <= cap` | `attack_restrictUsedToWidenTheCap` |
+| `newAllowed` must be a subset | `attack_restrictUsedToAddACounterparty` |
+| `controller owner` alone | both `restrict_ownerAlone…` tests |
+
+All three are load-bearing. So the answer to "should the allow-list be mutable
+after acceptance?" is: **yes, but only downward, and only by the owner.**
+
+## Choice coverage: 50% → 64.3%
+
+The two genuinely untested choices flagged earlier now have successful-path
+tests: `MandateProposal.Reject` and `Iou.Split` (asserting the split conserves
+value). The remainder of the gap is `Archive` choices, which no test exercises
+directly.
+
 ## Not built
 
 Stated plainly, because overclaiming is penalised harder than an incomplete build.
 
-- **No value moves.** `Charge` records the spend and writes the audit entry; it
-  does **not** exercise a token-standard transfer. This is the largest gap.
+- **No REAL token moves.** `Charge` debits our own `Purse` template, which proves
+  the authority semantics. It does **not** exercise a Canton token-standard
+  transfer — no registry factory, no choice context, no disclosed contracts.
+  That is still the largest gap.
 - **Nothing has run against DevNet.** `daml test` is in-memory. No party has been
   allocated, and party allocation on DevNet is documented as unverified.
 - **No concurrency test.** Two charges racing one mandate should see one abort on
