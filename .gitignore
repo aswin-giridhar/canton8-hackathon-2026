@@ -16,3 +16,8 @@ __pycache__/
 # sandbox demo state
 agent-wallet/demo_state.json
 agent-wallet/inbox.txt.consumed
+
+# Canton sandbox runtime logs
+log/
+*.log
+!agent-wallet/runs/*.log
