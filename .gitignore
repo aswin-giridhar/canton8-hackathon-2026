@@ -1,0 +1,14 @@
+# Live DevNet credential — never commit
+.env
+*.env
+!example.env
+
+# Upstream clone (Cantor8/hackathon-toolkit) — has its own git remote
+hackathon-toolkit/
+
+# Daml build artifacts
+.daml/
+*.dar
+
+__pycache__/
+*.pyc
