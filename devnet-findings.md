@@ -218,8 +218,32 @@ registry's spec endpoints (`/openapi.json`, `/docs`) return **403**.
 agentmandate-aswin-1::12204e94c0e449c0efcd270dd1e68259c36471cebef132e5c7dfc2750fe8c9eed77f
 ```
 
+## The 900s expiry, now watched rather than inferred
+
+Earlier this was `expires_in: 900` from the token response. It has now been
+observed against live DevNet: one token was held and the ledger polled every 30s
+until it was rejected.
+
+```
+minted a token, expires_in=900s. polling until DevNet rejects it.
+  t+ 911s  status changed 200 -> 401
+TOKEN DIED at t+911s (expires_in claimed 900s).
+
+dead token   -> HTTP401
+fresh token  -> HTTP200
+```
+
+**911 seconds — 15 minutes and 11 seconds.** A client that caches its token and
+never refreshes, which is exactly what `c8lab.py:token()` does on the `IDP` path,
+returns 401 from that point on and never recovers.
+
+This matters most for challenge **A1**, which requires a service that *"stream[s]
+updates forward… so it stays current"*. That service works for fifteen minutes
+and then dies, and the symptom looks like a streaming or WebSocket fault.
+
+Reproduce with `agent-wallet/devnet_expiry_proof.py`. The refresh-aware client is
+`agent-wallet/auth.py`, with its expiry logic unit-tested in `test_auth.py`.
+
 ## Still true from the original findings
 
-The five breakages listed above are unchanged. In particular the **900-second
-token** still stands, and `c8lab.py` still never refreshes it — that remains the
-finding most likely to cost an API-track team an afternoon.
+The other four breakages listed above are unchanged.
