@@ -1,0 +1,48 @@
+-- The experiment, and the control that makes it mean something.
+module TestValue where
+
+import DA.Time (addRelTime, hours)
+import Daml.Script
+import Mandate
+import Value
+
+-- CONTROL: the agent, acting alone, cannot touch Alice's purse.
+-- Without this, the experiment below proves nothing -- it could be passing
+-- because the agent had authority over the purse all along.
+control_agentCannotDebitPurseDirectly : Script ()
+control_agentCannotDebitPurseDirectly = script do
+  alice <- allocateParty "AliceV"
+  agent <- allocateParty "AgentV"
+  purse <- submit alice do createCmd Purse with owner = alice, amount = 500.0, visibleTo = [agent]
+  submitMustFail agent do exerciseCmd purse Debit with amt = 30.0
+
+-- EXPERIMENT: the same agent, submitting alone, CAN debit that purse when it
+-- does so through a Charge on a Mandate that Alice signed.
+-- If this passes while the control passes, the authority came from the Mandate.
+value_chargeMovesOwnerFundsWithoutOwnerSubmitting : Script ()
+value_chargeMovesOwnerFundsWithoutOwnerSubmitting = script do
+  alice    <- allocateParty "AliceV2"
+  agent    <- allocateParty "AgentV2"
+  merchant <- allocateParty "MerchantV2"
+  now      <- getTime
+
+  purse <- submit alice do
+    createCmd Purse with owner = alice, amount = 500.0, visibleTo = [agent]
+  prop  <- submit alice do
+    createCmd MandateProposal with
+      owner = alice; spender = agent; cap = 100.0
+      allowedCounterparties = [merchant]
+      expiresAt = addRelTime now (hours 24)
+  m <- submit agent do exerciseCmd prop Accept
+
+  -- Alice does not sign this. The agent submits alone.
+  _ <- submit agent do
+    exerciseCmd m Charge with
+      amount = 30.0, receiver = merchant, purse = Some purse
+
+  purses <- query @Purse alice
+  case purses of
+    [(_, p)] -> assertMsg
+      ("purse should be debited to 470.0, saw " <> show p.amount)
+      (p.amount == 470.0)
+    _ -> abort "expected exactly one purse"

@@ -8,6 +8,7 @@ module Attacks where
 import DA.Time (addRelTime, hours)
 import Daml.Script
 import Mandate
+import Iou
 
 -- Shared fixture: Alice mandates an agent to spend up to 100, but ONLY with
 -- the counterparties she named. Mallory is deliberately not among them.
@@ -45,7 +46,7 @@ attack_paysUnapprovedCounterparty : Script ()
 attack_paysUnapprovedCounterparty = script do
   Fixture{..} <- setupFixture
   submitMustFail agent do
-    exerciseCmd mandate Charge with amount = 1.0, receiver = mallory
+    exerciseCmd mandate Charge with amount = 1.0, receiver = mallory, purse = None
 
 -- POSITIVE CONTROL + audit trail.
 --
@@ -61,7 +62,7 @@ audit_chargeLeavesReadableRecord = script do
 
   -- The allowed counterparty is paid successfully.
   _ <- submit agent do
-    exerciseCmd mandate Charge with amount = 30.0, receiver = merchant
+    exerciseCmd mandate Charge with amount = 30.0, receiver = merchant, purse = None
 
   -- The owner can read exactly what her agent did, and why it was permitted.
   records <- query @ChargeRecord alice
@@ -86,9 +87,9 @@ attack_exceedsCap : Script ()
 attack_exceedsCap = script do
   Fixture{..} <- setupFixture
   m <- submit agent do
-    exerciseCmd mandate Charge with amount = 90.0, receiver = merchant
+    exerciseCmd mandate Charge with amount = 90.0, receiver = merchant, purse = None
   submitMustFail agent do
-    exerciseCmd m Charge with amount = 20.0, receiver = merchant
+    exerciseCmd m Charge with amount = 20.0, receiver = merchant, purse = None
 
 -- ATTACK 3: a negative amount, to run the cap BACKWARDS and buy headroom.
 -- Without the positivity check, -50 would reduce `spent` and unlock more spend.
@@ -96,7 +97,7 @@ attack_negativeAmountToInflateHeadroom : Script ()
 attack_negativeAmountToInflateHeadroom = script do
   Fixture{..} <- setupFixture
   submitMustFail agent do
-    exerciseCmd mandate Charge with amount = (-50.0), receiver = merchant
+    exerciseCmd mandate Charge with amount = (-50.0), receiver = merchant, purse = None
 
 -- ATTACK 4: spend after the mandate has expired.
 -- `expiresAt` is just a field. Nothing enforces it unless the choice body does.
@@ -105,7 +106,7 @@ attack_spendsAfterExpiry = script do
   Fixture{..} <- setupFixture
   passTime (hours 25)          -- mandate was valid for 24
   submitMustFail agent do
-    exerciseCmd mandate Charge with amount = 1.0, receiver = merchant
+    exerciseCmd mandate Charge with amount = 1.0, receiver = merchant, purse = None
 
 -- ATTACK 5: replay a charge by re-using the mandate contract id.
 -- This is the AP2 "consume-once" problem. On Canton it needs no nonce store:
@@ -114,9 +115,9 @@ attack_replaysTheSameCharge : Script ()
 attack_replaysTheSameCharge = script do
   Fixture{..} <- setupFixture
   _ <- submit agent do
-    exerciseCmd mandate Charge with amount = 10.0, receiver = merchant
+    exerciseCmd mandate Charge with amount = 10.0, receiver = merchant, purse = None
   submitMustFail agent do
-    exerciseCmd mandate Charge with amount = 10.0, receiver = merchant
+    exerciseCmd mandate Charge with amount = 10.0, receiver = merchant, purse = None
 
 -- ATTACK 6: the agent raises its own cap.
 attack_agentRaisesOwnCap : Script ()
@@ -132,7 +133,7 @@ attack_spendsAfterRevocation = script do
   Fixture{..} <- setupFixture
   submit alice do exerciseCmd mandate Revoke
   submitMustFail agent do
-    exerciseCmd mandate Charge with amount = 1.0, receiver = merchant
+    exerciseCmd mandate Charge with amount = 1.0, receiver = merchant, purse = None
 
 -- PROPERTY: revocation must NOT destroy the audit trail. If revoking erased the
 -- history, an agent could misbehave and the owner could hide it by revoking.
@@ -140,7 +141,7 @@ audit_survivesRevocation : Script ()
 audit_survivesRevocation = script do
   Fixture{..} <- setupFixture
   m <- submit agent do
-    exerciseCmd mandate Charge with amount = 10.0, receiver = merchant
+    exerciseCmd mandate Charge with amount = 10.0, receiver = merchant, purse = None
   submit alice do exerciseCmd m Revoke
   records <- query @ChargeRecord alice
   assertMsg "the audit trail must outlive the mandate" (length records == 1)
@@ -152,14 +153,14 @@ attack_ownerChargesViaSpendersChoice : Script ()
 attack_ownerChargesViaSpendersChoice = script do
   Fixture{..} <- setupFixture
   submitMustFail alice do
-    exerciseCmd mandate Charge with amount = 1.0, receiver = merchant
+    exerciseCmd mandate Charge with amount = 1.0, receiver = merchant, purse = None
 
 -- ATTACK 9: a third party with no relationship to the mandate charges it.
 attack_strangerCharges : Script ()
 attack_strangerCharges = script do
   Fixture{..} <- setupFixture
   submitMustFail mallory do
-    exerciseCmd mandate Charge with amount = 1.0, receiver = merchant
+    exerciseCmd mandate Charge with amount = 1.0, receiver = merchant, purse = None
 
 -- PROPERTY: an empty allow-list means the agent can pay nobody.
 -- Stated explicitly so it is a decision, not an accident.
@@ -175,4 +176,84 @@ property_emptyAllowListPaysNobody = script do
       allowedCounterparties = []
       expiresAt = addRelTime now (hours 24)
   m <- submit agent do exerciseCmd prop Accept
-  submitMustFail agent do exerciseCmd m Charge with amount = 1.0, receiver = bob
+  submitMustFail agent do exerciseCmd m Charge with amount = 1.0, receiver = bob, purse = None
+
+-- ---------------------------------------------------------------------------
+-- Coverage for the two choices `daml test` flagged as never exercised.
+-- ---------------------------------------------------------------------------
+
+coverage_spenderCanRejectAProposal : Script ()
+coverage_spenderCanRejectAProposal = script do
+  alice <- allocateParty "AliceR"
+  agent <- allocateParty "AgentR"
+  now   <- getTime
+  prop <- submit alice do
+    createCmd MandateProposal with
+      owner = alice; spender = agent; cap = 100.0
+      allowedCounterparties = []; expiresAt = addRelTime now (hours 24)
+  submit agent do exerciseCmd prop Reject
+  ps <- query @MandateProposal alice
+  assertMsg "a rejected proposal must be gone" (null ps)
+
+-- ---------------------------------------------------------------------------
+-- NARROWING IS UNILATERAL, WIDENING IS BILATERAL.
+--
+-- The gap this closes: `Adjust` needs BOTH signatures, so today an owner who
+-- wants to shrink a mandate -- lower the cap, or cut off one counterparty she
+-- no longer trusts -- can only do it by revoking the whole thing. That is an
+-- all-or-nothing hammer, and the agent can stall a re-proposal by not accepting.
+--
+-- So: `Restrict` is owner-only and may ONLY narrow, exactly like Revoke.
+-- Widening still requires both parties via `Adjust`.
+-- ---------------------------------------------------------------------------
+
+restrict_ownerAloneCanCutOffOneCounterparty : Script ()
+restrict_ownerAloneCanCutOffOneCounterparty = script do
+  Fixture{..} <- setupFixture
+  -- Alice alone removes the merchant. The agent cannot block this.
+  m <- submit alice do
+    exerciseCmd mandate Restrict with
+      newCap = 100.0, newAllowed = []
+  -- The mandate still lives, but can now pay nobody.
+  submitMustFail agent do
+    exerciseCmd m Charge with amount = 1.0, receiver = merchant, purse = None
+
+restrict_ownerAloneCanLowerTheCap : Script ()
+restrict_ownerAloneCanLowerTheCap = script do
+  Fixture{..} <- setupFixture
+  m <- submit alice do
+    exerciseCmd mandate Restrict with newCap = 10.0, newAllowed = [merchant]
+  -- 30 was fine under the old cap of 100; it is not fine now.
+  submitMustFail agent do
+    exerciseCmd m Charge with amount = 30.0, receiver = merchant, purse = None
+
+attack_restrictUsedToWidenTheCap : Script ()
+attack_restrictUsedToWidenTheCap = script do
+  Fixture{..} <- setupFixture
+  submitMustFail alice do
+    exerciseCmd mandate Restrict with newCap = 1000.0, newAllowed = [merchant]
+
+attack_restrictUsedToAddACounterparty : Script ()
+attack_restrictUsedToAddACounterparty = script do
+  Fixture{..} <- setupFixture
+  submitMustFail alice do
+    exerciseCmd mandate Restrict with
+      newCap = 100.0, newAllowed = [merchant, mallory]
+
+attack_agentRestrictsToEscapeItsOwnLimits : Script ()
+attack_agentRestrictsToEscapeItsOwnLimits = script do
+  Fixture{..} <- setupFixture
+  submitMustFail agent do
+    exerciseCmd mandate Restrict with newCap = 100.0, newAllowed = [merchant]
+
+coverage_iouSplitProducesTwoIousSummingToTheOriginal : Script ()
+coverage_iouSplitProducesTwoIousSummingToTheOriginal = script do
+  bank  <- allocateParty "BankS"
+  alice <- allocateParty "AliceS"
+  iou <- submit bank do
+    createCmd Iou with issuer = bank; owner = alice; amount = 100.0
+  _ <- submit alice do exerciseCmd iou Split with splitAmount = 30.0
+  ious <- query @Iou alice
+  let total = sum [i.amount | (_, i) <- ious]
+  assertMsg ("split must conserve value, saw " <> show total) (total == 100.0)
+  assertMsg "split must produce exactly two Ious" (length ious == 2)
