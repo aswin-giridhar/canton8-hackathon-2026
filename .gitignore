@@ -23,3 +23,6 @@ log/
 !agent-wallet/runs/*.log
 .playwright-mcp/
 frontend/.vercel/
+
+# Demo video: renders, narration script, audio, frames - not committed
+video/
