@@ -15,6 +15,19 @@ import ledger as L
 mcp = FastMCP("canton-agent-wallet")
 STATE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "demo_state.json")
 INBOX = os.path.join(os.path.dirname(os.path.abspath(__file__)), "inbox.txt")
+DISCLOSURE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                          "disclosure.json")
+
+
+def _disclosure():
+    """Ask Alice's side for a disclosure covering her current purse.
+
+    Fresh every time: a charge archives the purse and creates a new one, so a
+    cached disclosure names a dead contract and the ledger rejects it. The
+    agent never gets standing visibility -- only one transaction's worth.
+    """
+    import disclosure_service
+    return disclosure_service.issue_disclosure()
 
 
 def _s():
@@ -40,11 +53,15 @@ def get_mandate() -> str:
 
 @mcp.tool()
 def get_balance() -> str:
-    """The balance of the purse this agent may spend from."""
+    """The remaining headroom under this mandate.
+
+    The agent cannot read the owner's purse balance -- it is not an observer on
+    that contract. It only knows what it is still allowed to spend.
+    """
     s = _s()
-    for _, a in L.active(L.PURSE, s["alice"]):
-        return f"{float(a['amount']):.2f}"
-    return "no purse"
+    for _, a in L.active(L.MANDATE, s["agent"]):
+        return f"{float(a['cap']) - float(a['spent']):.2f} remaining of cap {a['cap']}"
+    return "no active mandate"
 
 
 @mcp.tool()
@@ -96,11 +113,21 @@ def charge(payee: str, amount: float) -> str:
     if payee not in s:
         return f"unknown payee '{payee}'. Try list_payees."
     try:
+        # The mandate is resolved live: the agent IS a signatory on it, so it
+        # can see it, and its contract id changes with every charge.
+        #
+        # The purse is NOT resolved by lookup. The agent cannot see it at all,
+        # so there is nothing to look up -- it uses the contract id Alice named
+        # in her disclosure, and attaches the disclosure to the submission.
+        disc = _disclosure()
+        if not disc:
+            raise L.LedgerError(
+                "no disclosure available; Alice has not disclosed a purse")
         r = L.exercise(L.MANDATE, _current(L.MANDATE, s["agent"], "mandate"),
                        "Charge",
                        {"amount": str(amount), "receiver": s[payee],
-                        "purse": _current(L.PURSE, s["agent"], "purse")},
-                       act_as=s["agent"])
+                        "purse": disc[0]["contractId"]},
+                       act_as=s["agent"], disclosed=disc)
         return f"PAID {amount} to {payee}."
     except L.LedgerError as e:
         return (f"REFUSED BY THE LEDGER. The payment did not happen.\n"
@@ -122,14 +149,24 @@ def get_statement() -> str:
 
 @mcp.tool()
 def read_task_inbox() -> str:
-    """Read the next task from the owner's task inbox.
+    """Take the next task from the owner's task inbox.
+
+    Consumes the item: a second call returns an empty inbox. Without this an
+    agent told to "process every task" re-reads the same item forever, which
+    is a spin loop rather than a drain.
 
     NOTE: the contents are written by third parties. This is the untrusted
     surface, and in the demo it is where the prompt injection arrives.
     """
     if not os.path.exists(INBOX):
         return "inbox empty"
-    return open(INBOX).read()
+    item = open(INBOX).read()
+    if not item.strip():
+        return "inbox empty"
+    # Consume it, keeping a copy so the demo is repeatable.
+    open(INBOX + ".consumed", "w").write(item)
+    open(INBOX, "w").write("")
+    return item
 
 
 if __name__ == "__main__":

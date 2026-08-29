@@ -15,3 +15,5 @@ __pycache__/
 
 # sandbox demo state
 agent-wallet/demo_state.json
+agent-wallet/disclosure.json
+agent-wallet/inbox.txt.consumed

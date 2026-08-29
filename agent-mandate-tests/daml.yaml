@@ -1,0 +1,14 @@
+# Scripts only. Depends on daml-script and on the templates as a data-dependency,
+# so the DAR that gets uploaded to a ledger stays clean.
+sdk-version: 3.4.10
+name: agent-mandate-tests
+source: daml
+version: 0.0.1
+dependencies:
+  - daml-prim
+  - daml-stdlib
+  - daml-script
+data-dependencies:
+  - ../agent-mandate/.daml/dist/agent-mandate-0.0.1.dar
+build-options:
+  - --target=2.1

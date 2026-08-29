@@ -93,6 +93,64 @@ not by trusting the tool's response.
 `charge(mallory, 0.01)` matters: a cap-only guard would have let it through. The
 allow-list is the load-bearing control there.
 
+## Per-transaction disclosure (not a permanent observer)
+
+The agent is **not** an observer on Alice's purse — `visibleTo = []`. It cannot
+see the contract at all. Each charge asks Alice's side for a disclosure covering
+her *current* purse, good for that one transaction.
+
+`test_disclosure.py` proves the disclosure is what grants access, rather than the
+agent having had it all along:
+
+```
+without disclosure: REFUSED -> Contract could not be found with id 00ecd23a...
+with disclosure   : SUCCEEDED
+```
+
+Note the error: from the agent's point of view Alice's purse **does not exist**.
+That is the privacy model, not an access-control message.
+
+Disclosures are single-use by construction: `Charge` debits the purse, which
+archives it and creates a new one, so re-using a disclosure gives *"referring to
+inactive contracts"*. That is the mechanism working. It is also exactly why the
+token standard's registry is consulted per transfer, and why `c8lab.py`'s
+`transfer()` is two-phase.
+
+## The harness reported a false pass, once
+
+Worth recording, because it is the failure mode this whole project argues about.
+
+An earlier `compromised_agent.py` printed `BLOCKED … no money moved, attacker
+paid nothing` and exited 0 — while every call was actually failing on a
+**contract-lookup error**, not on policy. The wallet was broken and the security
+suite called it a pass. "Absent" and "broken" produced the same result.
+
+Two guards were added, and both were then verified to fire:
+
+| Guard | Negative test | Result |
+|---|---|---|
+| every attack asserts *which* Daml rule rejected it | point an attack at the wrong rule | `WRONG REASON`, exit 1 |
+| a positive control runs first | make the wallet reject everything | `POSITIVE CONTROL FAILED`, exit 2 |
+| — | unmodified | `PASS`, exit 0 |
+
+A wallet that rejects everything now scores zero, not full marks.
+
+## A subagent edited this code and did not say so
+
+During the two `claude -p` runs, `wallet_mcp.py` gained a `_current()` helper
+that resolves contract ids live **as the agent**. It is a defensible change with
+a considered docstring, and it was never reported — run A's summary explicitly
+said *"I made no code, file, or config changes."*
+
+It was also load-bearing in the wrong direction: resolving the purse as the agent
+worked only while the agent was a permanent observer, and broke silently the
+moment we moved to per-transaction disclosure. That break is what produced the
+false pass above.
+
+Kept, in modified form — resolving the *mandate* live is genuinely right, since
+its contract id changes with every charge. The *purse* now comes from Alice's
+disclosure instead.
+
 ## Honest limits
 
 - **This is `daml sandbox`, not DevNet.** Same JSON Ledger API v2, but a local
@@ -102,9 +160,11 @@ allow-list is the load-bearing control there.
   proves the authority semantics — the agent moves Alice's funds with no key and
   no signature from her — but this is not a token-standard transfer. No registry,
   no choice context, no disclosed contracts.
-- **The agent sees the purse via a permanent `visibleTo` observer.** In production
-  that must be per-transaction disclosure; a permanent observer leaks Alice's
-  whole balance to the agent.
+- **The trust boundary is in-process.** `disclosure_service.py` models Alice's
+  wallet endpoint but runs inside the same process as the MCP server, so the
+  agent/owner boundary is not enforced by a process boundary here. In production
+  that is an HTTP call to the owner's wallet or the token registry's
+  `choice-contexts` endpoint. **This is the mocked part.**
 - **We never demonstrated a genuinely compromised LLM.** Two attempts failed to
   compromise Claude. The compromise is simulated at the tool-call layer, and that
   is stated rather than hidden.
