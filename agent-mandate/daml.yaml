@@ -1,9 +1,11 @@
 # Templates only. NO daml-script dependency, so this package is upgradable and
 # can be referenced by name (#agent-mandate) rather than by package id.
 #
-# The splice-api-token-* DARs come from the LocalNet bundle and give us the
-# real token standard interfaces, so Charge can move Amulet rather than our
-# own Purse template.
+# The splice-api-token-* DARs give us the real token standard interfaces, so
+# Charge can move Amulet rather than our own Purse template. Stage them with
+#   ./scripts/fetch-dars.sh
+# which copies them out of the LocalNet bundle into ./dars/. Relative paths
+# so this builds on any machine, not just the one it was written on.
 sdk-version: 3.4.10
 name: agent-mandate
 source: daml
@@ -12,8 +14,8 @@ dependencies:
   - daml-prim
   - daml-stdlib
 data-dependencies:
-  - /home/aswin/localnet/splice-node/dars/splice-api-token-metadata-v1-current.dar
-  - /home/aswin/localnet/splice-node/dars/splice-api-token-holding-v1-current.dar
-  - /home/aswin/localnet/splice-node/dars/splice-api-token-transfer-instruction-v1-current.dar
+  - ../dars/splice-api-token-metadata-v1-current.dar
+  - ../dars/splice-api-token-holding-v1-current.dar
+  - ../dars/splice-api-token-transfer-instruction-v1-current.dar
 build-options:
   - --target=2.1

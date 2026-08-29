@@ -2,6 +2,13 @@
 
 Working code to copy from. Everything here builds and every test passes.
 
+The token-standard interfaces come from the Splice bundle. Stage them first,
+once, so the relative paths in `daml.yaml` resolve:
+
+```bash
+./scripts/fetch-dars.sh          # or SPLICE_BUNDLE=/path/to/splice-node ./scripts/fetch-dars.sh
+```
+
 ```bash
 export JAVA_HOME=/opt/homebrew/opt/openjdk@21
 export PATH="$HOME/.daml/bin:$JAVA_HOME/bin:$PATH"

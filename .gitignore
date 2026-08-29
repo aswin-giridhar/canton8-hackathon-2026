@@ -26,3 +26,6 @@ frontend/.vercel/
 
 # Demo video: renders, narration script, audio, frames - not committed
 video/
+
+# Splice token-standard DARs, staged by scripts/fetch-dars.sh
+dars/
