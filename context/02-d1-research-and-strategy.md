@@ -178,16 +178,26 @@ Attack matrix to have ready, all of which must fail on-ledger:
 
 | Attack | Defence | Where |
 |---|---|---|
-| exceed the cap | `assertMsg (spent + amount <= cap)` | `Charge` |
+| exceed the cap | `assertMsg` **and** `ensure spent <= cap` — double-guarded | `Charge` + template |
 | pay a non-allow-listed party | `assertMsg (receiver `elem` allowed)` | `Charge` |
 | spend after revocation | `Revoke` is consuming — contract is gone | ledger |
 | spend after expiry | `assertMsg (now < expiresAt)` — **never automatic** | `Charge` |
-| negative amount to inflate headroom | `assertMsg (amount > 0.0)` | `Charge` |
+| negative amount to inflate headroom | `assertMsg` **and** `ensure spent >= 0.0` — double-guarded | `Charge` + template |
 | agent raises its own cap | `Adjust` requires `owner, spender` both | signatories |
 | replay the same charge | consuming choice archived the cid | ledger |
 | **two concurrent charges racing the cap** | **contention — one aborts** | **synchronizer** |
 
 The last row is the one no competitor will have, and it is the row the arXiv paper
+
+**Measured correction (29 Aug).** Mutation testing the suite — disabling each guard
+in turn — showed the cap and positive-amount rules are caught *twice*: by the
+explicit `assertMsg` and independently by the template invariant
+`ensure cap > 0.0 && spent >= 0.0 && spent <= cap`. Disabling either alone changes
+nothing; only the double mutation lets the attack through. So when a judge asks
+*"show us the line that stops it"*, the honest answer for the cap is **the
+`ensure`** — it survives someone deleting the explicit check in a refactor. The
+allow-list and expiry rules, by contrast, are each a single point of failure.
+Full table in `agent-mandate/RESULTS.md`.
 says AP2 implementations get wrong.
 
 ---
