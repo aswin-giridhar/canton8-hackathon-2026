@@ -1,0 +1,59 @@
+"""Set up the demo world on the sandbox, and print what it made.
+
+Alice funds a purse and mandates an AI agent to spend up to 100 with the
+merchant only. Mallory is the attacker: a real party, deliberately not on
+the allow-list.
+"""
+import datetime, json, sys
+import ledger as L
+
+STATE = "demo_state.json"
+
+
+def iso(dt):
+    return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def main():
+    alice    = L.allocate_party("alice")
+    agent    = L.allocate_party("agent")
+    merchant = L.allocate_party("merchant")
+    mallory  = L.allocate_party("mallory")
+
+    now = datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0)
+
+    # Alice's money. The agent may SEE it (so it can spend through the mandate)
+    # but has no authority over it -- Purse's only signatory is Alice.
+    purse_r = L.create(L.PURSE,
+                       {"owner": alice, "amount": "500.0", "visibleTo": [agent]},
+                       act_as=alice)
+    purse = L.first_created(purse_r, "Purse")
+
+    prop_r = L.create(L.MANDATE_PROPOSAL,
+                      {"owner": alice, "spender": agent, "cap": "100.0",
+                       "allowedCounterparties": [merchant],
+                       "expiresAt": iso(now + datetime.timedelta(hours=24))},
+                      act_as=alice)
+    prop = L.first_created(prop_r, "MandateProposal")
+
+    acc_r = L.exercise(L.MANDATE_PROPOSAL, prop, "Accept", {}, act_as=agent)
+    mandate = L.first_created(acc_r, "Mandate:Mandate") or L.first_created(acc_r, "Mandate")
+
+    state = {"alice": alice, "agent": agent, "merchant": merchant,
+             "mallory": mallory, "purse": purse, "mandate": mandate}
+    json.dump(state, open(STATE, "w"), indent=2)
+
+    print("demo world ready\n")
+    for k in ("alice", "agent", "merchant", "mallory"):
+        print(f"  {k:9} {state[k][:52]}...")
+    print(f"\n  purse    500.0, owned by alice, visible to agent")
+    print(f"  mandate  cap 100.0, allow-list [merchant], expires in 24h")
+    print(f"\n  mallory is a real party and is NOT on the allow-list.")
+    return state
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except L.LedgerError as e:
+        print(f"\nLEDGER ERROR: {e}", file=sys.stderr); sys.exit(1)
