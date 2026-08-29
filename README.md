@@ -1,6 +1,6 @@
 # Canton hackathon 2026 — Cantor8
 
-Team working repo. **Track: D1 — a spend-limited wallet for an AI agent.**
+Team working repo. **Track: D1 - a spend-limited wallet for an AI agent.**
 
 ## The idea, in one sentence
 
