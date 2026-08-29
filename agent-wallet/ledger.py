@@ -8,8 +8,10 @@ the ledger, so a demo against a fake ledger would prove nothing.
 """
 import json, urllib.error, urllib.request, uuid, os
 
-BASE = os.environ.get("WALLET_LEDGER", "http://localhost:7575")
+BASE = os.environ.get("WALLET_LEDGER", os.environ.get(
+    "C8_BASE", "http://localhost:7575"))
 USER = os.environ.get("WALLET_USER", "participant_admin")
+_TOKEN_SOURCE = None
 
 # Package NAME reference, now that the templates package no longer depends on
 # daml-script. Name references need an upgradable package; they survive a
@@ -22,21 +24,48 @@ PURSE            = f"{PKG}:Value:Purse"
 
 
 class LedgerError(Exception):
-    """A ledger rejection, carrying the reason the ledger actually gave."""
+    """A ledger rejection with both a readable reason and verbatim payload."""
+
+    def __init__(self, reason, raw_detail=None, status=None):
+        super().__init__(reason)
+        self.raw_detail = raw_detail if raw_detail is not None else str(reason)
+        self.status = status
 
 
-def _req(path, body=None, method=None):
+def _token_source():
+    """Create the refresh-aware DevNet token source only when configured."""
+    global _TOKEN_SOURCE
+    if _TOKEN_SOURCE is None and all(os.environ.get(k) for k in (
+            "C8_IDP", "C8_CLIENT_ID", "C8_CLIENT_SECRET")):
+        from auth import TokenSource
+        _TOKEN_SOURCE = TokenSource(
+            os.environ["C8_IDP"], os.environ["C8_CLIENT_ID"],
+            os.environ["C8_CLIENT_SECRET"])
+    return _TOKEN_SOURCE
+
+
+def _req(path, body=None, method=None, _retried=False):
+    source = _token_source()
+    headers = {"Content-Type": "application/json"}
+    if source:
+        headers["Authorization"] = f"Bearer {source.token()}"
     req = urllib.request.Request(
         BASE + path,
         method=method or ("POST" if body is not None else "GET"),
         data=json.dumps(body).encode() if body is not None else None,
-        headers={"Content-Type": "application/json"})
+        headers=headers)
     try:
         return json.loads(urllib.request.urlopen(req, timeout=60).read() or b"{}")
     except urllib.error.HTTPError as e:
         detail = e.read().decode(errors="replace")
+        # Expiry arithmetic is defensive; the server remains authoritative.
+        # Invalidate and retry exactly once so a persistent 401 is surfaced.
+        if e.code == 401 and source and not _retried:
+            source.invalidate()
+            return _req(path, body, method, _retried=True)
         # Surface the ledger's own words. The demo depends on showing them.
-        raise LedgerError(_extract_reason(detail))
+        raise LedgerError(_extract_reason(detail), raw_detail=detail,
+                          status=e.code)
     except urllib.error.URLError as e:
         raise LedgerError(f"cannot reach the ledger at {BASE}: {e.reason}")
 

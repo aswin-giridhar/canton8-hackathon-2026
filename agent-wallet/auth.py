@@ -9,7 +9,7 @@ like a streaming bug and it is an auth bug.
 This module refreshes before expiry instead. `now_fn` is injectable so the
 expiry logic is testable without waiting fifteen minutes or touching DevNet.
 """
-import json, time, urllib.parse, urllib.request
+import json, threading, time, urllib.parse, urllib.request
 
 # Refresh this many seconds BEFORE the token actually expires, so a request
 # in flight cannot straddle the boundary.
@@ -25,6 +25,9 @@ class TokenSource:
         self._token = None
         self._expires_at = 0.0
         self.refreshes = 0
+        # Load tests call token() from several submission threads. Without a
+        # lock they can all observe an expired token and stampede the IDP.
+        self._lock = threading.Lock()
 
     def _http_fetch(self):
         data = urllib.parse.urlencode({
@@ -37,13 +40,15 @@ class TokenSource:
 
     def token(self):
         """Current token, refreshed if it is within SKEW of expiring."""
-        if self._token is None or self._now() >= self._expires_at - SKEW:
-            self._token, ttl = self._fetch()
-            self._expires_at = self._now() + ttl
-            self.refreshes += 1
-        return self._token
+        with self._lock:
+            if self._token is None or self._now() >= self._expires_at - SKEW:
+                self._token, ttl = self._fetch()
+                self._expires_at = self._now() + ttl
+                self.refreshes += 1
+            return self._token
 
     def invalidate(self):
         """Force a refresh. Call this on a 401 -- the server is the authority
         on whether a token is dead, not our arithmetic."""
-        self._token = None
+        with self._lock:
+            self._token = None
