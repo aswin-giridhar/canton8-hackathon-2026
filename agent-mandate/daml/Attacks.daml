@@ -1,0 +1,146 @@
+-- The rejection suite. This IS the deliverable for D1's 25% "survives an attack"
+-- criterion: every entry is an attack the judges said they would try, asserted to
+-- fail ON THE LEDGER rather than in a backend.
+--
+-- Run with: daml test
+module Attacks where
+
+import DA.Time (addRelTime, hours)
+import Daml.Script
+import Mandate
+
+-- Shared fixture: Alice mandates an agent to spend up to 100, but ONLY with
+-- the counterparties she named. Mallory is deliberately not among them.
+data Fixture = Fixture
+  with
+    alice    : Party
+    agent    : Party
+    merchant : Party   -- on the allow-list
+    mallory  : Party   -- NOT on the allow-list
+    mandate  : ContractId Mandate
+
+setupFixture : Script Fixture
+setupFixture = script do
+  alice    <- allocateParty "Alice"
+  agent    <- allocateParty "Agent"
+  merchant <- allocateParty "Merchant"
+  mallory  <- allocateParty "Mallory"
+  now      <- getTime
+
+  prop <- submit alice do
+    createCmd MandateProposal with
+      owner = alice
+      spender = agent
+      cap = 100.0
+      allowedCounterparties = [merchant]
+      expiresAt = addRelTime now (hours 24)
+  mandate <- submit agent do exerciseCmd prop Accept
+  pure Fixture with ..
+
+-- ATTACK 1: the agent pays a counterparty the owner never approved.
+-- This is the prompt-injection case: a compromised agent is told to pay an
+-- attacker. The cap is untouched (1.0 of 100.0), so ONLY the allow-list can
+-- stop it.
+attack_paysUnapprovedCounterparty : Script ()
+attack_paysUnapprovedCounterparty = script do
+  Fixture{..} <- setupFixture
+  submitMustFail agent do
+    exerciseCmd mandate Charge with amount = 1.0, receiver = mallory
+
+-- POSITIVE CONTROL + audit trail.
+--
+-- A suite made only of submitMustFail passes trivially if charges never work at
+-- all. This test can only pass if a legitimate charge SUCCEEDS -- which is what
+-- proves the allow-list rejects Mallory specifically, not everyone.
+--
+-- It also asserts the audit requirement: every charge leaves a record naming the
+-- amount, the counterparty, and WHICH RULE allowed it, readable by the owner.
+audit_chargeLeavesReadableRecord : Script ()
+audit_chargeLeavesReadableRecord = script do
+  Fixture{..} <- setupFixture
+
+  -- The allowed counterparty is paid successfully.
+  _ <- submit agent do
+    exerciseCmd mandate Charge with amount = 30.0, receiver = merchant
+
+  -- The owner can read exactly what her agent did, and why it was permitted.
+  records <- query @ChargeRecord alice
+  case records of
+    [(_, r)] -> do
+      assertMsg "record must name the amount"       (r.amount == 30.0)
+      assertMsg "record must name the counterparty" (r.receiver == merchant)
+      assertMsg "record must name the owner"        (r.owner == alice)
+      assertMsg "record must name the spender"      (r.spender == agent)
+      assertMsg "record must say which rule allowed it"
+        (r.permittedBy /= "")
+    _ -> abort "expected exactly one ChargeRecord visible to the owner"
+
+-- ---------------------------------------------------------------------------
+-- Coverage for rules that already existed in the starter but were never tested.
+-- These are characterisation tests, not TDD: they are expected to pass on the
+-- first run. Their value is that an untested rule is a rule nobody has proven.
+-- ---------------------------------------------------------------------------
+
+-- ATTACK 2: spend more than the cap allows.
+attack_exceedsCap : Script ()
+attack_exceedsCap = script do
+  Fixture{..} <- setupFixture
+  m <- submit agent do
+    exerciseCmd mandate Charge with amount = 90.0, receiver = merchant
+  submitMustFail agent do
+    exerciseCmd m Charge with amount = 20.0, receiver = merchant
+
+-- ATTACK 3: a negative amount, to run the cap BACKWARDS and buy headroom.
+-- Without the positivity check, -50 would reduce `spent` and unlock more spend.
+attack_negativeAmountToInflateHeadroom : Script ()
+attack_negativeAmountToInflateHeadroom = script do
+  Fixture{..} <- setupFixture
+  submitMustFail agent do
+    exerciseCmd mandate Charge with amount = (-50.0), receiver = merchant
+
+-- ATTACK 4: spend after the mandate has expired.
+-- `expiresAt` is just a field. Nothing enforces it unless the choice body does.
+attack_spendsAfterExpiry : Script ()
+attack_spendsAfterExpiry = script do
+  Fixture{..} <- setupFixture
+  passTime (hours 25)          -- mandate was valid for 24
+  submitMustFail agent do
+    exerciseCmd mandate Charge with amount = 1.0, receiver = merchant
+
+-- ATTACK 5: replay a charge by re-using the mandate contract id.
+-- This is the AP2 "consume-once" problem. On Canton it needs no nonce store:
+-- Charge is a CONSUMING choice, so the first call archived this cid.
+attack_replaysTheSameCharge : Script ()
+attack_replaysTheSameCharge = script do
+  Fixture{..} <- setupFixture
+  _ <- submit agent do
+    exerciseCmd mandate Charge with amount = 10.0, receiver = merchant
+  submitMustFail agent do
+    exerciseCmd mandate Charge with amount = 10.0, receiver = merchant
+
+-- ATTACK 6: the agent raises its own cap.
+attack_agentRaisesOwnCap : Script ()
+attack_agentRaisesOwnCap = script do
+  Fixture{..} <- setupFixture
+  submitMustFail agent do
+    exerciseCmd mandate Adjust with newCap = 1000000.0
+
+-- ATTACK 7: spend after the owner revokes. Revocation is instant and the
+-- spender cannot block it, because Revoke is controlled by the owner alone.
+attack_spendsAfterRevocation : Script ()
+attack_spendsAfterRevocation = script do
+  Fixture{..} <- setupFixture
+  submit alice do exerciseCmd mandate Revoke
+  submitMustFail agent do
+    exerciseCmd mandate Charge with amount = 1.0, receiver = merchant
+
+-- PROPERTY: revocation must NOT destroy the audit trail. If revoking erased the
+-- history, an agent could misbehave and the owner could hide it by revoking.
+audit_survivesRevocation : Script ()
+audit_survivesRevocation = script do
+  Fixture{..} <- setupFixture
+  m <- submit agent do
+    exerciseCmd mandate Charge with amount = 10.0, receiver = merchant
+  submit alice do exerciseCmd m Revoke
+  records <- query @ChargeRecord alice
+  assertMsg "the audit trail must outlive the mandate" (length records == 1)
