@@ -69,10 +69,92 @@ response is never treated as evidence — which is precisely the failure the
 `offer` case produces, and the same discipline that caught the false pass in
 `agent-wallet/compromised_agent.py`.
 
-## What this does NOT yet do
+## The mandate now moves real Canton Coin
 
-The `Mandate` contract still debits the local `Purse` template, not Amulet.
-Wiring `Charge` to exercise `TransferFactory_Transfer` is the remaining
-integration: it needs our DAR uploaded to LocalNet and the Splice token-standard
-interfaces as Daml dependencies. **The transfer works and the mandate works;
-they are not yet joined.**
+The two halves are joined. `ChargeViaTokenStandard` executes a real
+`TransferFactory_Transfer` on Amulet, with the ledger enforcing the cap and
+allow-list **on the transfer that actually runs**.
+
+```bash
+cd agent-mandate && daml build
+daml ledger upload-dar --host localhost --port 2901 \
+  --access-token-file <token> .daml/dist/agent-mandate-0.0.1.dar
+
+cd hackathon-toolkit
+python3 ../token-standard/mandate_moves_amulet.py
+python3 ../token-standard/attack_token_standard.py
+```
+
+```
+owner    app_user   (3576.16 Amulet)
+agent    amulet_agent  (holds no coin, holds no key)
+mandate  cap 50.0, allow-list [receiver], spender=agent
+
+registry transferKind=offer, 4 issuer-config disclosures
+owner discloses 1 holding(s) for this one transaction
+agent exercised ChargeViaTokenStandard ALONE -> offer 00c0daf5...
+receiver accepted
+
+owner    3576.16 -> 3564.16
+receiver   74.00 ->   86.00
+mandate spent = 12.0 of 50.0
+audit: 12.0 to receiver | token standard transfer within cap (12.0 of 50.0)
+       to an allow-listed counterparty
+
+RESULT: the mandate moved REAL Canton Coin ✓
+```
+
+**The agent submitted alone.** It holds no key and the owner did not sign at
+spend time — the Mandate carries the owner's authority because the owner is a
+signatory on it. That claim was proven earlier against our own `Purse`; this is
+the same mechanism against real Amulet and the real registry.
+
+### The enforcement survived the integration
+
+An integration that moves money but loses the rules is worse than none.
+`attack_token_standard.py`, against real Amulet:
+
+```
+BLOCKED  pay a counterparty not on the allow-list
+         rule: counterparty is not on the allow-list
+BLOCKED  exceed the cap
+         rule: charge would exceed the cap
+BLOCKED  mismatched receiver: guards say one payee, transfer names another
+         rule: counterparty is not on the allow-list
+
+owner   3564.16 -> 3564.16      mallory 0.00 -> 0.00
+PASS: every attack refused by the expected rule, on REAL Amulet.
+```
+
+### The design decision that makes it safe
+
+The agent builds the transfer itself, so it could try to satisfy the guards with
+one counterparty while the transfer pays another. Every rule is therefore checked
+against **`transferArgs.transfer`** — the transfer that will execute — never
+against separate parameters:
+
+```daml
+let t = transferArgs.transfer
+assertMsg "transfer sender must be the mandate owner" (t.sender == owner)
+validateCharge owner allowedCounterparties cap spent expiresAt
+               t.amount t.receiver now
+```
+
+`validateCharge` is a single shared function used by both charge paths. Two
+paths with two copies of the rules is how guards drift apart.
+
+### Two things this cost us to learn
+
+**The agent cannot see the owner's coin.** Submitting without disclosing the
+owner's holdings fails with `CONTRACT_NOT_FOUND` on the input holding — which
+reads like a stale contract and is actually the privacy model. Each charge
+carries a fresh, one-transaction disclosure; the agent never gets standing
+sight of the owner's funds. Same gate we hit with `Purse`.
+
+**`TransferInstruction` is an interface, not a template.** A `TemplateFilter`
+returns `NO_TEMPLATES_FOR_PACKAGE_NAME`, and the tree from `submit-and-wait`
+does not surface the created instruction either. It must be found with an
+`InterfaceFilter` — and by **set-diff against a pre-submission snapshot**, not
+"the first pending offer". Taking the first one once accepted a leftover from
+an earlier run and reported success: the net numbers looked right and the
+causality was wrong.

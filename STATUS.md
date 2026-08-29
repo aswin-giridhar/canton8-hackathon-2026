@@ -103,11 +103,16 @@ verified to fire (exit 1 wrong-reason, exit 2 broken, exit 0 genuine pass).
 - **W3 concurrency** — covered by Furqan's PR #2: 100/100 races with exactly one
   success and one abort, 12/12 attacks rejected for the expected reason.
 
+- **The mandate now moves real Canton Coin.** `ChargeViaTokenStandard` executes
+  a real `TransferFactory_Transfer` on Amulet, agent submitting alone with no
+  key. Owner −12.0, receiver +12.0, `spent` 12.0 of 50.0, audit record written.
+  All three attacks still blocked by the expected rule on real Amulet. See
+  `token-standard/`.
+
 ### Still open
-- **Join the mandate to real value.** `Charge` still debits the local `Purse`,
-  not Amulet. Needs our DAR on LocalNet plus the Splice token-standard interfaces
-  as Daml dependencies. The transfer works and the mandate works; they are not
-  yet joined.
+- Per-period caps (total cap works; per-period is date arithmetic).
+- Nothing on DevNet is funded, so the real transfer is LocalNet-only there.
+- The owner/agent trust boundary is still in-process in `agent-wallet/`.
 
 ### Not blocked — can start now
 - **W3 concurrency test.** Two charges racing one mandate; one must abort on

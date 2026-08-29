@@ -15,6 +15,18 @@
 module Mandate where
 
 import Value
+import Splice.Api.Token.TransferInstructionV1
+
+-- ONE gate, used by every charge path. Two paths with two copies of the rules
+-- is how guards drift apart; this is the whole point of the project, so it
+-- lives in exactly one place.
+validateCharge : Party -> [Party] -> Decimal -> Decimal -> Time
+              -> Decimal -> Party -> Time -> Update ()
+validateCharge owner allowed cap spent expiresAt amount receiver now = do
+  assertMsg "mandate expired" (now < expiresAt)
+  assertMsg "amount must be positive" (amount > 0.0)
+  assertMsg "charge would exceed the cap" (spent + amount <= cap)
+  assertMsg "counterparty is not on the allow-list" (receiver `elem` allowed)
 
 
 template Mandate
@@ -43,14 +55,8 @@ template Mandate
       controller spender
       do
         now <- getTime
-        -- Deadlines are NOT enforced for you. Check them yourself.
-        assertMsg "mandate expired" (now < expiresAt)
-        assertMsg "amount must be positive" (amount > 0.0)
-        assertMsg "charge would exceed the cap" (spent + amount <= cap)
-        -- The allow-list. A prompt-injected agent can be talked into ANY
-        -- receiver; this is the line that makes that harmless.
-        assertMsg "counterparty is not on the allow-list"
-          (receiver `elem` allowedCounterparties)
+        validateCharge owner allowedCounterparties cap spent expiresAt
+                       amount receiver now
 
         -- Every charge leaves a record naming which rule permitted it. Written
         -- in the same transaction as the spend, so a charge without an audit
@@ -76,6 +82,45 @@ template Mandate
             pure ()
 
         create this with spent = spent + amount
+
+    -- Move REAL value through the token standard.
+    --
+    -- The agent supplies the factory and the transfer it wants executed, both
+    -- obtained off-ledger from the registry (privacy means the agent cannot
+    -- see the issuer's config contracts; they arrive as disclosed contracts).
+    --
+    -- CRITICAL: every rule is checked against `transferArgs.transfer` -- the
+    -- transfer that will actually execute -- not against separate parameters.
+    -- Checking parameters would let a compromised agent satisfy the guards
+    -- with one receiver and then move money to another.
+    choice ChargeViaTokenStandard : (ContractId Mandate, TransferInstructionResult)
+      with
+        factoryCid   : ContractId TransferFactory
+        transferArgs : TransferFactory_Transfer
+      controller spender
+      do
+        let t = transferArgs.transfer
+        now <- getTime
+        -- The funds must be the OWNER's. Without this the agent could spend
+        -- someone else's holdings under cover of this mandate.
+        assertMsg "transfer sender must be the mandate owner" (t.sender == owner)
+        validateCharge owner allowedCounterparties cap spent expiresAt
+                       t.amount t.receiver now
+
+        result <- exercise factoryCid transferArgs
+
+        create ChargeRecord with
+          owner; spender
+          receiver = t.receiver
+          amount = t.amount
+          spentAfter = spent + t.amount
+          cap
+          permittedBy =
+            "token standard transfer within cap (" <> show (spent + t.amount)
+              <> " of " <> show cap <> ") to an allow-listed counterparty"
+          chargedAt = now
+        m <- create this with spent = spent + t.amount
+        pure (m, result)
 
     -- The owner can always stop it, and the spender cannot block that.
     choice Revoke : ()
