@@ -6,16 +6,17 @@ have had access all along and the disclosure would be decoration.
 """
 import json, sys
 import ledger as L
+import disclosure_service
 
 s = json.load(open("demo_state.json"))
-disclosure = json.load(open("disclosure.json"))
+disclosure = disclosure_service.issue_disclosure()
 
 
 def try_charge(disclosed, label):
     try:
         r = L.exercise(L.MANDATE, s["mandate"], "Charge",
                        {"amount": "5.0", "receiver": s["merchant"],
-                        "purse": s["purse"]},
+                        "purse": disclosure[0]["contractId"]},
                        act_as=s["agent"], disclosed=disclosed)
         new = L.first_created(r, "Mandate:Mandate")
         if new:

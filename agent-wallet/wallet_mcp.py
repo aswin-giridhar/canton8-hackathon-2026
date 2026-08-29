@@ -15,10 +15,6 @@ import ledger as L
 mcp = FastMCP("canton-agent-wallet")
 STATE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "demo_state.json")
 INBOX = os.path.join(os.path.dirname(os.path.abspath(__file__)), "inbox.txt")
-DISCLOSURE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                          "disclosure.json")
-
-
 def _disclosure():
     """Ask Alice's side for a disclosure covering her current purse.
 
